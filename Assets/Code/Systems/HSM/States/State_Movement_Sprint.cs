@@ -17,10 +17,18 @@ namespace HSM{
             // if not sprinting walk
             return !ctx.sprint ? ((State_Movement)Parent).walkState : null; 
         }
+
+        protected override void OnEnter() {
+            //ctx.cinCamPerlin.AmplitudeGain = ctx.sprintPerlin;
+            ctx.currentPerlin = ctx.sprintPerlin;
+        }
+
         protected override void OnUpdate(float deltaTime)
         {
             Vector3 targetMove = new Vector3(ctx.move.x * ctx.sprintSpeed, ctx.move.y, ctx.move.z * ctx.sprintSpeed);
             ctx.velocity = targetMove;
+
+
         }
     }
 }

@@ -15,8 +15,8 @@ namespace HSM {
         }
 
         protected override void OnEnter() {
-            //Debug.Log("Idle");
             ctx.velocity = Vector3.zero;
+            ctx.currentPerlin = ctx.idlePerlin;
         }
         
     }

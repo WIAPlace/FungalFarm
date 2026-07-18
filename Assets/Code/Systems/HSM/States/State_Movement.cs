@@ -26,12 +26,33 @@ namespace HSM {
                 ctx.velocity.y = 0;
             }
 
-            ctx.velocity.y += -ctx.gravity * Time.deltaTime; // apply gravity
+            ctx.velocity.y += -ctx.gravity * deltaTime; // apply gravity
 
             // Match the player body's Y rotation to the camera target's Y rotation
             // Maybe change this to be changing a value rather than changing it directly in the state itself.
             Vector3 targetRotation = new Vector3(0, ctx.cinCamTransform.eulerAngles.y, 0);
             ctx.controller.transform.rotation = Quaternion.Euler(targetRotation);
+
+            ChangePerlin(deltaTime);
+        }
+
+        protected override void OnExit()
+        {   
+            // make sure perlin is back to what it should be if we wernt moving.
+            
+            //base.OnExit();
+        }
+
+        private void ChangePerlin(float deltaTime)
+        {
+            // Multi Channel Perlin 
+            if(ctx.cinCamPerlin.AmplitudeGain != ctx.currentPerlin.x){ // updates the multi channel perlin to the perfered amount (Amplitude)
+                ctx.cinCamPerlin.AmplitudeGain = Mathf.Lerp(ctx.cinCamPerlin.AmplitudeGain, ctx.currentPerlin.x, deltaTime * ctx.transitionSpeed);
+            }
+            if(ctx.cinCamPerlin.FrequencyGain != ctx.currentPerlin.y){ // updates the multi channel perlin to the perfered amount (Frequency)
+                ctx.cinCamPerlin.FrequencyGain = Mathf.Lerp(ctx.cinCamPerlin.AmplitudeGain, ctx.currentPerlin.y, deltaTime * ctx.transitionSpeed);
+            }
+            // will need to find out a way to make perlin go to idle when exit movement
         }
     }
 }

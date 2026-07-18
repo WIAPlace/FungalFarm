@@ -16,6 +16,7 @@ namespace HSM {
         public LayerMask groundMask;
         public bool drawGizmos = true;
         string lastPath;
+        
 
         CharacterController controller;
         StateMachine machine;
@@ -24,6 +25,8 @@ namespace HSM {
         void Awake() {
             if(ctx!=null && ctx.controller != null) controller = ctx.controller;
             
+            ctx.cinCamPerlin = ctx.cinCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+            //ctx.currentPerlin = ctx.idlePerlin; // set this as default
             //ctx.anim = GetComponentInChildren<Animator>();
             //ctx.renderer = GetComponent<Renderer>();
 
@@ -110,19 +113,34 @@ namespace HSM {
     public class PlayerContext {
         public Vector3 move;     // input direction
         public Vector3 velocity; 
+
         public bool grounded;
         public bool sprint;
+
+        // should probably be changed to a SO at some point
+        [Header("Movement Vars")]
         public float moveSpeed = 6f;
         public float sprintSpeed = 10f;
-        public float accel = 40f;
         public float gravity = 9.81f;
+
+        [Header("Camera Noise")]
+        [Tooltip("X = Amplitude \nY = Frequency")] public Vector2 idlePerlin = new(.5f,.5f);
+        [Tooltip("X = Amplitude \nY = Frequency")] public Vector2 walkPerlin = new(1,1);
+        [Tooltip("X = Amplitude \nY = Frequency")] public Vector2 sprintPerlin = new(2,2);
+        [HideInInspector] public Vector2 currentPerlin;
+        public float transitionSpeed = 5f;
+
+        //public float accel = 40f;
         //public float jumpSpeed = 7f;
         //public bool jumpPressed;
-        public Animator anim;
+
+        [Header("Refrences")]
         public CharacterController controller;
+        public Animator anim;
         public Renderer renderer;
         public CinemachineCamera cinCam;
         public Transform cinCamTransform => cinCam.transform;
+        public CinemachineBasicMultiChannelPerlin cinCamPerlin;
         
     }
 }

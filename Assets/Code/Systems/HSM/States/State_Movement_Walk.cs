@@ -17,6 +17,10 @@ namespace HSM{
             return ctx.sprint ? ((State_Movement)Parent).sprintState : null; 
         }
 
+        protected override void OnEnter() {
+            ctx.currentPerlin = ctx.walkPerlin;
+        }
+
         protected override void OnUpdate(float deltaTime)
         {
             Vector3 targetMove = new Vector3(ctx.move.x * ctx.moveSpeed, ctx.move.y, ctx.move.z * ctx.moveSpeed);
