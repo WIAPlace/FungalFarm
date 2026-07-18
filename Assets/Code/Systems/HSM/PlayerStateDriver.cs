@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //using UnityUtils;
@@ -7,27 +8,33 @@ using UnityEngine.InputSystem;
 namespace HSM {
     public class PlayerStateDriver : MonoBehaviour {
         public PlayerContext ctx = new PlayerContext();
+        public InputReader input;
+
         public Transform groundCheck;
+
         public float groundRadius = 0.2f;
         public LayerMask groundMask;
         public bool drawGizmos = true;
         string lastPath;
 
-        Rigidbody rb;
+        CharacterController controller;
         StateMachine machine;
         State root;
 
         void Awake() {
-            rb = gameObject.GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            if(ctx!=null && ctx.controller != null) controller = ctx.controller;
+            
+            //ctx.anim = GetComponentInChildren<Animator>();
+            //ctx.renderer = GetComponent<Renderer>();
 
-            ctx.rb = rb;
-            ctx.anim = GetComponentInChildren<Animator>();
-            ctx.renderer = GetComponent<Renderer>();
-
-            root = new PlayerRoot(null, ctx);
+            root = new State_PlayerRoot(null, ctx);
             var builder = new StateMachineBuilder(root);
             machine = builder.Build();
+
+            // Set Up Events
+            input.MoveEvent += HandleMove;
+            input.SprintEvent += HandleSprintEvent;
+            input.SprintCancelledEvent += HandleSprintCancelledEvent;
 
             // fallback: create a groundCheck just below the collider's bounds
             if (groundCheck == null) {
@@ -38,15 +45,21 @@ namespace HSM {
                 t.localPosition = new Vector3(0, y, 0);
                 groundCheck = t;
             }
+            ctx.sprint = false;
+
+            // Lock currsor, will probably be moved somewhere else later
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        void OnDestroy()
+        {
+            input.MoveEvent -= HandleMove;
+            input.SprintEvent -= HandleSprintEvent;
+            input.SprintCancelledEvent -= HandleSprintCancelledEvent;
         }
 
         void Update() {
-            float x = 0f;
-            if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) x -= 1f;
-            if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) x += 1f;
-            ctx.jumpPressed = Keyboard.current.spaceKey.wasPressedThisFrame;
-            ctx.move.x = Mathf.Clamp(x, -1f, 1f);
-
             ctx.grounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
 
             machine.Tick(Time.deltaTime);
@@ -57,14 +70,11 @@ namespace HSM {
                 //Debug.Log("State", path);
                 lastPath = path;
             }
-        }
 
-        void FixedUpdate() {
-            var v = rb.linearVelocity;
-            v.x = ctx.velocity.x;
-            rb.linearVelocity = v;
+            // Move in the direction of the controller.
+            ctx.velocity = (controller.transform.right * ctx.velocity.x) + (controller.transform.forward * ctx.velocity.z);
 
-            ctx.velocity.x = rb.linearVelocity.x;
+            controller.Move(ctx.velocity * Time.deltaTime);
         }
 
         void OnDrawGizmosSelected() {
@@ -77,19 +87,42 @@ namespace HSM {
         static string StatePath(State s) {
             return string.Join(" > ", s.PathToRoot().Reverse().Select(n => n.GetType().Name));
         }
+
+        // Handle Events ///////////////////////////////////////////////////////////////////////////
+        private void HandleMove(Vector2 moveInput)
+        {
+            ctx.move.x = moveInput.x;
+            ctx.move.z = moveInput.y;
+
+            ctx.move.Normalize();
+        }
+        private void HandleSprintEvent()
+        {
+            ctx.sprint = true;
+        }
+        private void HandleSprintCancelledEvent()
+        {
+            ctx.sprint = false;
+        }
     }
 
     [Serializable]
     public class PlayerContext {
-        public Vector3 move;
-        public Vector3 velocity;
+        public Vector3 move;     // input direction
+        public Vector3 velocity; 
         public bool grounded;
+        public bool sprint;
         public float moveSpeed = 6f;
+        public float sprintSpeed = 10f;
         public float accel = 40f;
-        public float jumpSpeed = 7f;
-        public bool jumpPressed;
+        public float gravity = 9.81f;
+        //public float jumpSpeed = 7f;
+        //public bool jumpPressed;
         public Animator anim;
-        public Rigidbody rb;
+        public CharacterController controller;
         public Renderer renderer;
+        public CinemachineCamera cinCam;
+        public Transform cinCamTransform => cinCam.transform;
+        
     }
 }

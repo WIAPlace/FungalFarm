@@ -1,16 +1,23 @@
+using HSM;
 using UnityEngine;
-
-public class State_Movement_Idle : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+namespace HSM {
+    public class State_Movement_Idle : State
     {
-        
-    }
+        readonly PlayerContext ctx;
 
-    // Update is called once per frame
-    void Update()
-    {
+        public State_Movement_Idle(StateMachine machine, State parent, PlayerContext ctx) : base(machine, parent)
+        {
+            this.ctx = ctx;
+        }
+
+        protected override State GetTransition() {
+            return Mathf.Abs(ctx.move.magnitude) > 0.01f ? ((State_Movement)Parent).walkState : null;
+        }
+
+        protected override void OnEnter() {
+            //Debug.Log("Idle");
+            ctx.velocity = Vector3.zero;
+        }
         
     }
 }
