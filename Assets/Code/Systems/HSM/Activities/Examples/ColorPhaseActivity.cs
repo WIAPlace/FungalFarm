@@ -16,7 +16,7 @@ namespace HSM {
                 mat = renderer.material; // clone once per activity/state
             }
         }
-
+        /*
         public override async Task ActivateAsync(CancellationToken ct){
             if (this.Mode != ActivityMode.Inactive || mat == null) return;
             this.Mode = ActivityMode.Activating;
@@ -30,5 +30,6 @@ namespace HSM {
             mat.color = exitColor;
             this.Mode = ActivityMode.Inactive;
         }
+        */
     }
 }
