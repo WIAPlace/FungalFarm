@@ -25,8 +25,10 @@ namespace HSM{
 
         protected override void OnUpdate(float deltaTime)
         {
-            Vector3 targetMove = new Vector3(ctx.move.x * ctx.sprintSpeed, ctx.move.y, ctx.move.z * ctx.sprintSpeed);
-            ctx.velocity = targetMove;
+            float targetx = ctx.move.x * ctx.sprintSpeed;
+            float targetz = ctx.move.z * ctx.sprintSpeed;
+            ctx.velocity.x = targetx;
+            ctx.velocity.z = targetz;
 
 
         }

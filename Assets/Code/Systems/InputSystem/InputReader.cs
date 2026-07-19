@@ -66,6 +66,8 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     public event Action<Vector2> MoveEvent; 
     public event Action SprintEvent;
     public event Action SprintCancelledEvent;
+    public event Action InteractEvent;
+    public event Action InteractCancelledEvent;
     //public event Action PauseEvent;
     //public event Action ResumeEvent;
     ////// Player Events ///////////////
@@ -88,6 +90,20 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
             SprintCancelledEvent?.Invoke();
         }
     }
+
+    public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        //throw new System.NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+        {
+           InteractEvent?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            InteractCancelledEvent?.Invoke();
+        }
+    }
+
     ////// UI Events ///////////////////
     /// 
     public void OnPause(InputAction.CallbackContext context) // PAUSE
@@ -95,7 +111,7 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
         /*
         if (context.phase == InputActionPhase.Performed)
         {
-            PauseEvent.Invoke();
+            PauseEvent?.Invoke();
             SetUI();
         }
         */
@@ -106,7 +122,7 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
         /*
         if (context.phase == InputActionPhase.Performed)
         {
-            ResumeEvent.Invoke();
+            ResumeEvent?.Invoke();
             SetPlayer();
         }
         */
@@ -131,11 +147,6 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     }
 
     public void OnAttack(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         //throw new System.NotImplementedException();
     }

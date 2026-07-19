@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 namespace HSM {
     public class State_Movement : State
@@ -18,6 +20,12 @@ namespace HSM {
 
         protected override State GetInitialState() => idleState;
 
+        protected override State GetTransition()
+        {
+            // if interact is not null switch to interact state.
+            return ctx.currentInteract != null ? ((State_PlayerRoot)Parent).interactState : null;
+        }
+
 
         protected override void OnUpdate(float deltaTime) 
         {
@@ -25,7 +33,7 @@ namespace HSM {
             {
                 ctx.velocity.y = 0;
             }
-
+            //Debug.Log("Move");
             ctx.velocity.y += -ctx.gravity * deltaTime; // apply gravity
 
             // Match the player body's Y rotation to the camera target's Y rotation
@@ -36,12 +44,32 @@ namespace HSM {
             ChangePerlin(deltaTime);
         }
 
+        protected override void OnEnter()
+        {
+            // Change this to Sensitivity Later on.
+            ctx.cinCamController.Controllers[0].Input.Gain = 1;
+            ctx.cinCamController.Controllers[1].Input.Gain = -1;
+
+            
+        }
         protected override void OnExit()
-        {   
+        {
+            ctx.cinCamPerlin.AmplitudeGain = ctx.idlePerlin.x;
+            ctx.cinCamPerlin.FrequencyGain = ctx.idlePerlin.y;
+
+            // Disable camera controlls by making inputs = 0;
+            foreach (var controllerAxis in ctx.cinCamController.Controllers)
+            {
+                controllerAxis.Input.Gain = 0;
+            }
+
+
+            ctx.velocity = Vector3.zero;
             // make sure perlin is back to what it should be if we wernt moving.
             
             //base.OnExit();
         }
+        
 
         private void ChangePerlin(float deltaTime)
         {

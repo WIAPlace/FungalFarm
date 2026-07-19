@@ -15,7 +15,9 @@ namespace HSM {
         }
 
         protected override void OnEnter() {
-            ctx.velocity = Vector3.zero;
+            
+            ctx.velocity.x = 0;
+            ctx.velocity.z = 0;
             ctx.currentPerlin = ctx.idlePerlin;
         }
         

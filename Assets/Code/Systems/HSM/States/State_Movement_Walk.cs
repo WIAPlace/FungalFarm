@@ -23,8 +23,11 @@ namespace HSM{
 
         protected override void OnUpdate(float deltaTime)
         {
-            Vector3 targetMove = new Vector3(ctx.move.x * ctx.moveSpeed, ctx.move.y, ctx.move.z * ctx.moveSpeed);
-            ctx.velocity = targetMove;
+            //Debug.Log("Walk");
+            float targetx = ctx.move.x * ctx.moveSpeed;
+            float targetz = ctx.move.z * ctx.moveSpeed;
+            ctx.velocity.x = targetx;
+            ctx.velocity.z = targetz;
         }
     }
 }
