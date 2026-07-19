@@ -38,6 +38,8 @@ namespace Systems.Inventory {
             });
             
             ghostIcon = container.CreateChild("ghostIcon");
+
+            //CloseInventory();
             
             yield return null; 
         }

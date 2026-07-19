@@ -68,9 +68,10 @@ namespace Systems.Persistence {
         }
 
         public void NewGame() {
+
             gameData = new GameData {
                 Name = "Game",
-                CurrentLevelName = "Demo"
+                CurrentLevelName = "TestCodingScene"
             };
             SceneManager.LoadScene(gameData.CurrentLevelName);
         }

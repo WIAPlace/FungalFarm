@@ -241,6 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1329053527}
   - component: {fileID: 1329053528}
+  - component: {fileID: 1329053529}
   m_Layer: 0
   m_Name: TempGameManager
   m_TagString: Untagged
@@ -276,6 +277,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   input: {fileID: 11400000, guid: 8c16d4ab252dabb4ba00b37020adb9c7, type: 2}
+  inventory: {fileID: 1712429047}
+--- !u!114 &1329053529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329053526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25005605c1d4122be127c6c648c9781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Systems.Persistence.SaveLoadSystem
+  UnparentOnAwake: 1
+  gameData:
+    Name: TestCodingSave
+    CurrentLevelName: TestCodingScene
+    playerData:
+      <Id>k__BackingField:
+        Part1: 0
+        Part2: 0
+        Part3: 0
+        Part4: 0
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
+    inventoryData:
+      <Id>k__BackingField:
+        Part1: 0
+        Part2: 0
+        Part3: 0
+        Part4: 0
+      Items: []
+      Capacity: 0
+      Coins: 0
 --- !u!1 &1415786317
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Systems.Inventory.Inventory
   view: {fileID: 1712429047}
-  capacity: 20
+  capacity: 8
   startingItems:
   - {fileID: 11400000, guid: 67be1c2a8bf784345bcc1b4e2590998e, type: 2}
   - {fileID: 11400000, guid: 67be1c2a8bf784345bcc1b4e2590998e, type: 2}

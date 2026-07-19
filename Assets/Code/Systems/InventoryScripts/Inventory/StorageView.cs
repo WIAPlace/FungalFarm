@@ -81,5 +81,8 @@ namespace Systems.Inventory {
                 slot.OnStartDrag -= OnPointerDown;
             }
         }
+
+        //public void OpenInventory() => document.enabled = true;
+        //public void CloseInventory() => document.enabled = false;
     }
 }
