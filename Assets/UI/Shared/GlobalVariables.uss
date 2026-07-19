@@ -1,0 +1,19 @@
+:root {
+    /* Heading colors */
+    --color-h1: rgb(140, 75, 61);
+    --color-h2: rgb(241, 220, 186);
+
+    /* Background images */
+    --bg-title-bar: url("project://database/Assets/Sprites/TitleBar.png?fileID=21300000&guid=875b041fbe6bb1c4ba90706b2d2b9c82&type=3#TitleBar");
+    --bg-content-area: url("project://database/Assets/Sprites/Background.png?fileID=21300000&guid=f22159fbbedffca41856aa1e010dd437&type=3#Background");
+
+    /* Fonts */
+    --font-h1: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=477b40b310326f843b2eb26028b5d360&type=3#LilitaOne-Regular");
+    --font-h2: url("project://database/Assets/Fonts/Sniglet-Regular.ttf?fileID=12800000&guid=9bda390d09e687b4c909926a414d996f&type=3#Sniglet-Regular");
+
+    /* Rarity */
+    --rarity-uncommon: rgb(55,180,77);
+    --rarity-rare: rgb(0,150,255);
+    --rarity-epic: rgb(146,0,255);
+
+}

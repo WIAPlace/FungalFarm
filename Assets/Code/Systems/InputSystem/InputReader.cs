@@ -70,6 +70,7 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     public event Action InteractCancelledEvent;
     public event Action PauseEvent;
     public event Action ResumeEvent;
+    public event Action InventoryEvent;
     ////// Player Events ///////////////
     /// 
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -101,6 +102,14 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
         if (context.phase == InputActionPhase.Canceled)
         {
             InteractCancelledEvent?.Invoke();
+        }
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            InventoryEvent?.Invoke();   
         }
     }
 

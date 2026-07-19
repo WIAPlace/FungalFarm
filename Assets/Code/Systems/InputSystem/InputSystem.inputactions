@@ -95,6 +95,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "50a7eb6a-c058-4e8b-8c19-810c87fcae72",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -496,12 +505,12 @@
                 },
                 {
                     "name": "",
-                    "id": "95932d11-34e4-4649-bdb9-a22c56d67359",
+                    "id": "1352f0e0-83d2-437b-a05b-8089234a49f2",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

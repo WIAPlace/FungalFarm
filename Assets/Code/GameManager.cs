@@ -1,21 +1,22 @@
-using Systems.Inventory;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] InputReader input;
-    [SerializeField] InventoryView inventory;
+    [SerializeField] UIController uiController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         input.ResumeEvent += HandleResume;
         input.PauseEvent += HandlePause;
+        input.InventoryEvent += HandleInventory;
     }
 
     void OnDestroy()
     {
         input.ResumeEvent -= HandleResume;
         input.PauseEvent -= HandlePause;
+        input.InventoryEvent -= HandleInventory;
     }
 
 
@@ -24,7 +25,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
-        //inventory.OpenInventory();
     }
 
     private void HandleResume()
@@ -32,6 +32,14 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
-        //inventory.CloseInventory();
+        uiController.CloseAll();
+    }
+    private void HandleInventory()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+        input.SetUI();
+        uiController.ToggleWindow("inventory");
     }
 }
