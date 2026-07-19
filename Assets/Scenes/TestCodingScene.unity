@@ -599,7 +599,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Systems.Inventory.Inventory
   view: {fileID: 1712429047}
   capacity: 20
-  startingItems: []
+  startingItems:
+  - {fileID: 11400000, guid: 67be1c2a8bf784345bcc1b4e2590998e, type: 2}
+  - {fileID: 11400000, guid: 67be1c2a8bf784345bcc1b4e2590998e, type: 2}
+  - {fileID: 11400000, guid: ccd55be569e54864fa7d34ec7a8dfecd, type: 2}
+  - {fileID: 11400000, guid: 8d12dd61fd031fd4ba2686cfbb909599, type: 2}
+  - {fileID: 11400000, guid: ccd55be569e54864fa7d34ec7a8dfecd, type: 2}
   <Id>k__BackingField:
     Part1: 4279629941
     Part2: 1158485398
