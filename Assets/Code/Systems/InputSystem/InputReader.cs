@@ -68,8 +68,8 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     public event Action SprintCancelledEvent;
     public event Action InteractEvent;
     public event Action InteractCancelledEvent;
-    //public event Action PauseEvent;
-    //public event Action ResumeEvent;
+    public event Action PauseEvent;
+    public event Action ResumeEvent;
     ////// Player Events ///////////////
     /// 
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -108,24 +108,24 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     /// 
     public void OnPause(InputAction.CallbackContext context) // PAUSE
     {
-        /*
+        
         if (context.phase == InputActionPhase.Performed)
         {
             PauseEvent?.Invoke();
             SetUI();
         }
-        */
+        
     }
 
     public void OnResume(InputAction.CallbackContext context) // RESUME
     {
-        /*
+        
         if (context.phase == InputActionPhase.Performed)
         {
             ResumeEvent?.Invoke();
             SetPlayer();
         }
-        */
+        
     }
 
 
