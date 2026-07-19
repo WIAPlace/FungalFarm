@@ -15,5 +15,6 @@ public class TestInteractable : MonoBehaviour, IInteractable
         if(currentWait < timeToWait) return; 
         Debug.Log("Interact Completed");
         //throw new System.NotImplementedException();
+        Destroy(gameObject);
     }
 }
