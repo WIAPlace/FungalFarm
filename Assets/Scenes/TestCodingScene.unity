@@ -845,6 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WindowManager
   _uiDocument: {fileID: 1145955014}
   _gameWindowTemplate: {fileID: 9197481963319205126, guid: 5287569902b3ee342865a6b78c4693a1, type: 3}
+  windowID: inventory
 --- !u!4 &2024403567
 Transform:
   m_ObjectHideFlags: 0

@@ -81,4 +81,6 @@ public class GameWindow
     /// <returns>A <see cref="Vector2"/> containing the window's x and y coordinates.</returns>
     public Vector2 GetPosition() => _dragManipulator.GetPosition();
 
+    // Force Window Back to Center Button
+    public void SetPosition(Vector2 position) => _dragManipulator.SetPosition(position);
 }

@@ -51,8 +51,8 @@ public class WindowDragManipulator : PointerManipulator
         Vector2 newPosition = _startWindowPosition + delta;
 
         // Clamp to screen bounds — keep at least 40px visible
-        newPosition.x = Mathf.Clamp(newPosition.x, -(_windowWidth - 40), _panelSize.x - 40);
-        newPosition.y = Mathf.Clamp(newPosition.y, 0, _panelSize.y - 40);
+        newPosition.x = Mathf.Clamp(newPosition.x, -(_windowWidth - 400), _panelSize.x - 400);
+        newPosition.y = Mathf.Clamp(newPosition.y, 0, _panelSize.y - 400);
 
         _currentPosition = newPosition;
         _windowRoot.style.translate = new Translate(_currentPosition.x, _currentPosition.y);

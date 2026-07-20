@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 /// <summary>
@@ -13,6 +14,9 @@ public class WindowManager : MonoBehaviour
 
     private VisualElement _windowContainer;
     private Dictionary<string, GameWindow> _windows = new();
+
+    [Header("Only for editor stuff")]
+    [SerializeField,Tooltip("inventory")]private string windowID;
 
     private void Awake()
     {
@@ -105,5 +109,12 @@ public class WindowManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveAllPositions();
+    }
+
+    public void SetPosition()
+    {
+        if(windowID == null || !_windows.ContainsKey(windowID)) return;
+        Vector2 screenCenter = new Vector2(Camera.main.pixelWidth * .5f,Camera.main.pixelHeight*.5f);
+        _windows[windowID].SetPosition(screenCenter);
     }
 }
