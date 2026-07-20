@@ -5,8 +5,9 @@ public class InventorySlot : VisualElement
     private string _rarityClass = "";
     private VisualElement _slotRoot;
     private VisualElement _icon;
-    private ItemData _item;
-    public ItemData Item => _item;
+    private Label _amt;
+    //private ItemData _item;
+    public Item item;
 
     public InventorySlot(VisualTreeAsset template)
     {
@@ -17,13 +18,17 @@ public class InventorySlot : VisualElement
         this.Add(_slotRoot);
 
         _icon = _slotRoot.Q<VisualElement>("Icon");
+        _amt = _slotRoot.Q<Label>("Amt");
+        //_amt.BringToFront();
+        
+        UpdateAmt();
 
         this.AddManipulator(new ItemDragManipulator(this));
         this.AddManipulator(new ItemTooltipManipulator(this));
 
     }
 
-    public void HoldItem(ItemData item)
+    public void HoldItem(Item item)
     {
         if (item == null) 
         {
@@ -32,24 +37,25 @@ public class InventorySlot : VisualElement
 
         ClearSlot();
 
-        _item = item;
+        this.item = item;
         _icon.style.backgroundImage = new StyleBackground(item.Icon);
 
+        UpdateAmt();
 
         _rarityClass = item.RarityClass;
         _slotRoot.AddToClassList(_rarityClass);
 
     }
 
-    public ItemData DropItem()
+    public Item DropItem()
     {
-        if (_item == null) 
+        if (item == null) 
         {
             return null;
         }
 
-        var droppedItem = _item;
-        _item = null;
+        var droppedItem = item;
+        item = null;
 
         ClearSlot();
 
@@ -62,6 +68,21 @@ public class InventorySlot : VisualElement
 
         _slotRoot.RemoveFromClassList(_rarityClass);
         _rarityClass = "";
+        
+        UpdateAmt();
+    }
+
+    public void UpdateAmt()
+    {
+        if(item != null){
+            _amt.text = item.quantity > 1 ? item.quantity.ToString() : string.Empty;
+            _amt.visible = item.quantity > 1;
+        }
+        else
+        {
+            _amt.text = "0";
+            _amt.visible = false;
+        }
     }
 
     public void SetDropHighlight(bool active) => _slotRoot.EnableInClassList("drop-target", active);

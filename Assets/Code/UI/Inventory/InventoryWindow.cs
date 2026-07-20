@@ -12,7 +12,7 @@ public class InventoryWindow : MonoBehaviour
     [SerializeField] private VisualTreeAsset _itemTooltipTemplate;
 
     [Header("Starting Items")]
-    [SerializeField] private List<ItemData> _startingItems;
+    [SerializeField] private List<Item> _startingItems;
 
     [Header("Stylesheets")]
     [SerializeField] private StyleSheet _inventoryStyleSheet;

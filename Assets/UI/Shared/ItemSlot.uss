@@ -59,3 +59,16 @@
     border-color: rgb(255, 224, 130);
     border-radius: 6px;
 }
+
+#Amt {
+    position: absolute;
+    top: auto;
+    left: auto;
+    right: 3px;
+    bottom: 3px;
+    width: 20%;
+    height: 20%;
+    font-size: 15px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}

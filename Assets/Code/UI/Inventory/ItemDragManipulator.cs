@@ -12,7 +12,7 @@ public class ItemDragManipulator : PointerManipulator
     public static bool IsDragging { get; private set; }
 
     private InventorySlot _sourceSlot;
-    private ItemData _draggedItem;
+    private Item _draggedItem;
     private int _capturedPointerId;
 
     private InventorySlot _highlightedSlot;
@@ -51,7 +51,7 @@ public class ItemDragManipulator : PointerManipulator
         panelRoot.Add(_ghost);
     }
 
-    private void ShowGhost(ItemData item, Vector2 position)
+    private void ShowGhost(Item item, Vector2 position)
     {
         _ghostIcon.sprite = item.Icon;
 
@@ -141,7 +141,7 @@ public class ItemDragManipulator : PointerManipulator
        if (evt.button != 0) return;
 
        var slot = (InventorySlot)target;
-       if (slot.Item == null) return;
+       if (slot.item == null) return;
 
        // pull the item off the slot up front so the source visually empties immediately
        IsDragging = true;
@@ -206,12 +206,20 @@ public class ItemDragManipulator : PointerManipulator
 
        if (targetSlot != null && targetSlot != _sourceSlot)
        {
-           if (targetSlot.Item != null)
+           if (targetSlot.item != null)
            {
-               // Swap: pull the target's item out before placing ours, then send it back to source
-               var swappedItem = targetSlot.DropItem();
-               targetSlot.HoldItem(_draggedItem);
-               _sourceSlot.HoldItem(swappedItem);
+                if(targetSlot.item.dataId == _draggedItem.dataId && targetSlot.item.quantity + _draggedItem.quantity <= targetSlot.item.itemData.StackAmt)
+                {
+                    targetSlot.item.quantity += 1;
+                    targetSlot.UpdateAmt();
+                }
+                else
+                {
+                    // Swap: pull the target's item out before placing ours, then send it back to source
+                    var swappedItem = targetSlot.DropItem();
+                    targetSlot.HoldItem(_draggedItem);
+                    _sourceSlot.HoldItem(swappedItem);
+                }
            }
            else
            {

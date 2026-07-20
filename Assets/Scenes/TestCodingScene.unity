@@ -767,13 +767,55 @@ MonoBehaviour:
   _itemSlotTemplate: {fileID: 9197481963319205126, guid: 8b4339f16eacf294d945831a8ec444fd, type: 3}
   _itemTooltipTemplate: {fileID: 9197481963319205126, guid: 79a5cf2ea7820ad4ca5f395e5577f66e, type: 3}
   _startingItems:
-  - {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
-  - {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
-  - {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
-  - {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
-  - {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
-  - {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
-  - {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
+    quantity: 10
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
+    quantity: 1
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
+    quantity: 1
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
+    quantity: 20
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
+    quantity: 1
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
+    quantity: 1
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
+    quantity: 1
   _inventoryStyleSheet: {fileID: 7433441132597879392, guid: ec5c93d406b06b644b1eaf89d34ad6e8, type: 3}
 --- !u!114 &2024403565
 MonoBehaviour:

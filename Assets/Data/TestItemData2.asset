@@ -15,5 +15,11 @@ MonoBehaviour:
   ItemName: TestItemData2
   Description: Second Test Item
   Icon: {fileID: 21300000, guid: 852a2da561172964f80c077ef099cad5, type: 3}
+  Id:
+    Part1: 1714714115
+    Part2: 1074206152
+    Part3: 4040484009
+    Part4: 312919877
   Category: 0
   Rarity: 0
+  StackAmt: 2

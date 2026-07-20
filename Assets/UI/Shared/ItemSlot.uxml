@@ -4,5 +4,6 @@
     <ui:VisualElement name="ItemSlot" style="flex-grow: 1; max-width: 56px; max-height: 56px;">
         <ui:VisualElement name="Icon" style="background-image: none;"/>
         <ui:VisualElement name="RarityOverlay"/>
+        <ui:Label name="Amt"/>
     </ui:VisualElement>
 </ui:UXML>

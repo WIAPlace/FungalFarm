@@ -28,9 +28,9 @@ public class ItemTooltipManipulator : Manipulator
     {
         // suppress the tooltip while a drag is in flight — the ghost is enough visual noise
         if (ItemDragManipulator.IsDragging) return;
-        if (_slot.Item == null) return;
+        if (_slot.item == null) return;
 
-        Tooltip?.Show(_slot.Item, evt.position);
+        Tooltip?.Show(_slot.item, evt.position);
     }
 
     private void OnPointerLeave(PointerLeaveEvent evt) => Tooltip?.Hide();

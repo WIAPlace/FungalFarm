@@ -21,12 +21,12 @@ public class ItemTooltip : VisualElement
     
     }
 
-    public void Show(ItemData item, Vector2 position)
+    public void Show(Item item, Vector2 position)
     {
         if (item == null) return;
 
         // Single assignment. Every binding declared in UXML resolves against this source.
-        _container.dataSource = item;
+        _container.dataSource = item.itemData;
 
         // swap rarity class so border/background colors match the item
         if (!string.IsNullOrEmpty(_currentRarityClass))

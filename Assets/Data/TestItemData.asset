@@ -15,5 +15,11 @@ MonoBehaviour:
   ItemName: TestItem1
   Description: This is a Test
   Icon: {fileID: 21300000, guid: 7c5db47e5c0c4634cbc72f4381810398, type: 3}
+  Id:
+    Part1: 3246897406
+    Part2: 1278340980
+    Part3: 2835319685
+    Part4: 2706923247
   Category: 2
   Rarity: 0
+  StackAmt: 20
