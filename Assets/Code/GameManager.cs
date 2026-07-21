@@ -41,5 +41,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         input.SetUI();
         uiController.ToggleWindow("inventory");
+        uiController.ToggleWindow("equipment");
     }
 }

@@ -777,6 +777,7 @@ GameObject:
   - component: {fileID: 2024403566}
   - component: {fileID: 2024403564}
   - component: {fileID: 2024403565}
+  - component: {fileID: 2024403568}
   m_Layer: 0
   m_Name: UserInterface
   m_TagString: Untagged
@@ -873,6 +874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIController
   _windowManager: {fileID: 2024403566}
   _inventoryWindow: {fileID: 2024403564}
+  _EquipmentWindow: {fileID: 2024403568}
 --- !u!114 &2024403566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,6 +906,81 @@ Transform:
   - {fileID: 1145955015}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2024403568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024403563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68abe577e9820e4590f8e7eddb079ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryWindow
+  _inventoryWindowTemplate: {fileID: 9197481963319205126, guid: daa0cfbd8320b4f4fb115106cc785213, type: 3}
+  _itemSlotTemplate: {fileID: 9197481963319205126, guid: 8b4339f16eacf294d945831a8ec444fd, type: 3}
+  _itemTooltipTemplate: {fileID: 9197481963319205126, guid: 79a5cf2ea7820ad4ca5f395e5577f66e, type: 3}
+  _startingItems:
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
+    quantity: 10
+    currentIndex: {x: 0, y: 0}
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
+    quantity: 1
+    currentIndex: {x: 0, y: 0}
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
+    quantity: 1
+    currentIndex: {x: 0, y: 0}
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
+    quantity: 20
+    currentIndex: {x: 0, y: 0}
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
+    quantity: 1
+    currentIndex: {x: 0, y: 0}
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
+    quantity: 1
+    currentIndex: {x: 0, y: 0}
+  - Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
+    quantity: 1
+    currentIndex: {x: 0, y: 0}
+  _inventoryStyleSheet: {fileID: 7433441132597879392, guid: ec5c93d406b06b644b1eaf89d34ad6e8, type: 3}
+  invData: {fileID: 11400000, guid: fe0d8afabd4ca0349b3d78ac6d65df71, type: 2}
+  itemsDB: {fileID: 11400000, guid: 838808bdba519cc4393bf7ccfd824215, type: 2}
 --- !u!1001 &2941140229302680030
 PrefabInstance:
   m_ObjectHideFlags: 0
