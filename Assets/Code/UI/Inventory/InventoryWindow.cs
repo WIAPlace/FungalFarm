@@ -17,10 +17,14 @@ public class InventoryWindow : MonoBehaviour
     [Header("Stylesheets")]
     [SerializeField] private StyleSheet _inventoryStyleSheet;
 
-    private List<InventorySlot> _slots = new();
+    [SerializeField] private InventoryData invData;
+    public ObservableArray<InventorySlot> _slots => invData._slots;
+
+    [SerializeField] private ItemsDataBase itemsDB;
 
     public void BuildInventory(VisualElement contentArea)
     {
+        
         if (_inventoryWindowTemplate == null || _itemSlotTemplate == null)
         {
             Debug.LogError("Inventory Window Template or Item Slot Template is not assigned.");
@@ -34,9 +38,9 @@ public class InventoryWindow : MonoBehaviour
         // Generate slots
         for (int i = 0; i < SLOT_COUNT; i++)
         {
-            var slot = new InventorySlot(_itemSlotTemplate);
+            var slot = new InventorySlot(_itemSlotTemplate,i,itemsDB);
             _slotContainer.Add(slot);
-            _slots.Add(slot);
+            _slots.TryAdd(slot);
         }
 
         // Populate starting items
@@ -53,5 +57,10 @@ public class InventoryWindow : MonoBehaviour
         var tooltip = new ItemTooltip(_itemTooltipTemplate);
         contentArea.panel.visualTree.Add(tooltip);
         ItemTooltipManipulator.Tooltip = tooltip;
+    }
+    void OnDestroy()
+    {
+        invData._slots.Clear();
+        itemsDB.items.Clear();       
     }
 }

@@ -1,4 +1,7 @@
+using System;
 using UnityEngine.UIElements;
+
+//[Serializable]
 
 public class InventorySlot : VisualElement
 {
@@ -6,8 +9,13 @@ public class InventorySlot : VisualElement
     private VisualElement _slotRoot;
     private VisualElement _icon;
     private Label _amt;
+    private ItemsDataBase itemsDB;
     //private ItemData _item;
     public Item item;
+
+    public ObservableArray<Item> Items => itemsDB.items;
+
+    public int index;
 
     public InventorySlot(VisualTreeAsset template)
     {
@@ -28,6 +36,14 @@ public class InventorySlot : VisualElement
 
     }
 
+    // used if needs to be indexed
+    public InventorySlot(VisualTreeAsset template,int newIndex, ItemsDataBase idb) : this(template)
+    {
+        index = newIndex;
+        itemsDB = idb;
+        UpdateItemToIndex();
+    }
+
     public void HoldItem(Item item)
     {
         if (item == null) 
@@ -41,6 +57,8 @@ public class InventorySlot : VisualElement
         _icon.style.backgroundImage = new StyleBackground(item.Icon);
 
         UpdateAmt();
+        UpdateItemToIndex();
+        Items.TryAddAt(index, item);
 
         _rarityClass = item.RarityClass;
         _slotRoot.AddToClassList(_rarityClass);
@@ -70,6 +88,8 @@ public class InventorySlot : VisualElement
         _rarityClass = "";
         
         UpdateAmt();
+
+        Items.TryRemoveAt(index);
     }
 
     public void UpdateAmt()
@@ -82,6 +102,12 @@ public class InventorySlot : VisualElement
         {
             _amt.text = "0";
             _amt.visible = false;
+        }
+    }
+
+    public void UpdateItemToIndex(){
+        if(item != null){
+            item.currentIndex.y = index;
         }
     }
 

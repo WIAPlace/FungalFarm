@@ -25,7 +25,7 @@ public class ObservableArray<T> : IObservableArray<T> {
     public int Length => items.Length;
     public T this[int index] => items[index];
 
-    public ObservableArray(int size = 20, IList<T> initialList = null) {
+    public ObservableArray(int size = 25, IList<T> initialList = null) {
         items = new T[size];
         if (initialList != null) {
             initialList.Take(size).ToArray().CopyTo(items, 0);
