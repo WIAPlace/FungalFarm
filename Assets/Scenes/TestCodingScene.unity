@@ -365,6 +365,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestInteractable
   timeToWait: 3
+  idb: {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
+  item:
+    Id:
+      Part1: 0
+      Part2: 0
+      Part3: 0
+      Part4: 0
+    itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
+    quantity: 5
+    currentIndex: {x: 0, y: 0}
 --- !u!65 &1415786319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -458,28 +468,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1545455447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8220763735451780034, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
-  m_PrefabInstance: {fileID: 2941140229302680030}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1545455453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545455447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
-  NoiseProfile: {fileID: 11400000, guid: a3dacaec0287d7444b4bd276816e1666, type: 2}
-  PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 1
-  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1692496523
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,14 +952,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6263734044505123915, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
-      propertyPath: ctx.transitionSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263734044505123915, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
-      propertyPath: interactMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 6710420351270054091, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
       propertyPath: m_Name
       value: Player
@@ -979,10 +959,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8220763735451780034, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1545455453}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

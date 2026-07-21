@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UIElements;
 
 public class ItemDragManipulator : PointerManipulator
@@ -8,6 +9,8 @@ public class ItemDragManipulator : PointerManipulator
     private static Image _ghostIcon;
     private static VisualElement _ghostRarity;
     private static string _currentGhostRarityClass;
+
+    //private static ObservableArray<Item> Items => InventorySlot.Items;
 
     public static bool IsDragging { get; private set; }
 
@@ -210,8 +213,8 @@ public class ItemDragManipulator : PointerManipulator
            {
                 if(targetSlot.item.dataId == _draggedItem.dataId && targetSlot.item.quantity + _draggedItem.quantity <= targetSlot.item.itemData.StackAmt)
                 {
-                    targetSlot.item.quantity += 1;
-                    targetSlot.UpdateAmt();
+                    targetSlot.item.quantity += _draggedItem.quantity;
+                    targetSlot.UpdateAmt(); // this is updating the quantity in both the visual and data at once, may want to move that to be handled by data itself.
                 }
                 else
                 {

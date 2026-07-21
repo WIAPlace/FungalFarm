@@ -61,6 +61,11 @@ public class InventoryWindow : MonoBehaviour
     void OnDestroy()
     {
         invData._slots.Clear();
-        itemsDB.items.Clear();       
+        itemsDB.items.Clear(); 
+
+        foreach(InventorySlot slot in _slots.items)
+        {
+            slot?.UnsubscribeFromEvents();
+        }      
     }
 }

@@ -339,19 +339,30 @@ MonoBehaviour:
     sprint: 0
     moveSpeed: 6
     sprintSpeed: 10
-    accel: 40
     gravity: 9.81
-    anim: {fileID: 0}
+    interactDistance: 5
+    idlePerlin: {x: 0.5, y: 0.5}
+    walkPerlin: {x: 1, y: 1}
+    sprintPerlin: {x: 2, y: 2}
+    currentPerlin: {x: 0, y: 0}
+    transitionSpeed: 2
     controller: {fileID: 3077838091879102233}
+    anim: {fileID: 0}
     renderer: {fileID: 0}
     cinCam: {fileID: 933765178163936884}
+    cinCamPerlin: {fileID: 0}
+    cinCamController: {fileID: 0}
   input: {fileID: 11400000, guid: 8c16d4ab252dabb4ba00b37020adb9c7, type: 2}
   groundCheck: {fileID: 1899313974004346322}
   groundRadius: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 128
   drawGizmos: 1
+  lastPath: 
 --- !u!1 &7762816264885088230
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +488,7 @@ GameObject:
   - component: {fileID: 5195727960580187434}
   - component: {fileID: 7499359870521074681}
   - component: {fileID: 4199486618492496771}
+  - component: {fileID: 7100787909498728831}
   m_Layer: 0
   m_Name: FPSCam
   m_TagString: Untagged
@@ -630,3 +642,20 @@ MonoBehaviour:
         DecelTime: 0.2
   PlayerIndex: -1
   AutoEnableInputs: 1
+--- !u!114 &7100787909498728831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220763735451780034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: a3dacaec0287d7444b4bd276816e1666, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}

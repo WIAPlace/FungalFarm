@@ -1,32 +1,21 @@
-﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-
-public interface IObservableArray<T> {
-    event Action<T[],int> AnyValueChanged;
-
-    int Count { get; }
-    T this[int index] { get; }
-    
-    void Swap(int index1, int index2);
-    void Clear();
-    bool TryAdd(T item);
-    bool TryAddAt(int index, T item);
-    bool TryRemove(T item);
-    bool TryRemoveAt(int index);
-}
+using System;
 
 [Serializable]
-public class ObservableArray<T> : IObservableArray<T> {
-    public T[] items;
+public class ObservableItemArray{
+    public Item[] items;
 
-    public event Action<T[],int> AnyValueChanged = delegate { };
+    public event Action<Item[],int> AnyValueChanged = delegate { };
     public int Count => items.Count(i => i != null);
     public int Length => items.Length;
-    public T this[int index] => items[index];
 
-    public ObservableArray(int size = 25, IList<T> initialList = null) {
-        items = new T[size];
+    //public Item this[int index] => throw new NotImplementedException();
+
+
+    public ObservableItemArray(int size = 25, IList<Item> initialList = null) {
+        items = new Item[size];
         if (initialList != null) {
             initialList.Take(size).ToArray().CopyTo(items, 0);
             Invoke(-1);
@@ -41,30 +30,30 @@ public class ObservableArray<T> : IObservableArray<T> {
     }
 
     public void Clear() {
-        items = new T[items.Length];
+        items = new Item[items.Length];
         Invoke(-1);
     }
 
-    public bool TryAdd(T item) {
+    public bool TryAdd(Item item) {
         for (var i = 0; i < items.Length; i++) {
             if (TryAddAt(i, item)) return true;
         }
         return false;
     }
     
-    public bool TryAddAt(int index, T item) {
+    public bool TryAddAt(int index, Item item) {
         if (index < 0 || index >= items.Length) return false;
         
-        if (items[index] != null) return false;
+        if (items[index] != null && items[index].quantity != 0) return false;
 
         items[index] = item;
         Invoke(index);
         return true;
     }
 
-    public bool TryRemove(T item) {
+    public bool TryRemove(Item item) {
         for (var i = 0; i < items.Length; i++) {
-            if (EqualityComparer<T>.Default.Equals(items[i], item) && TryRemoveAt(i)) return true;
+            if (EqualityComparer<Item>.Default.Equals(items[i], item) && TryRemoveAt(i)) return true;
         }
         return false;
     }
@@ -79,4 +68,3 @@ public class ObservableArray<T> : IObservableArray<T> {
         return true;
     }
 }
-

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine.UIElements;
+using UnityEngine;
 
 //[Serializable]
 
@@ -13,7 +14,7 @@ public class InventorySlot : VisualElement
     //private ItemData _item;
     public Item item;
 
-    public ObservableArray<Item> Items => itemsDB.items;
+    public ObservableItemArray Items => itemsDB.items;
 
     public int index;
 
@@ -42,7 +43,10 @@ public class InventorySlot : VisualElement
         index = newIndex;
         itemsDB = idb;
         UpdateItemToIndex();
+
+        Items.AnyValueChanged += HandleOnAnyValueChanged;
     }
+    
 
     public void HoldItem(Item item)
     {
@@ -50,19 +54,8 @@ public class InventorySlot : VisualElement
         {
             return;
         }
-
-        ClearSlot();
-
-        this.item = item;
-        _icon.style.backgroundImage = new StyleBackground(item.Icon);
-
-        UpdateAmt();
-        UpdateItemToIndex();
-        Items.TryAddAt(index, item);
-
-        _rarityClass = item.RarityClass;
-        _slotRoot.AddToClassList(_rarityClass);
-
+        //Items.TryRemoveAt(index);
+        if(!Items.TryAddAt(index, item)) Debug.Log("Failed at index: "+index);
     }
 
     public Item DropItem()
@@ -73,9 +66,8 @@ public class InventorySlot : VisualElement
         }
 
         var droppedItem = item;
-        item = null;
 
-        ClearSlot();
+        Items.TryRemoveAt(index);
 
         return droppedItem;
     }
@@ -88,8 +80,6 @@ public class InventorySlot : VisualElement
         _rarityClass = "";
         
         UpdateAmt();
-
-        Items.TryRemoveAt(index);
     }
 
     public void UpdateAmt()
@@ -112,4 +102,39 @@ public class InventorySlot : VisualElement
     }
 
     public void SetDropHighlight(bool active) => _slotRoot.EnableInClassList("drop-target", active);
+
+    public void UnsubscribeFromEvents()
+    {
+        Items.AnyValueChanged -= HandleOnAnyValueChanged;
+    }
+
+    public void HandleOnAnyValueChanged(Item[] idb, int index) // update the view
+    {
+        if(this.index != index) return;
+        
+        if (idb[index] != default(Item) && idb[index] != item && idb[index].quantity > 0)
+        {
+            item = idb[index];
+            ClearSlot();
+
+            if(idb[index].Icon != null){
+                _icon.style.backgroundImage = Background.FromSprite(item.Icon);
+            }
+            else return;
+            
+            //_icon.style.backgroundImage = new StyleBackground(idb[index].Icon);
+
+            UpdateAmt();
+            UpdateItemToIndex();
+
+            _rarityClass = item.RarityClass;
+            _slotRoot.AddToClassList(_rarityClass);
+        }
+        else if(item != null)
+        {
+            item = null;
+            ClearSlot();
+        }
+        
+    }
 }

@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private WindowManager _windowManager;
     [SerializeField] private InventoryWindow _inventoryWindow;
+    
 
     //private InputAction _toggleInventory = new InputAction("Inventory", binding: "<Keyboard>/i");
     //private InputAction _toggleEquipment = new InputAction("Equipment", binding: "<Keyboard>/h");
@@ -22,9 +23,12 @@ public class UIController : MonoBehaviour
     {
         var inventoryWindow = _windowManager.CreateWindow("inventory", "INVENTORY", new Vector2(50, 50));
         _inventoryWindow.BuildInventory(inventoryWindow.ContentArea);
-        ToggleWindow("inventory");
         
-        //_windowManager.CreateWindow("equipment", "EQUIPMENT", new Vector2(200, 100));
+        _windowManager.CreateWindow("equipment", "EQUIPMENT", new Vector2(200, 100));
+
+
+        ToggleWindow("inventory");
+        ToggleWindow("equipment");
     }
 
     /// <summary>
