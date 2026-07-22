@@ -2,7 +2,7 @@ using Unity.Properties;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item Data")]
-public class ItemData : ScriptableObject
+public class ItemDetails : ScriptableObject
 {
     public string ItemName;
     public string Description;

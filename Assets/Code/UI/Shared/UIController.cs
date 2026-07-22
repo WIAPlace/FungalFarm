@@ -11,11 +11,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private WindowManager _windowManager;
     [SerializeField] private InventoryWindow _inventoryWindow;
     [SerializeField] private InventoryWindow _EquipmentWindow;
-    
-
-    //private InputAction _toggleInventory = new InputAction("Inventory", binding: "<Keyboard>/i");
-    //private InputAction _toggleEquipment = new InputAction("Equipment", binding: "<Keyboard>/h");
-    //private InputAction _closeAll = new InputAction("CloseAll", binding: "<Keyboard>/escape");
 
     /// <summary>
     /// Creates the default inventory and equipment windows at their initial positions.
@@ -31,52 +26,6 @@ public class UIController : MonoBehaviour
         ToggleWindow("inventory");
         ToggleWindow("equipment");
     }
-
-    /// <summary>
-    /// Enables all input actions so they begin listening for key presses.
-    /// </summary>
-    /*
-    private void OnEnable()
-    {
-        
-        _toggleInventory.Enable();
-        _toggleEquipment.Enable();
-        _closeAll.Enable();
-    }
-
-    /// <summary>
-    /// Disables all input actions to stop listening for key presses.
-    /// </summary>
-    private void OnDisable()
-    {
-        _toggleInventory.Disable();
-        _toggleEquipment.Disable();
-        _closeAll.Disable();
-    }
-    */
-    /// <summary>
-    /// Polls input actions each frame and toggles the corresponding window
-    /// or closes all windows when the mapped key is pressed.
-    /// </summary>
-    private void Update()
-    {
-        /*
-        if (_toggleInventory.WasPressedThisFrame())
-        {
-            _windowManager.ToggleWindow("inventory");
-        }
-        if (_toggleEquipment.WasPressedThisFrame())
-        { 
-            _windowManager.ToggleWindow("equipment");
-        }
-        if (_closeAll.WasPressedThisFrame())
-        { 
-            if (ItemDragManipulator.IsDragging) return;
-            _windowManager.CloseAllWindows();
-        }
-        */
-    }
-
 
     public void ToggleWindow(string windowID)
     {

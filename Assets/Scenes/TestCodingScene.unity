@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1329053527}
   - component: {fileID: 1329053528}
+  - component: {fileID: 1329053529}
   m_Layer: 0
   m_Name: TempGameManager
   m_TagString: Untagged
@@ -332,6 +333,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   input: {fileID: 11400000, guid: 8c16d4ab252dabb4ba00b37020adb9c7, type: 2}
   uiController: {fileID: 2024403565}
+--- !u!114 &1329053529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329053526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5717546300a6c84b9296b1cb409ad0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveManager
+  UnparentOnAwake: 1
+  saveData:
+    containers:
+    - {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
+    - {fileID: 11400000, guid: 838808bdba519cc4393bf7ccfd824215, type: 2}
 --- !u!1 &1415786317
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,10 +386,10 @@ MonoBehaviour:
   idb: {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
   item:
     Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 1390962566
+      Part2: 1257636767
+      Part3: 1894618293
+      Part4: 1563703744
     itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
     quantity: 5
     currentIndex: {x: 0, y: 0}
@@ -802,58 +820,66 @@ MonoBehaviour:
   _itemTooltipTemplate: {fileID: 9197481963319205126, guid: 79a5cf2ea7820ad4ca5f395e5577f66e, type: 3}
   _startingItems:
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 777573000
+      Part2: 1315294431
+      Part3: 1580719550
+      Part4: 902870511
     itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
     quantity: 10
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 836668941
+      Part2: 1265619426
+      Part3: 4204264076
+      Part4: 2085700404
     itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 2329345312
+      Part2: 1307064670
+      Part3: 2475338905
+      Part4: 1422610844
     itemData: {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 688530991
+      Part2: 1177580194
+      Part3: 3612970115
+      Part4: 4048949670
     itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
     quantity: 20
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 1965269363
+      Part2: 1135122673
+      Part3: 2171152516
+      Part4: 1911605062
     itemData: {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 2392398005
+      Part2: 1218303630
+      Part3: 3664171430
+      Part4: 912210605
     itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 2016066712
+      Part2: 1332699395
+      Part3: 2801073040
+      Part4: 3418497188
+    itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
+    quantity: 1
+    currentIndex: {x: 0, y: 0}
+  - Id:
+      Part1: 138250902
+      Part2: 1245184158
+      Part3: 213337013
+      Part4: 401898754
     itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
@@ -923,58 +949,58 @@ MonoBehaviour:
   _itemTooltipTemplate: {fileID: 9197481963319205126, guid: 79a5cf2ea7820ad4ca5f395e5577f66e, type: 3}
   _startingItems:
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 1110939997
+      Part2: 1109070757
+      Part3: 3369446322
+      Part4: 2489726966
     itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
     quantity: 10
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 3152666404
+      Part2: 1201894667
+      Part3: 2484743819
+      Part4: 296232222
     itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 3872740309
+      Part2: 1138392135
+      Part3: 638468766
+      Part4: 897582198
     itemData: {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 2555988990
+      Part2: 1229459164
+      Part3: 3462763690
+      Part4: 2111809407
     itemData: {fileID: 11400000, guid: 271afd104985fec4287c6d79016e2c54, type: 2}
     quantity: 20
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 2243966866
+      Part2: 1155430859
+      Part3: 1156559248
+      Part4: 2086574254
     itemData: {fileID: 11400000, guid: 0be69ff352f40e54fa2558133c234ef7, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 223717818
+      Part2: 1222450561
+      Part3: 1603282308
+      Part4: 343706258
     itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
   - Id:
-      Part1: 0
-      Part2: 0
-      Part3: 0
-      Part4: 0
+      Part1: 2022132610
+      Part2: 1162679437
+      Part3: 2051716799
+      Part4: 453417513
     itemData: {fileID: 11400000, guid: a159811f9760aa64dbb5b44367b2c602, type: 2}
     quantity: 1
     currentIndex: {x: 0, y: 0}
