@@ -6,15 +6,18 @@ using System.Runtime.InteropServices;
 public static class ItemDetailsDatabase {
     static Dictionary<SerializableGuid, ItemDetails> itemDetailsDictionary;
 
-    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    static void Initialize() {
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    public static void Initialize() {
         itemDetailsDictionary = new Dictionary<SerializableGuid, ItemDetails>();
 
-        Addressables.LoadAssetsAsync<ItemDetails>("ItemDetails", null).Completed += handle =>
+        Addressables.LoadAssetsAsync<ItemDetails>("ItemDetails",null).Completed += handle =>
         {
-            var itemDetails = handle.Result;
-            foreach (var item in itemDetails) {
-                itemDetailsDictionary.Add(item.Id, item);
+            if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded){
+                var itemDetails = handle.Result;
+                if(itemDetails == null) return;
+                foreach (var item in itemDetails) {
+                    itemDetailsDictionary.Add(item.Id, item);
+                }
             }
         };
         

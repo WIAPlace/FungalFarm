@@ -110,6 +110,11 @@ public class InventorySlot : VisualElement
 
     public void HandleOnAnyValueChanged(Item[] idb, int index) // update the view
     {
+        if(index == -1)
+        {
+            item = null;
+            ClearSlot();
+        }
         if(this.index != index) return;
         
         if (idb[index] != default(Item) && idb[index] != item && idb[index].quantity > 0)

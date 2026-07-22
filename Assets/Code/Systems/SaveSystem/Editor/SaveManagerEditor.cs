@@ -19,11 +19,11 @@ public class SaveManagerEditor : UnityEditor.Editor {
         if (GUILayout.Button("Save Game")) {
             saveLoadSystem.SaveGameData();
         }
-        /*
+        
         if (GUILayout.Button("Load Game")) {
-            saveLoadSystem.LoadGame(gameName);
+            saveLoadSystem.LoadGameData();
         }
-
+        /*
         if (GUILayout.Button("Delete Game")) {
             saveLoadSystem.DeleteGame(gameName);
         }

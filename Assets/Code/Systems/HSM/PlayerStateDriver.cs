@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using JetBrains.Annotations;
-using Mono.Cecil.Cil;
 using Unity.Cinemachine;
 using UnityEngine;
 

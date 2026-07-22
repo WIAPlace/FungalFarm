@@ -44,15 +44,16 @@ using System.ComponentModel;
     public ContainerDataBase(ItemsDataBase idb)
     {
         if(idb == null) return;
-        containerData = new ContainerData[idb.items.Count];
+        containerData = new ContainerData[idb.items.Length];
 
-        for(int i=0;i < idb.items.Count; i++)
+        for(int i=0;i < idb.items.Length; i++)
         {
             containerData[i] = new(idb.items.items[i]);
         } 
     }
 }
 
+[DefaultExecutionOrder(-100)] 
 public class SaveManager : PersistentSingleton<SaveManager>
 {
     [SerializeField] public SaveData saveData;
@@ -61,6 +62,7 @@ public class SaveManager : PersistentSingleton<SaveManager>
     {
         base.Awake();
         SaveSystem.Init();
+        //ItemDetailsDatabase.Initialize();
     }
 
     public void OnSceneLoad()
@@ -90,6 +92,22 @@ public class SaveManager : PersistentSingleton<SaveManager>
 
     public void LoadGameData()
     {
-        
+        string loadedData = SaveSystem.QuickLoad();
+        if (loadedData != null)
+        {
+            ItemsDataBase[] containers = saveData.containers;
+            saveData = JsonUtility.FromJson<SaveData>(loadedData);
+            saveData.containers = containers;
+        }
+        if(saveData.SavedContainerData==null) return;
+
+        for(int i = 0; i<saveData.containers.Length; i++)
+        {
+            if(saveData.SavedContainerData[i]!=null) {
+                saveData.containers[i].InitializeData
+                    (saveData.SavedContainerData[i]);
+            }
+        }
+
     }
 }
