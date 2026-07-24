@@ -81,6 +81,7 @@ public class WindowManager : MonoBehaviour
             {
                 SaveWindowPosition(kvp.Key, kvp.Value);
                 kvp.Value.Hide();
+                kvp.Key.open = false;
             }
         }
     }
