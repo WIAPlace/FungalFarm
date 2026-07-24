@@ -283,7 +283,7 @@ public class ItemDragManipulator : PointerManipulator
             return;
         }
 
-       if (!IsDragging || evt.button != 0) return;
+       if (!IsDragging || evt.button == 2) return;
 
        var targetSlot = FindSlotUnderPointer(evt.position);
 
@@ -291,10 +291,14 @@ public class ItemDragManipulator : PointerManipulator
        {
            if (targetSlot.item != null)
            {
-                if(targetSlot.item.dataId == _draggedItem.dataId && targetSlot.item.quantity + _draggedItem.quantity <= targetSlot.item.itemData.StackAmt)
+                if(IfSameAndLess(targetSlot))
                 {
-                    targetSlot.item.quantity += _draggedItem.quantity;
+                    int remainder = targetSlot.ChangeAmt(_draggedItem.quantity);
                     targetSlot.UpdateAmt(); // this is updating the quantity in both the visual and data at once, may want to move that to be handled by data itself.
+                    if(remainder > 0)
+                    {
+                        TryAddRemainderItem(targetSlot,remainder);
+                    }
                 }
                 else
                 {
@@ -357,5 +361,17 @@ public class ItemDragManipulator : PointerManipulator
             _hoveredSlots[i].item.quantity = amountForThisSlot;
             _hoveredSlots[i].UpdateAmt();
         }
+    }
+
+    private void TryAddRemainderItem(InventorySlot targetSlot, int remainder)
+    {
+        Item remItem = new(targetSlot.item.itemData,remainder);
+        if(targetSlot.AddItemToDB(remItem)) return;
+        else _sourceSlot.HoldItem(remItem);
+    }
+
+    private bool IfSameAndLess(InventorySlot targetSlot)
+    {
+        return targetSlot.item.dataId == _draggedItem.dataId && targetSlot.item.quantity < targetSlot.item.itemData.StackAmt;
     }
 }

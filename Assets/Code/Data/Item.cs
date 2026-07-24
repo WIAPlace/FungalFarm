@@ -23,4 +23,26 @@ public class Item
         
         this.quantity = quantity;
     }
+
+    public int CheckChangeAmt(int addAmt) // lets you see how much will be changed if you effect it.
+    {
+        int total = quantity + addAmt;
+        int capped = Mathf.Min(total,itemData.StackAmt);
+        int remainder = total - capped;
+
+        return remainder;
+    }
+
+    public int ChangeAmt(int addAmt) // changes the amount and gives you remainder of 0 if there is none
+    {
+        int total = quantity + addAmt;
+        int capped = Mathf.Min(total,itemData.StackAmt);
+        int remainder = total - capped;
+
+        if(remainder < 0 ) remainder = 0;
+
+        quantity = capped;
+        
+        return remainder;
+    }
 }

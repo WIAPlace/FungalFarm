@@ -72,6 +72,7 @@ public class UIController : MonoBehaviour
         }
         if(Containers[0].items.TryAdd(item)) return true; // will be hotbar
 
+        //Debug.Log("searching other container failed");
         return false;
     }
 }

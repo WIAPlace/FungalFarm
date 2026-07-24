@@ -96,11 +96,18 @@ public class InventorySlot : VisualElement
         }
     }
 
+    public int ChangeAmt(int addAmt) => item.ChangeAmt(addAmt);
+    public int CheckChangeAmt(int addAmt) => item.CheckChangeAmt(addAmt);
+
+    public bool AddItemToDB(Item addItem) => itemsDB.items.TryAdd(addItem);
+
     public void UpdateItemToIndex(){
         if(item != null){
             item.currentIndex.y = index;
         }
     }
+    
+
 
     public void SetDropHighlight(bool active) => _slotRoot.EnableInClassList("drop-target", active);
 
@@ -118,7 +125,7 @@ public class InventorySlot : VisualElement
         }
         if(this.index != index) return;
         
-        if (idb[index] != default(Item) && idb[index] != item && idb[index].quantity > 0)
+        if (idb[index] != default(Item) && (idb[index]!= item || idb[index].itemData == item.itemData) && idb[index].quantity > 0)
         {
             item = idb[index];
             ClearSlot();

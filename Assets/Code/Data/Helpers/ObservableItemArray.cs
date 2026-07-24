@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Unity.VisualScripting;
 
 [Serializable]
 public class ObservableItemArray{
@@ -44,11 +45,35 @@ public class ObservableItemArray{
     public bool TryAddAt(int index, Item item) {
         if (index < 0 || index >= items.Length) return false;
         
-        if (items[index] != null && items[index].quantity != 0) return false;
+        //if (items[index] != null) return false;
 
-        items[index] = item;
-        Invoke(index);
-        return true;
+        if (items[index] == null || items[index].quantity <= 0) // if slot is empty replace with new item
+        {
+            //Debug.Log("index == null || item <= 0");
+            items[index] = item;
+            Invoke(index);
+            return true;
+        }
+
+        if(items[index].dataId != item.dataId || 
+        items[index].quantity >= items[index].itemData.StackAmt) {
+            //Debug.Log("itme Is Too much or not the same");
+            //Invoke(index);
+            return false;
+        
+        }
+        int remainder = items[index].ChangeAmt(item.quantity);
+        if(remainder <= 0) {
+            //Debug.Log("remainder less than 0");
+            Invoke(index);
+            return true;
+        }
+        else
+        {
+            Item remainderItem = new(item.itemData,remainder);
+            Invoke(index);
+            return TryAdd(remainderItem);
+        }
     }
 
     public bool TryRemove(Item item) {
