@@ -9,6 +9,7 @@ public class ItemsDataBase : ScriptableObject
     //public ObservableArray<Item> items = new(25);
     public SerializableGuid ID = SerializableGuid.NewGuid();
     public ObservableItemArray items = new(25); 
+    public bool open = true;
 
     public void InitializeData(ContainerDataBase cdb)
     {

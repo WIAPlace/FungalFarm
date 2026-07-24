@@ -40,7 +40,8 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 0f;
         input.SetUI();
-        uiController.ToggleWindow("inventory");
-        uiController.ToggleWindow("equipment");
+        // will need to look into how to iterate through all containers to see all that are open then close them.
+        uiController.ToggleWindow(UIController.Containers[0]);
+        uiController.ToggleWindow(UIController.Containers[1]);
     }
 }

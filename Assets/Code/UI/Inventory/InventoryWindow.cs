@@ -20,9 +20,9 @@ public class InventoryWindow : MonoBehaviour
     [SerializeField] private InventoryData invData;
     public ObservableArray<InventorySlot> _slots => invData._slots;
 
-    [SerializeField] private ItemsDataBase itemsDB;
+    //[SerializeField] private ItemsDataBase itemsDB;
 
-    public void BuildInventory(VisualElement contentArea)
+    public void BuildInventory(VisualElement contentArea, ItemsDataBase container)
     {
         
         if (_inventoryWindowTemplate == null || _itemSlotTemplate == null)
@@ -38,7 +38,7 @@ public class InventoryWindow : MonoBehaviour
         // Generate slots
         for (int i = 0; i < SLOT_COUNT; i++)
         {
-            var slot = new InventorySlot(_itemSlotTemplate,i,itemsDB);
+            var slot = new InventorySlot(_itemSlotTemplate,i,container);
             _slotContainer.Add(slot);
             _slots.TryAdd(slot);
         }
@@ -61,7 +61,7 @@ public class InventoryWindow : MonoBehaviour
     void OnDestroy()
     {
         invData._slots.Clear();
-        itemsDB.items.Clear(); 
+        
 
         foreach(InventorySlot slot in _slots.items)
         {

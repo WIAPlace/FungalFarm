@@ -146,6 +146,17 @@ public class ItemDragManipulator : PointerManipulator
        var slot = (InventorySlot)target;
        if (slot.item == null) return;
 
+       // depending on the amount of these we should probably speerate them into switch statments and functions.
+        if (evt.shiftKey)
+        {
+            _sourceSlot = slot; // get original slot incase this fails,
+            _draggedItem = slot.DropItem(); // drop item out of data index.
+
+            if(UIController.PlaceInOpenContainer(slot.DB_Refrence,_draggedItem)) return;
+            else _sourceSlot.HoldItem(_draggedItem);
+            return;
+        }
+
        // pull the item off the slot up front so the source visually empties immediately
        IsDragging = true;
        _sourceSlot = slot;

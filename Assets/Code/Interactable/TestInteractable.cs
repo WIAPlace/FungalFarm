@@ -18,7 +18,7 @@ public class TestInteractable : MonoBehaviour, IInteractable
         Debug.Log("Interact Completed");
         //throw new System.NotImplementedException();
         if(idb.items.TryRemove(default(Item))) Debug.Log("Deleted Item");
-        else Debug.Log("Failed To Delete Item");
+        //else Debug.Log("Failed To Delete Item");
         if(idb.items.TryAdd(item)) Debug.Log("Obtained Item");
         else Debug.Log("Failed To Get item");
         Destroy(gameObject);

@@ -15,6 +15,7 @@ public class InventorySlot : VisualElement
     public Item item;
 
     public ObservableItemArray Items => itemsDB.items;
+    public ItemsDataBase DB_Refrence => itemsDB;
 
     public int index;
 

@@ -350,6 +350,7 @@ MonoBehaviour:
     containers:
     - {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
     - {fileID: 11400000, guid: 838808bdba519cc4393bf7ccfd824215, type: 2}
+    SavedContainerData: []
 --- !u!1 &1415786317
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +886,6 @@ MonoBehaviour:
     currentIndex: {x: 0, y: 0}
   _inventoryStyleSheet: {fileID: 7433441132597879392, guid: ec5c93d406b06b644b1eaf89d34ad6e8, type: 3}
   invData: {fileID: 11400000, guid: 71b5b4df9d432c141b4127a969daa8b8, type: 2}
-  itemsDB: {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
 --- !u!114 &2024403565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,6 +901,9 @@ MonoBehaviour:
   _windowManager: {fileID: 2024403566}
   _inventoryWindow: {fileID: 2024403564}
   _EquipmentWindow: {fileID: 2024403568}
+  startingContainers:
+  - {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
+  - {fileID: 11400000, guid: 838808bdba519cc4393bf7ccfd824215, type: 2}
 --- !u!114 &2024403566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,7 +918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WindowManager
   _uiDocument: {fileID: 1145955014}
   _gameWindowTemplate: {fileID: 9197481963319205126, guid: 5287569902b3ee342865a6b78c4693a1, type: 3}
-  windowID: inventory
+  windowID: {fileID: 0}
 --- !u!4 &2024403567
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,7 +1009,6 @@ MonoBehaviour:
     currentIndex: {x: 0, y: 0}
   _inventoryStyleSheet: {fileID: 7433441132597879392, guid: ec5c93d406b06b644b1eaf89d34ad6e8, type: 3}
   invData: {fileID: 11400000, guid: fe0d8afabd4ca0349b3d78ac6d65df71, type: 2}
-  itemsDB: {fileID: 11400000, guid: 838808bdba519cc4393bf7ccfd824215, type: 2}
 --- !u!1001 &2941140229302680030
 PrefabInstance:
   m_ObjectHideFlags: 0

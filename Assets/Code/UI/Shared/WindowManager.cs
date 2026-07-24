@@ -13,10 +13,10 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private VisualTreeAsset _gameWindowTemplate;
 
     private VisualElement _windowContainer;
-    private Dictionary<string, GameWindow> _windows = new();
+    private Dictionary<ItemsDataBase, GameWindow> _windows = new();
 
     [Header("Only for editor stuff")]
-    [SerializeField,Tooltip("inventory")]private string windowID;
+    [SerializeField,Tooltip("inventory")]private ItemsDataBase windowID;
 
     private void Awake()
     {
@@ -38,13 +38,15 @@ public class WindowManager : MonoBehaviour
     /// <param name="id">Unique identifier used for persistence and toggle lookups.</param>
     /// <param name="title">Display title shown in the window's title bar.</param>
     /// <param name="defaultPosition">Fallback position if no saved position exists.</param>
-    public GameWindow CreateWindow(string id, string title, Vector2 defaultPosition)
+    public GameWindow CreateWindow(ItemsDataBase id, string title, Vector2 defaultPosition)
     {
         float x = PlayerPrefs.GetFloat($"window_{id}_x", defaultPosition.x);
         float y = PlayerPrefs.GetFloat($"window_{id}_y", defaultPosition.y);
 
         var window = new GameWindow(_gameWindowTemplate, _windowContainer, title);
         window.SetPosition(x, y);
+        
+        id.open = true;
 
         _windows[id] = window;
         return window;
@@ -53,7 +55,7 @@ public class WindowManager : MonoBehaviour
     /// <summary>
     /// Toggles a window's visibility. Saves position when hiding.
     /// </summary>
-    public void ToggleWindow(string id)
+    public void ToggleWindow(ItemsDataBase id)
     {
         if (!_windows.TryGetValue(id, out var window)) return;
 
@@ -86,7 +88,7 @@ public class WindowManager : MonoBehaviour
     /// <summary>
     /// Persists a single window's position to PlayerPrefs.
     /// </summary>
-    private void SaveWindowPosition(string id, GameWindow window)
+    private void SaveWindowPosition(ItemsDataBase id, GameWindow window)
     {
         var pos = window.GetPosition();
         PlayerPrefs.SetFloat($"window_{id}_x", pos.x);
@@ -113,7 +115,7 @@ public class WindowManager : MonoBehaviour
 
     public void SetPosition()
     {
-        if(windowID == null || !_windows.ContainsKey(windowID)) return;
+        if(!_windows.ContainsKey(windowID)) return;
         Vector2 screenCenter = new Vector2(Camera.main.pixelWidth * .5f,Camera.main.pixelHeight*.5f);
         _windows[windowID].SetPosition(screenCenter);
     }
