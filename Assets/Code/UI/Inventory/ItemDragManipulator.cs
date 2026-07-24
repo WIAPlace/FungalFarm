@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UIElements;
@@ -15,6 +16,7 @@ public class ItemDragManipulator : PointerManipulator
     // Hovering for splitting items Variables 
     // variables are static because there should only be one happening at any time
     private static List<InventorySlot> _hoveredSlots = new List<InventorySlot>();
+    private static List<int> _hoveredSlotsOriginalAmt = new List<int>();
     private static bool _isRightClickDragging = false;
     private static int _totalDraggingQuantity = 0;
 
@@ -28,13 +30,14 @@ public class ItemDragManipulator : PointerManipulator
 
     private InventorySlot _highlightedSlot;
 
+    //////////////////////////////////////////////////////////////////////////////////// Constructor
     public ItemDragManipulator(InventorySlot slot)
     {
         target = slot;
     }
 
     // --- Ghost Setup (pre-built, we'll discuss on camera) ---
-
+    //////////////////////////////////////////////////////////////////////////////////// Initialize Ghost
     // Build the ghost once and park it on the panel root so it can float over every slot.
     public static void InitGhost(VisualElement panelRoot, StyleSheet ghostStyleSheet)
     {
@@ -62,6 +65,7 @@ public class ItemDragManipulator : PointerManipulator
         panelRoot.Add(_ghost);
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// Show Ghost
     private void ShowGhost(Item item, Vector2 position)
     {
         _ghostIcon.sprite = item.Icon;
@@ -77,11 +81,13 @@ public class ItemDragManipulator : PointerManipulator
         _ghost.style.display = DisplayStyle.Flex;
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// Update Ghost Position
     private void UpdateGhostPosition(Vector2 position)
     {
         _ghost.style.translate = new Translate(position.x - 28, position.y - 28);
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// Hide Ghost
     private static void HideGhost()
     {
         _ghost.style.display = DisplayStyle.None;
@@ -94,6 +100,7 @@ public class ItemDragManipulator : PointerManipulator
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// Clear Highlight
     private void ClearHighlight()
     {
         if (_highlightedSlot != null)
@@ -103,6 +110,7 @@ public class ItemDragManipulator : PointerManipulator
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// Cancel Drag
     // Put the item back where it came from and tear down drag state.
     private void CancelDrag()
     {
@@ -119,7 +127,7 @@ public class ItemDragManipulator : PointerManipulator
     }
 
     // --- Callback Registration ---
-
+//////////////////////////////////////////////////////////////////////////////////// Call Backs
     // KeyDown is in the mix so Escape can bail out mid-drag (target is focused on pickup)
     protected override void RegisterCallbacksOnTarget()
     {
@@ -138,7 +146,7 @@ public class ItemDragManipulator : PointerManipulator
     }
 
     // --- Event Handler Stubs (we'll fill these in on camera) ---
-
+    //////////////////////////////////////////////////////////////////////////////////// On Pointer Down
     private void OnPointerDown(PointerDownEvent evt)
     {
         // middle-click during drag: cancel
@@ -156,22 +164,34 @@ public class ItemDragManipulator : PointerManipulator
         {
             _isRightClickDragging = true;
             _hoveredSlots.Clear();
+            _hoveredSlotsOriginalAmt.Clear();
+            
             _totalDraggingQuantity = _draggedItem.quantity;
 
             InventorySlot startingSlot = FindSlotUnderPointer(evt.position);
             // will nee to be changed to effect ones of the same, but with higher quantity, to add to
-            if (startingSlot != null && (startingSlot.item==null || startingSlot.item.quantity <= 0))
+            if (startingSlot != null && (startingSlot.item==null || 
+            (startingSlot.item.itemData == _draggedItem.itemData && startingSlot.item.quantity < startingSlot.item.itemData.StackAmt)))
             {
                 _hoveredSlots.Add(startingSlot);
+                if(startingSlot.item != null)_hoveredSlotsOriginalAmt.Add(startingSlot.item.quantity);
+                else _hoveredSlotsOriginalAmt.Add(0);
                 DistributItems();
+                target.CapturePointer(evt.pointerId);
             }
-            target.CapturePointer(evt.pointerId);
+            else
+            {
+                CancelDrag();
+                _isRightClickDragging = false;
+            }   
+            
             evt.StopPropagation();
             return;
         }
 
         var slot = (InventorySlot)target;
         if (slot.item == null) return;
+        
 
        // depending on the amount of these we should probably speerate them into switch statments and functions.
         if (evt.button == 0 && evt.shiftKey) // [if left click and Shift key down]
@@ -208,22 +228,23 @@ public class ItemDragManipulator : PointerManipulator
         evt.StopPropagation();
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// Find Slot Under Pointer
     private InventorySlot FindSlotUnderPointer(Vector2 position)
-   {
-       // Pick can land on a child (icon, label) — walk up to the slot itself
-       var picked = target.panel.Pick(position);
+    {
+        // Pick can land on a child (icon, label) — walk up to the slot itself
+        var picked = target.panel.Pick(position);
 
-       var current = picked;
-       while (current != null)
-       {
-           if (current is InventorySlot slot)
-               return slot;
-           current = current.parent;
-       }
+        var current = picked;
+        while (current != null)
+        {
+            if (current is InventorySlot slot)
+                return slot;
+            current = current.parent;
+        }
 
-       return null;
-   }
-
+        return null;
+    }
+    //////////////////////////////////////////////////////////////////////////////////// On Pointer Move
     private void OnPointerMove(PointerMoveEvent evt)
     {
        if (!IsDragging) return;
@@ -244,6 +265,7 @@ public class ItemDragManipulator : PointerManipulator
             }
         }
 
+        // right click dragging
         if(!_isRightClickDragging || !target.HasPointerCapture(evt.pointerId)) {
             evt.StopPropagation();
             return;
@@ -252,9 +274,12 @@ public class ItemDragManipulator : PointerManipulator
         // Again will need to implement change for if its able to be stacked on top of instead of just quantity 0
         if(slotUnderPointer!=null && 
         !_hoveredSlots.Contains(slotUnderPointer) && 
-        (slotUnderPointer.item==null || slotUnderPointer.item.quantity==0))
+        (slotUnderPointer.item==null || 
+        (slotUnderPointer.item.itemData == _draggedItem.itemData && slotUnderPointer.item.quantity <  slotUnderPointer.item.itemData.StackAmt)))
         {
             _hoveredSlots.Add(slotUnderPointer);
+            if(slotUnderPointer.item != null)_hoveredSlotsOriginalAmt.Add(slotUnderPointer.item.quantity);
+            else _hoveredSlotsOriginalAmt.Add(0);
             DistributItems();
         }
 
@@ -262,6 +287,7 @@ public class ItemDragManipulator : PointerManipulator
        evt.StopPropagation();
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// On Pointer Up
     private void OnPointerUp(PointerUpEvent evt)
     {
         if(_isRightClickDragging && target.HasPointerCapture(evt.pointerId)) // [was right click dragging]
@@ -332,6 +358,7 @@ public class ItemDragManipulator : PointerManipulator
        }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// On Key Down
     private void OnKeyDown(KeyDownEvent evt)
     {
         if (!IsDragging) return;
@@ -341,28 +368,79 @@ public class ItemDragManipulator : PointerManipulator
             CancelDrag();
             evt.StopPropagation();
         }
-    }
+    }  
 
+    //////////////////////////////////////////////////////////////////////////////////// Distribute Items
     private void DistributItems()
     {
         if(_hoveredSlots.Count == 0) return;
-        int baseAmount = _totalDraggingQuantity / _hoveredSlots.Count;
-        int remainder = _totalDraggingQuantity % _hoveredSlots.Count;
+
+        int totalRemaining = _totalDraggingQuantity;
+        int[] finalAmounts = new int[_hoveredSlots.Count];
+
+        int baseAmount = totalRemaining / _hoveredSlots.Count;
+        int remainder = totalRemaining % _hoveredSlots.Count;
 
         if(baseAmount == 0) return;
+
+        for(int i = 0; i < _hoveredSlots.Count; i++) // does a first sweep to check for if stuff needs capping
+        {
+            finalAmounts[i] = _hoveredSlotsOriginalAmt[i] + baseAmount + (i < remainder ? 1 : 0);
+        }
+
+        bool needsCapping = true;
+
+        // keep checking through if needs to be redistributed.
+        while (needsCapping)
+        {
+            needsCapping = false;
+            int overflow = 0;
+            int openSlotCount = 0;
+
+            ItemDetails baseData = _draggedItem.itemData;
+            int maxLimit = baseData.StackAmt;
+
+            for(int i=0; i < _hoveredSlots.Count; i++)
+            {
+                if (finalAmounts[i] > maxLimit)
+                {
+                    overflow += finalAmounts[i]-maxLimit;
+                    finalAmounts[i] = maxLimit;
+                }
+                if (finalAmounts[i] < maxLimit)
+                {
+                    openSlotCount++;
+                }
+            }
+
+            // redistribut overflow items if there is space left items
+            if(overflow > 0 && openSlotCount > 0)
+            {
+                int extraBase = overflow/openSlotCount;
+                int extraRem = overflow % openSlotCount;
+                int addedSoFar = 0;
+
+                for (int i = 0; i < _hoveredSlots.Count; i++)
+                {
+                    if (finalAmounts[i] < maxLimit)
+                    {
+                        finalAmounts[i] += extraBase + (addedSoFar < extraRem ? 1 : 0);
+                        addedSoFar++;
+                        needsCapping = true; // Re-check in case the new distribution exceeds max again
+                    }
+                }
+            }
+        }
         
+        // finalize distribution
         for(int i = 0; i < _hoveredSlots.Count; i++)
         {
-            // Give the remainder items to the first few slots
-            int amountForThisSlot = baseAmount + (i<remainder?1:0);
-
-            Item tempItem = new(_draggedItem.itemData);
+            Item tempItem = new(_draggedItem.itemData, finalAmounts[i]);
             _hoveredSlots[i].HoldItem(tempItem);
-            _hoveredSlots[i].item.quantity = amountForThisSlot;
-            _hoveredSlots[i].UpdateAmt();
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// Try Add Remainder Items
     private void TryAddRemainderItem(InventorySlot targetSlot, int remainder)
     {
         Item remItem = new(targetSlot.item.itemData,remainder);
@@ -370,6 +448,7 @@ public class ItemDragManipulator : PointerManipulator
         else _sourceSlot.HoldItem(remItem);
     }
 
+    //////////////////////////////////////////////////////////////////////////////////// [Bool] If Same And Less
     private bool IfSameAndLess(InventorySlot targetSlot)
     {
         return targetSlot.item.dataId == _draggedItem.dataId && targetSlot.item.quantity < targetSlot.item.itemData.StackAmt;
