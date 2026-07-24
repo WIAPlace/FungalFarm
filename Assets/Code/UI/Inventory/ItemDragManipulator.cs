@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UIElements;
@@ -9,6 +11,12 @@ public class ItemDragManipulator : PointerManipulator
     private static Image _ghostIcon;
     private static VisualElement _ghostRarity;
     private static string _currentGhostRarityClass;
+
+    // Hovering for splitting items Variables 
+    // variables are static because there should only be one happening at any time
+    private static List<InventorySlot> _hoveredSlots = new List<InventorySlot>();
+    private static bool _isRightClickDragging = false;
+    private static int _totalDraggingQuantity = 0;
 
     //private static ObservableArray<Item> Items => InventorySlot.Items;
 
@@ -133,44 +141,71 @@ public class ItemDragManipulator : PointerManipulator
 
     private void OnPointerDown(PointerDownEvent evt)
     {
-        // Right-click during drag: cancel
-       if (evt.button != 0 && IsDragging)
-       {
-           CancelDrag();
-           evt.StopPropagation();
-           return;
-       }
+        // middle-click during drag: cancel
+        if (evt.button == 2 && IsDragging)
+        {
+            CancelDrag();
+            evt.StopPropagation();
+            return;
+        }
 
-       if (evt.button != 0) return;
+        if (evt.button == 2) return;
 
-       var slot = (InventorySlot)target;
-       if (slot.item == null) return;
+        //////////////////////////////////////////////////////////[if is dragging and right key down]
+        if(evt.button == 1 && IsDragging && _draggedItem != null)
+        {
+            _isRightClickDragging = true;
+            _hoveredSlots.Clear();
+            _totalDraggingQuantity = _draggedItem.quantity;
+
+            InventorySlot startingSlot = FindSlotUnderPointer(evt.position);
+            // will nee to be changed to effect ones of the same, but with higher quantity, to add to
+            if (startingSlot != null && (startingSlot.item==null || startingSlot.item.quantity <= 0))
+            {
+                _hoveredSlots.Add(startingSlot);
+                DistributItems();
+            }
+            target.CapturePointer(evt.pointerId);
+            evt.StopPropagation();
+            return;
+        }
+
+        var slot = (InventorySlot)target;
+        if (slot.item == null) return;
 
        // depending on the amount of these we should probably speerate them into switch statments and functions.
-        if (evt.shiftKey)
+        if (evt.button == 0 && evt.shiftKey) // [if left click and Shift key down]
         {
             _sourceSlot = slot; // get original slot incase this fails,
             _draggedItem = slot.DropItem(); // drop item out of data index.
 
-            if(UIController.PlaceInOpenContainer(slot.DB_Refrence,_draggedItem)) return;
-            else _sourceSlot.HoldItem(_draggedItem);
-            return;
+            if (UIController.PlaceInOpenContainer(slot.DB_Refrence, _draggedItem))
+            {
+                evt.StopPropagation();
+                return;
+            } 
+            else
+            {
+                _sourceSlot.HoldItem(_draggedItem);
+                evt.StopPropagation();
+                return;
+            }  
         }
 
-       // pull the item off the slot up front so the source visually empties immediately
-       IsDragging = true;
-       _sourceSlot = slot;
-       _draggedItem = slot.DropItem();
-       _sourceSlot.AddToClassList("drag-active");
+        // pull the item off the slot up front so the source visually empties immediately
+        IsDragging = true;
+        _sourceSlot = slot;
+        _draggedItem = slot.DropItem();
+        _sourceSlot.AddToClassList("drag-active");
 
-       ShowGhost(_draggedItem, evt.position);
+        ShowGhost(_draggedItem, evt.position);
 
-       // capture so we keep getting move/up even when the pointer leaves the slot
-       target.CapturePointer(evt.pointerId);
-       _capturedPointerId = evt.pointerId;
-       // focus the slot so KeyDown (Escape) routes here
-       target.Focus();
-       evt.StopPropagation();
+        // capture so we keep getting move/up even when the pointer leaves the slot
+        target.CapturePointer(evt.pointerId);
+        _capturedPointerId = evt.pointerId;
+        // focus the slot so KeyDown (Escape) routes here
+        target.Focus();
+        evt.StopPropagation();
     }
 
     private InventorySlot FindSlotUnderPointer(Vector2 position)
@@ -209,11 +244,45 @@ public class ItemDragManipulator : PointerManipulator
             }
         }
 
+        if(!_isRightClickDragging || !target.HasPointerCapture(evt.pointerId)) {
+            evt.StopPropagation();
+            return;
+        }
+
+        // Again will need to implement change for if its able to be stacked on top of instead of just quantity 0
+        if(slotUnderPointer!=null && 
+        !_hoveredSlots.Contains(slotUnderPointer) && 
+        (slotUnderPointer.item==null || slotUnderPointer.item.quantity==0))
+        {
+            _hoveredSlots.Add(slotUnderPointer);
+            DistributItems();
+        }
+
+
        evt.StopPropagation();
     }
 
     private void OnPointerUp(PointerUpEvent evt)
     {
+        if(_isRightClickDragging && target.HasPointerCapture(evt.pointerId)) // [was right click dragging]
+        {
+            target.ReleasePointer(evt.pointerId);
+            _isRightClickDragging = false;
+
+            _sourceSlot.RemoveFromClassList("drag-active");
+            ClearHighlight();
+
+            IsDragging = false;
+            _draggedItem = null;
+            _sourceSlot = null;
+
+            HideGhost();
+
+            _hoveredSlots.Clear();
+            evt.StopPropagation();
+            return;
+        }
+
        if (!IsDragging || evt.button != 0) return;
 
        var targetSlot = FindSlotUnderPointer(evt.position);
@@ -267,6 +336,26 @@ public class ItemDragManipulator : PointerManipulator
         {
             CancelDrag();
             evt.StopPropagation();
+        }
+    }
+
+    private void DistributItems()
+    {
+        if(_hoveredSlots.Count == 0) return;
+        int baseAmount = _totalDraggingQuantity / _hoveredSlots.Count;
+        int remainder = _totalDraggingQuantity % _hoveredSlots.Count;
+
+        if(baseAmount == 0) return;
+        
+        for(int i = 0; i < _hoveredSlots.Count; i++)
+        {
+            // Give the remainder items to the first few slots
+            int amountForThisSlot = baseAmount + (i<remainder?1:0);
+
+            Item tempItem = new(_draggedItem.itemData);
+            _hoveredSlots[i].HoldItem(tempItem);
+            _hoveredSlots[i].item.quantity = amountForThisSlot;
+            _hoveredSlots[i].UpdateAmt();
         }
     }
 }

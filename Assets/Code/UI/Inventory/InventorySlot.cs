@@ -55,7 +55,7 @@ public class InventorySlot : VisualElement
         {
             return;
         }
-        //Items.TryRemoveAt(index);
+        Items.TryRemoveAt(index);
         if(!Items.TryAddAt(index, item)) Debug.Log("Failed at index: "+index);
     }
 
