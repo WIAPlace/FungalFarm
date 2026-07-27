@@ -35,7 +35,7 @@ public class TimeManager : MonoBehaviour
 
     public static float TotalGameTime;
 
-    public event Action<int> TimeEvent;
+    //public event Action<int> TimeEvent;
 
     
 }
