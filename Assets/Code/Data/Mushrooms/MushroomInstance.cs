@@ -1,15 +1,19 @@
 using System;
-using Unity.Mathematics;
 using UnityEngine;
 
 [Serializable]
-public class MushroomInstance : IOnTime
+public class MushroomInstance
 {
     [field: SerializeField] public SerializableGuid Id = SerializableGuid.NewGuid();
     public SerializableGuid dataId => details.Id; 
+    public SerializableGuid hostID => host.ID;
     public MushroomDetails details;
+    public HostDetails host;
+
+    public int sporeIndex;
 
     public int currentStage = 0;
+    public int progressToNextStage = 0;
 
     // has this fella been cared for recently, like moist n shit
     public bool nurtured = false; 
@@ -17,13 +21,9 @@ public class MushroomInstance : IOnTime
     // if the enviroment is sutible for it, is the tree it's on dying? and is that good.
     public bool enviromentBonus = false; 
     
-    public MushroomInstance(MushroomDetails details)
+    public MushroomInstance(MushroomDetails details, HostDetails host)
     {
         this.details = details;
-    }
-
-    public void ProgressTimeState(int stages)
-    {
-        
+        this.host = host;
     }
 }   
