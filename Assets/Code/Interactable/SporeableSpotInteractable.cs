@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SporeableSpotInteractable : MonoBehaviour, IInteractable
 {
+    [field: SerializeField] public SerializableGuid Id = SerializableGuid.NewGuid();
     [SerializeField] private float interactTime; 
-    //[SerializeField] private Host host;
+    [SerializeField] private HostView host;
     public int indexLocation;
 
     public void BeginInteract(out float waitTime)

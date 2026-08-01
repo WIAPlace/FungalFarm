@@ -7,7 +7,7 @@ public class MushroomInstance
     [field: SerializeField] public SerializableGuid Id = SerializableGuid.NewGuid();
     public SerializableGuid dataId => details.Id; 
     public SerializableGuid hostID => host.ID;
-    public MushroomDetails details;
+    public MushroomDetails details = null;
     public HostDetails host;
 
     public int sporeIndex;
@@ -26,4 +26,6 @@ public class MushroomInstance
         this.details = details;
         this.host = host;
     }
+
+    
 }   
