@@ -12,6 +12,7 @@ public class HostDetails
     
     [Header("Creature Hosts")]
     public bool isCreature;
+    public CreatureType creatureType = CreatureType.None;
     public int currentHungerStage=0;
 
     [Header("Condition And Effects")]

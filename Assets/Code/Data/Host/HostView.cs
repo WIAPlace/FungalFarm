@@ -12,6 +12,7 @@ public enum Condition
     healthy = 299
 }
 
+
 // attach to  the game object host. will act as the interface between the player and the controller.
 // also where starting amounts will be declared
 public class HostView : MonoBehaviour
@@ -20,9 +21,12 @@ public class HostView : MonoBehaviour
     public int managerIndex;
 
     public bool isCreature; 
+    public CreatureType creatureType = CreatureType.None;
 
     public Condition startingCondition;
     public SporeableSpotInteractable[] sporeSpots;
+
+    public SporeableMushrooms_SO sporeableMushrooms; // used for what mushrooms are able to be planted here 
 
 
     public void RemoveMushroom(int sporeIndex) 

@@ -20,6 +20,8 @@ public class MushroomInstance
 
     // if the enviroment is sutible for it, is the tree it's on dying? and is that good.
     public bool enviromentBonus = false; 
+
+    public bool harvestable = false;
     
     public MushroomInstance(MushroomDetails details, HostDetails host)
     {

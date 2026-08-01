@@ -9,6 +9,8 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
     [SerializeField] private HostView host;
     public int indexLocation;
 
+    // add bool that is for if it can be interacted with while empty
+
     public void BeginInteract(out float waitTime)
     {
         waitTime = interactTime;

@@ -33,6 +33,8 @@ public class HostManager : MonoBehaviour, IOnTime
     [Tooltip("how many time states need to pass for a creature host to get hungry")]
     public int creatureHungerCycle; // might be changed to a regrence to an outside script having to do with creatures
 
+    public List<MushroomInstance> edibleList; // will be used to sift through what is edible
+
     private void Start()
     {
         InitializeDetailsToViews();
@@ -61,6 +63,7 @@ public class HostManager : MonoBehaviour, IOnTime
         newDetails.viewID = views[i].ID; // add viewID refrence
         newDetails.index = i; // set index refrence
         newDetails.isCreature = views[i].isCreature; // set its status as if its creature
+        newDetails.creatureType = views[i].creatureType;
 
         // spawn with a random hunger amt, only applies to creature hosts.
         newDetails.currentHungerStage = UnityEngine.Random.Range(0,creatureHungerCycle); 
@@ -93,56 +96,59 @@ public class HostManager : MonoBehaviour, IOnTime
             if(host==null || host.condition < 0) return; // skip if non existant or unusable
             // might want to add a effect that will clear if this is < 0; or do that in the body. 
             
-            // EFFECTS On CONDITION
-            int conditionEffect = 0; // will be added to host's condition
+            for(int i = 0; i < stages; i++){
+                // EFFECTS On CONDITION
+                int conditionEffect = 0; // will be added to host's condition
 
-            foreach(MushroomInstance mush in host.mushrooms)       ///////// Mushrooms 
-            {
-                if(mush == null || mush.details == null) continue; // skip if this slot is empty
-
-                // add mushroom's condition effect to the tree's condition
-                conditionEffect += mush.details.conditionEffect; 
-
-                if(mush.currentStage < mush.details.MaxStageAmt) // update stage of Mushroom
+                foreach(MushroomInstance mush in host.mushrooms)       ///////// Mushrooms 
                 {
-                    int newStage = UpdateMushroomStage(mush);
-                    if (newStage > mush.currentStage)
+                    if(mush == null || mush.details == null) continue; // skip if this slot is empty
+
+                    // add mushroom's condition effect to the tree's condition
+                    conditionEffect += mush.details.conditionEffect; 
+
+                    if(mush.currentStage < mush.details.MaxStageAmt) // update stage of Mushroom
                     {
-                        mush.currentStage = newStage;
+                        int newStage = UpdateMushroomStage(mush);
+                        if (newStage > mush.currentStage)
+                        {
+                            mush.currentStage = newStage;
+                            if(mush.currentStage >= mush.details.HarvestableStage) mush.harvestable = true;
 
-                        // effect the view in some way. // like updating the prefab
-                        
+                            // effect the view in some way. // like updating the prefab
+                            views[host.index].ChangeSporeSpotModel(mush.sporeIndex, mush.details.StagePrefabs[newStage]);
+                            
+                        }
                     }
+
+                    // update spore spot in some way to reflect any changes here.
                 }
 
-                // update spore spot in some way to reflect any changes here.
-            }
+                int maxAmt = 299; // at certain stages the host cant get better.
+                if(host.condition < 100) // if host is already dead
+                { 
+                    maxAmt = 99;
+                }
 
-            int maxAmt = 299; // at certain stages the host cant get better.
-            if(host.condition < 100) // if host is already dead
-            { 
-                maxAmt = 99;
-            }
-
-            int newCondition = Mathf.Clamp( host.condition + conditionEffect ,-1, maxAmt );
-            
-            if(newCondition < 0)
-            {
-                // set as unusable, for the view set it in some visual way
-            }
-
-            if (host.isCreature)
-            {
-                host.currentHungerStage += 1;
-                if(host.currentHungerStage <= creatureHungerCycle && newCondition < host.condition)
+                int newCondition = Mathf.Clamp( host.condition + conditionEffect ,-1, maxAmt );
+                
+                if(newCondition < 0)
                 {
-                    host.currentHungerStage = 0;// reset cycle stage.
+                    // set as unusable, for the view set it in some visual way
                 }
-                // if condition goes down try to eat a food and add that to condition
+
+                if (host.isCreature)
+                {
+                    host.currentHungerStage += 1;
+                    if(host.currentHungerStage <= creatureHungerCycle && newCondition < host.condition)
+                    {
+                        host.currentHungerStage = 0;// reset cycle stage.
+                    }
+                    // if condition goes down try to eat a food and add that to condition
+                }
+
+                host.condition = newCondition;
             }
-
-            host.condition = newCondition;
-
         }
     }
 
@@ -198,6 +204,16 @@ public class HostManager : MonoBehaviour, IOnTime
 
         //Update view's spore spots.
         views[hostIndex].RemoveSporeSpotModel(sporeIndex);
+    }
+
+    public void MushroomHarvested(int hostIndex, int sporeIndex) ///////////////////////////////////////////////// Mushroom Harvested
+    {
+        if(hostIndex>=hosts.Length || hosts[hostIndex]==null) return;
+
+        hosts[hostIndex].mushrooms[sporeIndex].harvestable = false;
+        hosts[hostIndex].mushrooms[sporeIndex].currentStage = 1;
+
+        views[hostIndex].ChangeSporeSpotModel(sporeIndex, hosts[hostIndex].mushrooms[sporeIndex].details.StagePrefabs[1]);
     }
 
 

@@ -9,6 +9,7 @@ public class MushroomDetails : ScriptableObject
     [field:SerializeField] public SerializableGuid Id = SerializableGuid.NewGuid();
     public string Name;
     public int MaxStageAmt; // amount of stages this fungi has.
+    public int HarvestableStage; // anything equal or greater than this will be harvestable. likely just max stage amt
     public int StageLength; // how much progress is needed between each stage.
     public float BaseHarvestTime;
     public GameObject[] StagePrefabs; 
