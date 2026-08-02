@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // where all of the logic is held.
@@ -33,10 +34,14 @@ public class HostManager : MonoBehaviour, IOnTime
     [Tooltip("how many time states need to pass for a creature host to get hungry")]
     public int creatureHungerCycle; // might be changed to a regrence to an outside script having to do with creatures
 
+    //public LayerMask interactMask; // used for refrence in other stuff. set here so it doesnt need to be individualy set
+
     public List<MushroomInstance> edibleList; // will be used to sift through what is edible
 
     private void Start()
     {
+        TimeManager.Instance.ManageTimer(this); // adds this to managed timers.
+
         InitializeDetailsToViews();
     }
 
@@ -56,9 +61,10 @@ public class HostManager : MonoBehaviour, IOnTime
     }
     
     // initialize data from a view at a certain point in the host array
-    public void SetHostAtIndexI(int i)
+    public void SetHostAtIndexI(int i) ///////////////////////////////////////////////////////////////////////////// Initialize
     {
         views[i].managerIndex = i; // set index refrence
+        views[i].Initialize(); // initialize in a more controlled fassion than their own start.
         HostDetails newDetails = new(); // create new details
         newDetails.viewID = views[i].ID; // add viewID refrence
         newDetails.index = i; // set index refrence
@@ -78,7 +84,10 @@ public class HostManager : MonoBehaviour, IOnTime
         for(int b = 0; b < newDetails.sporeSpotAmt; b++) // set up slot ids
         {
             newDetails.mushroomsIDs[b] = views[i].sporeSpots[b].Id; // set slot id to the id of the views slot.
-            newDetails.mushrooms[b].Id = newDetails.mushroomsIDs[b]; // set the slot as this id.
+            if(newDetails.mushrooms[b]!=null) {
+                newDetails.mushrooms[b].Id = newDetails.mushroomsIDs[b]; // set the slot as this id.
+                newDetails.mushrooms[b].sporeIndex = views[i].sporeSpots[b].indexLocation;
+            }
         }
 
         // Might want to add the details to the game object as a ref just so we can see it while in editor
@@ -86,7 +95,7 @@ public class HostManager : MonoBehaviour, IOnTime
         hosts[i] = newDetails; // add to host array.
     }
 
-    public void ProgressTimeState(int stages) // as time ticks past. 
+    public void ProgressTimeState(int stages) /////////////////////////////////////////////////////////// Progress Time
     {
         if(hosts==null || hosts.Length<1) return; // catch for if not set up corectly
 
@@ -95,15 +104,20 @@ public class HostManager : MonoBehaviour, IOnTime
             
             if(host==null || host.condition < 0) return; // skip if non existant or unusable
             // might want to add a effect that will clear if this is < 0; or do that in the body. 
-            
+
             for(int i = 0; i < stages; i++){
                 // EFFECTS On CONDITION
                 int conditionEffect = 0; // will be added to host's condition
+                int mushIndex = -1;
 
                 foreach(MushroomInstance mush in host.mushrooms)       ///////// Mushrooms 
                 {
-                    if(mush == null || mush.details == null) continue; // skip if this slot is empty
-
+                    mushIndex++;
+                    if(mush == null || mush.details == null) {
+                        //Debug.Log("ChanceSpreadSpores"); 
+                        ChanceSpreadSpores(host,mushIndex);
+                        continue; // skip if this slot is empty
+                    }
                     // add mushroom's condition effect to the tree's condition
                     conditionEffect += mush.details.conditionEffect; 
 
@@ -116,8 +130,13 @@ public class HostManager : MonoBehaviour, IOnTime
                             if(mush.currentStage >= mush.details.HarvestableStage) mush.harvestable = true;
 
                             // effect the view in some way. // like updating the prefab
-                            views[host.index].ChangeSporeSpotModel(mush.sporeIndex, mush.details.StagePrefabs[newStage]);
+                            if(mush.details.StagePrefabs.Length > newStage && mush.details.StagePrefabs[newStage] != null)
+                                views[host.index].ChangeSporeSpotModel(mush.sporeIndex, mush.details.StagePrefabs[newStage]);
                             
+                        }
+                        if (newStage >= mush.details.HarvestableStage)
+                        {
+                            views[host.index].SetSporeSpotInteractivity(mush.sporeIndex,SporeSpotState.Harvestable);
                         }
                     }
 
@@ -153,7 +172,7 @@ public class HostManager : MonoBehaviour, IOnTime
     }
 
 
-    public int UpdateMushroomStage(MushroomInstance mush)
+    public int UpdateMushroomStage(MushroomInstance mush) /////////////////////////////////////////////////////// Update Mushroom State
     {
         int newStage=mush.currentStage;
         int stageAdditionAmt = 1; // if nothing else it will add 1 
@@ -188,11 +207,21 @@ public class HostManager : MonoBehaviour, IOnTime
 
         MushroomInstance newMush = details.Create(hosts[hostIndex]); // creates a new mushroom with details based off of the host     
         newMush.Id = hosts[hostIndex].mushroomsIDs[sporeSpotIndex]; // set the mush id to the slot id.
+        newMush.sporeIndex = views[hostIndex].sporeSpots[sporeSpotIndex].indexLocation;
         hosts[hostIndex].mushrooms[sporeSpotIndex] = newMush; // add mushroom to slot
 
         // do some visual shit with the view
         views[hostIndex].ChangeSporeSpotModel(sporeSpotIndex, hosts[hostIndex].mushrooms[sporeSpotIndex].details.StagePrefabs[0]);
+        views[hostIndex].ChangeInteractTime(sporeSpotIndex, details.BaseHarvestTime);
+        views[hostIndex].SetSporeSpotInteractivity(sporeSpotIndex,SporeSpotState.Growing);
     }  
+
+    // Overload to add a random mushroom to the spot, of avalible ones.
+    public void NewMushroomAtSporeSpot(int hostIndex, int sporeSpotIndex)
+    {
+        MushroomDetails tempDetails = SpawnRandomSporeableMushroom(views[hostIndex].sporeableMushrooms);
+        NewMushroomAtSporeSpot(hostIndex,sporeSpotIndex,tempDetails); 
+    }
 
     public void MushroomRemoved(int hostIndex, int sporeIndex) ///////////////////////////////////////////////// Mushroom Removed
     {
@@ -204,6 +233,9 @@ public class HostManager : MonoBehaviour, IOnTime
 
         //Update view's spore spots.
         views[hostIndex].RemoveSporeSpotModel(sporeIndex);
+        views[hostIndex].ChangeInteractTime(sporeIndex, -1);
+        views[hostIndex].SetSporeSpotInteractivity(sporeIndex,SporeSpotState.Sporeable);
+
     }
 
     public void MushroomHarvested(int hostIndex, int sporeIndex) ///////////////////////////////////////////////// Mushroom Harvested
@@ -214,7 +246,29 @@ public class HostManager : MonoBehaviour, IOnTime
         hosts[hostIndex].mushrooms[sporeIndex].currentStage = 1;
 
         views[hostIndex].ChangeSporeSpotModel(sporeIndex, hosts[hostIndex].mushrooms[sporeIndex].details.StagePrefabs[1]);
+        views[hostIndex].SetSporeSpotInteractivity(sporeIndex,SporeSpotState.Growing);
     }
+
+    public MushroomDetails SpawnRandomSporeableMushroom(SporeableMushrooms_SO sm) /////////////////////////////////// Spawn Random Mushroom 
+    {
+        if(sm == null || sm.SporeableMushrooms == null || sm.SporeableMushrooms.Length < 1) return null;
+        int randy = UnityEngine.Random.Range(0,sm.SporeableMushrooms.Length);
+
+        return sm.SporeableMushrooms[randy];
+    }
+
+    public bool ChanceSpreadSpores(HostDetails host,int index) ///////////////////////////////////////////////////// Chance to spread Spores
+    {
+        int randChance = UnityEngine.Random.Range(0,101);
+        if (randChance < chanceToSpore)
+        {
+            // add mushroom of type that is able to be spawned
+            NewMushroomAtSporeSpot(host.index,index);
+            return true;
+        }
+        else return false;
+    }
+
 
 
     // Add A function that will add a new host view to the array, and then call setHostAtIndexI at that array position in hosts.

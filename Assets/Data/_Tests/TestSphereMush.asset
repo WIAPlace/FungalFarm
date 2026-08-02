@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a753c92da9dad40936cf18b5c6713f, type: 3}
+  m_Name: TestSphereMush
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomDetails
+  Id:
+    Part1: 655484032
+    Part2: 1244228493
+    Part3: 1683388851
+    Part4: 671994935
+  Name: TestSphere
+  MaxStageAmt: 4
+  HarvestableStage: 4
+  StageLength: 2
+  BaseHarvestTime: 1
+  StagePrefabs:
+  - {fileID: 349614096037122456, guid: 9a9bc5cfef2f2b04e913559cd7fcd177, type: 3}
+  - {fileID: 3651053104390314953, guid: 2dcb8247ae298434888777e5ea8dd953, type: 3}
+  - {fileID: 2181500058655870289, guid: 46bb90d3eee9fa34f9e0fd3e464503d2, type: 3}
+  - {fileID: 4457577255589131584, guid: c95d6bb8b953ae14493130e17fc430f0, type: 3}
+  conditionEffect: -10

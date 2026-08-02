@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a753c92da9dad40936cf18b5c6713f, type: 3}
+  m_Name: TestMushroomDetails
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomDetails
+  Id:
+    Part1: 3759940427
+    Part2: 1217690626
+    Part3: 672885379
+    Part4: 3965174070
+  Name: Test
+  MaxStageAmt: 1
+  HarvestableStage: 0
+  StageLength: 2
+  BaseHarvestTime: 4
+  StagePrefabs:
+  - {fileID: 8033320189994296940, guid: 6d0dbd1310bbbbe478d84ffc6fca4f3e, type: 3}
+  conditionEffect: -10

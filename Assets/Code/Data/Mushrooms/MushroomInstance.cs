@@ -8,7 +8,7 @@ public class MushroomInstance
     public SerializableGuid dataId => details.Id; 
     public SerializableGuid hostID => host.ID;
     public MushroomDetails details = null;
-    public HostDetails host;
+    [SerializeReference,HideInInspector] public HostDetails host;
 
     public int sporeIndex;
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Public enum for what time it is.
@@ -36,6 +37,27 @@ public class TimeManager : MonoBehaviour
     public static float TotalGameTime;
 
     //public event Action<int> TimeEvent;
+
+    [field:SerializeField] public List<IOnTime> timers = new();
+
+    public void ManageTimer(IOnTime managedTimer)
+    {
+        timers.Add(managedTimer);
+    }
+
+    public void PassTime(int stages)
+    {
+        if(timers == null || timers.Count < 1) return;
+
+        for(int i = 0; i < stages; i++)
+        {
+            foreach(IOnTime managed in timers)
+            {
+                if(managed == null) continue;
+                managed.ProgressTimeState(1);
+            }
+        }
+    }
 
     
 }

@@ -28,5 +28,6 @@ public class HostDetails
     public int sporeSpotAmt;
     public MushroomInstance[] mushrooms;
     public SerializableGuid[] mushroomsIDs;
+    //public SporeableMushrooms_SO sporeAble;
     
 }
