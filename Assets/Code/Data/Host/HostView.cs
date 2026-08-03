@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -32,6 +33,8 @@ public class HostView : MonoBehaviour
     public SporeableSpotInteractable[] sporeSpots;
 
     public SporeableMushrooms_SO sporeableMushrooms; // used for what mushrooms are able to be planted here 
+
+    [SerializeReference] public HostDetails details;
 
     public void Initialize()
     {

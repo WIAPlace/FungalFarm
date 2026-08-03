@@ -93,6 +93,7 @@ public class HostManager : MonoBehaviour, IOnTime
         // Might want to add the details to the game object as a ref just so we can see it while in editor
 
         hosts[i] = newDetails; // add to host array.
+        views[i].details = hosts[i];
     }
 
     public void ProgressTimeState(int stages) /////////////////////////////////////////////////////////// Progress Time

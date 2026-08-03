@@ -190,6 +190,7 @@ MonoBehaviour:
     Part2: 1092407563
     Part3: 1248723617
     Part4: 351623158
+  baseInteractTime: 0
   interactTime: 2
   host: {fileID: 727503840}
   indexLocation: 0
@@ -493,6 +494,13 @@ MonoBehaviour:
   - {fileID: 281107102}
   - {fileID: 861765904}
   sporeableMushrooms: {fileID: 11400000, guid: bed58a36b12fcd442a3de0fb4951b5ee, type: 2}
+  details:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &861765901
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +572,7 @@ MonoBehaviour:
     Part2: 1176837301
     Part3: 1095688339
     Part4: 1915794217
+  baseInteractTime: 0
   interactTime: 3
   host: {fileID: 727503840}
   indexLocation: 1
@@ -707,9 +716,6 @@ MonoBehaviour:
   - {fileID: 727503840}
   chanceToSpore: 10
   creatureHungerCycle: 10
-  interactMask:
-    serializedVersion: 2
-    m_Bits: 128
   edibleList: []
   references:
     version: 2
