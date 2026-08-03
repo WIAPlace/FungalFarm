@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4633900233635683200
+--- !u!114 &-3332518762794324306
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestFoliageShader
-  m_Shader: {fileID: -6465566751694194690, guid: f3eea7d8eae148a459726f0f637bece9, type: 3}
+  m_Name: TestFoliageShader_ExtremeLowLOD
+  m_Shader: {fileID: -6465566751694194690, guid: ae3147d76b8b1a74a8b6ab413b718b86, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -38,10 +38,6 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _FoliageTexture:
-        m_Texture: {fileID: 2800000, guid: c36546c9f6c78b7448009120350abfa4, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_dbfeb17f7abf4d9a8fecf843f0f57b72_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: c36546c9f6c78b7448009120350abfa4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -62,7 +58,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _DarkColor: {r: 0.4433962, g: 0.3419811, b: 0, a: 1}
-    - _LightColor: {r: 1, g: 0.877459, b: 0.24056602, a: 1}
+    - _DarkColor: {r: 0.6415094, g: 0.39483026, b: 0, a: 1}
+    - _LightColor: {r: 1, g: 0.98998696, b: 0.25943398, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

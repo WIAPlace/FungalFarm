@@ -180,20 +180,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "35084531e3e4413bb6d001bf87937736"
-                },
-                "m_SlotId": 1
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "2e416d8245dc4b718a17181a0b52a114"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "39a860b6a8164092a5df99a543fd919b"
                 },
                 "m_SlotId": 2
@@ -441,20 +427,6 @@
                     "m_Id": "39a860b6a8164092a5df99a543fd919b"
                 },
                 "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "dbfeb17f7abf4d9a8fecf843f0f57b72"
-                },
-                "m_SlotId": 5
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "659c97b97f7348e29dab0f2f55fdd46f"
-                },
-                "m_SlotId": 0
             }
         },
         {
@@ -797,8 +769,8 @@
     "m_ObjectId": "0a76cef46c0d4ad4845903ef40a6cc7a",
     "m_Title": "N Dot L",
     "m_Position": {
-        "x": -1512.0001220703125,
-        "y": 228.00003051757813
+        "x": -1511.9998779296875,
+        "y": 227.99996948242188
     }
 }
 
@@ -1596,8 +1568,8 @@
     "m_ObjectId": "44834fac389a45bd87ff34dfd1929268",
     "m_Title": "Time Based",
     "m_Position": {
-        "x": -1951.0001220703125,
-        "y": -400.0
+        "x": -1950.9998779296875,
+        "y": -400.0000305175781
     }
 }
 
@@ -1640,7 +1612,7 @@
     "m_Title": "Sphere Based Normals",
     "m_Position": {
         "x": -2194.0,
-        "y": 199.0
+        "y": 198.99996948242188
     }
 }
 
@@ -2288,7 +2260,7 @@
     "m_ObjectId": "7aff3a0be56c430e9d0b0181bd22fb61",
     "m_Title": "Wind",
     "m_Position": {
-        "x": -1678.0001220703125,
+        "x": -1677.9998779296875,
         "y": -391.0
     }
 }
@@ -2956,8 +2928,8 @@
     "m_ObjectId": "a9b1c2c54c5849a3829a0a92e4e5725a",
     "m_Title": "Vertex Displacement (World Space)",
     "m_Position": {
-        "x": -787.0000610351563,
-        "y": -545.0000610351563
+        "x": -786.9999389648438,
+        "y": -545.0
     }
 }
 
@@ -3066,8 +3038,8 @@
     "m_ObjectId": "b3981bc13aff41feac05abff5e0b831c",
     "m_Title": "Position Based",
     "m_Position": {
-        "x": -2608.000244140625,
-        "y": -131.0
+        "x": -2608.0,
+        "y": -131.00006103515626
     }
 }
 
@@ -3242,8 +3214,8 @@
     "m_ObjectId": "bfc4d9fb197e4d9c8bf853d4fca80df6",
     "m_Title": "Remap",
     "m_Position": {
-        "x": -1087.0001220703125,
-        "y": 183.00001525878907
+        "x": -1086.9998779296875,
+        "y": 182.99993896484376
     }
 }
 
@@ -3418,8 +3390,8 @@
     "m_ObjectId": "cd40920bbefb421e86aa8b60b6d5a86d",
     "m_Title": "Color Gradient",
     "m_Position": {
-        "x": -814.0000610351563,
-        "y": 156.0
+        "x": -813.9999389648438,
+        "y": 155.9999542236328
     }
 }
 
