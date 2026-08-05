@@ -6,10 +6,11 @@ public class TestInteractable : MonoBehaviour, IInteractable
     public ItemsDataBase idb;
     public Item item;
 
-    public void BeginInteract(out float waitTime)
+    public void BeginInteract(out float waitTime, out float staminaDrain)
     {
         //throw new System.NotImplementedException();
         waitTime = timeToWait;
+        staminaDrain = 0;
     }
 
     public void EndInteract(float currentWait)

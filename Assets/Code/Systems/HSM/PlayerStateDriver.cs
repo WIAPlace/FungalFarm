@@ -17,6 +17,7 @@ namespace HSM {
         public LayerMask groundMask;
         public LayerMask interactMask;
         public bool drawGizmos = true;
+
         public string lastPath;
         
         CharacterController controller;
@@ -33,6 +34,10 @@ namespace HSM {
             //ctx.currentPerlin = ctx.idlePerlin; // set this as default
             //ctx.anim = GetComponentInChildren<Animator>();
             //ctx.renderer = GetComponent<Renderer>();
+            
+            ctx.currentStamina = ctx.MaxStamina;
+            ctx.staminaRegen = ctx.baseStaminaRegen;
+            ctx.staminaSystem.maxStamina = ctx.MaxStamina;
 
             root = new State_PlayerRoot(null, ctx);
             var builder = new StateMachineBuilder(root);
@@ -55,6 +60,7 @@ namespace HSM {
                 groundCheck = t;
             }
             ctx.sprint = false;
+            ctx.paused = false;
 
             // Lock currsor, will probably be moved somewhere else later
             Cursor.lockState = CursorLockMode.Locked;
@@ -157,6 +163,7 @@ namespace HSM {
 
         public bool grounded;
         public bool sprint;
+        public bool paused;
 
         // should probably be changed to a SO at some point
         [Header("Movement Vars")]
@@ -164,8 +171,14 @@ namespace HSM {
         public float sprintSpeed = 10f;
         public float gravity = 9.81f;
 
+        [Header("Stamina")]
+        public float MaxStamina;
+        public float currentStamina;
+        public float baseStaminaRegen;
+        public float staminaRegen;
+
         [Header("Other Vars")]
-        public float interactDistance = 5f;
+        public float interactDistance = 5f;     
 
         [Header("Camera Noise")]
         [Tooltip("X = Amplitude \nY = Frequency")] public Vector2 idlePerlin = new(.5f,.5f);
@@ -188,7 +201,7 @@ namespace HSM {
         public CinemachineInputAxisController cinCamController;
         //public InputActionReference IAR;
         public IInteractable currentInteract; // if not null interact will begin
-        
+        public StaminaSystem staminaSystem;
     }
 }
 

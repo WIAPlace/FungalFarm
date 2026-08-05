@@ -5,7 +5,9 @@ namespace HSM{
     {
         readonly PlayerContext ctx;
         private float currentWaitTime = 0;
-        private float timeToWait = 0;
+        protected float timeToWait = 0;
+        private float staminaDrain=0;
+        private float startingStamina = 0;
 
         public State_Interact(StateMachine machine, State parent, PlayerContext ctx) : base(machine, parent)
         {
@@ -20,8 +22,17 @@ namespace HSM{
 
         protected override void OnEnter()
         {
-            ctx.currentInteract.BeginInteract(out timeToWait);
-            Debug.Log("Interacting for: " + timeToWait);
+            ctx.currentInteract.BeginInteract(out timeToWait, out staminaDrain);
+
+            if(ctx.currentStamina - staminaDrain < 0)
+            {
+                //Debug.Log("Stamina Drain is Too much to Handle");
+                OnExit();
+                return;
+            }
+            startingStamina = ctx.currentStamina;
+
+            //Debug.Log("Interacting for: " + timeToWait);
         }
         protected override void OnExit()
         {
@@ -33,11 +44,24 @@ namespace HSM{
             ctx.currentInteract = null;
             currentWaitTime = 0;
             timeToWait = 0;
+            staminaDrain = 0;
+            startingStamina = ctx.currentStamina;
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             currentWaitTime += deltaTime;
+
+
+            // drain stamina over time if need be
+            if(staminaDrain > 0 && timeToWait > 0)
+            {
+                float t = currentWaitTime/timeToWait;
+
+                ctx.currentStamina = Mathf.Lerp(startingStamina,startingStamina-staminaDrain,t);
+            }
+            // if time to wait is less than or equal to 0 just do it instantly instead of dividing by 0
+            else if(staminaDrain>0) ctx.currentStamina -= staminaDrain;
         }
     }
 }

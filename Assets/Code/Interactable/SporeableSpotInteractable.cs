@@ -8,6 +8,7 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
     
     [field : SerializeField] public float baseInteractTime; 
     [HideInInspector] public float interactTime;
+    public float staminaDrainAmt;
     [SerializeField] private HostView host;
     public int indexLocation;
 
@@ -15,9 +16,10 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
 
     // add bool that is for if it can be interacted with while empty
 
-    public void BeginInteract(out float waitTime)
+    public void BeginInteract(out float waitTime,out float staminaDrain)
     {
         waitTime = interactTime;
+        staminaDrain = staminaDrainAmt;
     }
 
     public void EndInteract(float currentWait)

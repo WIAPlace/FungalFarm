@@ -5,9 +5,10 @@ public class TestTimeInteractable : MonoBehaviour,IInteractable
     public float timeToWait;
     public int stagesPassed;
 
-    public void BeginInteract(out float waitTime)
+    public void BeginInteract(out float waitTime,out float staminaDrain)
     {
         waitTime = timeToWait;
+        staminaDrain = 0;
     }
 
     public void EndInteract(float currentWait)

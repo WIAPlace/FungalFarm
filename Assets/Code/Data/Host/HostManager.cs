@@ -168,6 +168,7 @@ public class HostManager : MonoBehaviour, IOnTime
                 }
 
                 host.condition = newCondition;
+                views[host.index].OnConditionChange(newCondition);
             }
         }
     }

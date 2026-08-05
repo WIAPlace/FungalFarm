@@ -26,18 +26,43 @@ public class HostView : MonoBehaviour
     [field:SerializeField] public SerializableGuid ID = SerializableGuid.NewGuid();
     public int managerIndex;
 
+
+    [Header("Starting Info")]
     public bool isCreature; 
     public CreatureType creatureType = CreatureType.None;
 
     public Condition startingCondition;
+    
+    [Header("Spore Information")]
     public SporeableSpotInteractable[] sporeSpots;
 
     public SporeableMushrooms_SO sporeableMushrooms; // used for what mushrooms are able to be planted here 
 
+    [Header("Objects Active At Each State"),Tooltip("Anything That is placed in one of these will be made inactive if place in another.")]
+    public GameObject[] UnusableState;
+    public GameObject[] DeadState;
+    public GameObject[] RottingState;
+    public GameObject[] HealthyState;
+    public GameObject[][] VisualStateHolders;
+
+
+    [Header("Host Details Ref")]
+    public Condition currentCon;
     [SerializeReference] public HostDetails details;
 
     public void Initialize()
     {
+        // place all visual states into the visual state holder
+        VisualStateHolders = new GameObject[][]
+        {
+            UnusableState,DeadState,RottingState,HealthyState
+        };
+
+        // set visuals to how they should be
+        currentCon=startingCondition;
+        ClearAllVisuals();
+        MakeVisible(ConditionToInt(currentCon));
+
         for(int i = 0; i<sporeSpots.Length; i++)
         {
             sporeSpots[i].SetState(SporeSpotState.Sporeable);
@@ -99,5 +124,71 @@ public class HostView : MonoBehaviour
     public void AddMushroomToHost(int sporeSpotIndex) // called from the spore spot interactable
     {
         HostManager.Instance.NewMushroomAtSporeSpot(managerIndex,sporeSpotIndex);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////// Visual Condition States
+    public void OnConditionChange(int con)
+    {
+        Condition newCon = IntToCondition(con);
+        if(newCon == currentCon) return;
+
+        currentCon = newCon;
+        ClearAllVisuals();
+        MakeVisible(ConditionToInt(newCon));
+    }
+
+    public void ClearAllVisuals()
+    {
+        for(int i = 0; i < VisualStateHolders.Length; i++)
+        {
+            foreach(GameObject visual in VisualStateHolders[i])
+            {
+                if(visual.activeSelf) visual.SetActive(false);
+            }
+        }
+    }
+    
+    public void MakeVisible(int state)
+    {
+        if(state>VisualStateHolders.Length) return;
+
+        foreach(GameObject visual in VisualStateHolders[state])
+        {
+            if(!visual.activeSelf) visual.SetActive(true);
+        }
+    }
+
+    public Condition IntToCondition(int con)
+    {
+        Condition newCon;
+        if(con < 0) // unusable
+        {
+            newCon = Condition.unusable;
+        }
+        else if (con < 100)
+        {
+            newCon = Condition.dead;
+        }
+        else if (con < 200)
+        {
+            newCon = Condition.rotting;
+        }
+        else
+        {
+            newCon = Condition.healthy;
+        }
+        return newCon;
+    }
+    public int ConditionToInt(Condition con)
+    {
+        var returnInt = con switch
+        {
+            Condition.unusable => 0,
+            Condition.dead => 1,
+            Condition.rotting => 2,
+            Condition.healthy => 3,
+            _ => 0,
+        };
+        return returnInt;
     }
 }

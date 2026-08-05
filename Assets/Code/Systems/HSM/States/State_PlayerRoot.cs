@@ -14,5 +14,18 @@ public class State_PlayerRoot : State
         }
 
         protected override State GetInitialState() => moveState;
+
+        protected override void OnUpdate(float deltaTime)
+        {
+            // stamina regen
+            if(deltaTime > 0 && ctx.currentStamina < ctx.MaxStamina)
+            {
+                ctx.currentStamina+=ctx.staminaRegen;
+                if(ctx.currentStamina>ctx.MaxStamina) ctx.currentStamina = ctx.MaxStamina;
+
+                ctx.staminaSystem.UpdateStaminaBar(ctx.currentStamina);
+            }
+
+        }
     }
 }
