@@ -769,8 +769,8 @@
     "m_ObjectId": "0a76cef46c0d4ad4845903ef40a6cc7a",
     "m_Title": "N Dot L",
     "m_Position": {
-        "x": -1512.0001220703125,
-        "y": 228.0001220703125
+        "x": -1512.0,
+        "y": 227.99998474121095
     }
 }
 
@@ -1568,7 +1568,7 @@
     "m_ObjectId": "44834fac389a45bd87ff34dfd1929268",
     "m_Title": "Time Based",
     "m_Position": {
-        "x": -1951.000244140625,
+        "x": -1951.0,
         "y": -400.0
     }
 }
@@ -1611,8 +1611,8 @@
     "m_ObjectId": "4b4d883887cd4119a60f2bad11addaf4",
     "m_Title": "Sphere Based Normals",
     "m_Position": {
-        "x": -2194.000244140625,
-        "y": 199.0
+        "x": -2194.0,
+        "y": 199.00001525878907
     }
 }
 
@@ -2260,8 +2260,8 @@
     "m_ObjectId": "7aff3a0be56c430e9d0b0181bd22fb61",
     "m_Title": "Wind",
     "m_Position": {
-        "x": -1678.0001220703125,
-        "y": -391.0
+        "x": -1678.0,
+        "y": -391.00006103515627
     }
 }
 
@@ -2928,7 +2928,7 @@
     "m_ObjectId": "a9b1c2c54c5849a3829a0a92e4e5725a",
     "m_Title": "Vertex Displacement (World Space)",
     "m_Position": {
-        "x": -786.9998168945313,
+        "x": -787.0001831054688,
         "y": -545.0000610351563
     }
 }
@@ -3038,8 +3038,8 @@
     "m_ObjectId": "b3981bc13aff41feac05abff5e0b831c",
     "m_Title": "Position Based",
     "m_Position": {
-        "x": -2608.000244140625,
-        "y": -131.00003051757813
+        "x": -2608.0,
+        "y": -131.00006103515626
     }
 }
 
@@ -3214,8 +3214,8 @@
     "m_ObjectId": "bfc4d9fb197e4d9c8bf853d4fca80df6",
     "m_Title": "Remap",
     "m_Position": {
-        "x": -1086.9998779296875,
-        "y": 183.0000457763672
+        "x": -1087.0001220703125,
+        "y": 183.0
     }
 }
 
@@ -3390,7 +3390,7 @@
     "m_ObjectId": "cd40920bbefb421e86aa8b60b6d5a86d",
     "m_Title": "Color Gradient",
     "m_Position": {
-        "x": -813.9998779296875,
+        "x": -814.0001220703125,
         "y": 156.0
     }
 }
