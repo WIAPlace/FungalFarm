@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_PaintedShader
+  m_Name: Shader Graphs_PaintedShader 2
   m_Shader: {fileID: -6465566751694194690, guid: 18f516f03ee16804e99b8ce8798dbe5b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -58,10 +58,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _ColorA: {r: 1, g: 0.9481132, b: 0.98101705, a: 1}
-    - _ColorB: {r: 0.9622642, g: 0.63999647, b: 0.8448277, a: 1}
-    - _ColorC: {r: 0.8018868, g: 0.33664113, b: 0.63166136, a: 1}
-    - _ColorD: {r: 0.5849056, g: 0.16278034, b: 0.4310804, a: 1}
+    - _ColorA: {r: 0.9150943, g: 0.6194153, b: 0.3237362, a: 1}
+    - _ColorB: {r: 0.745283, g: 0.4358016, b: 0.13007298, a: 1}
+    - _ColorC: {r: 0.5943396, g: 0.3474719, b: 0.103729084, a: 1}
+    - _ColorD: {r: 0.4811321, g: 0.27120417, b: 0.06127626, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5431745642783454823
