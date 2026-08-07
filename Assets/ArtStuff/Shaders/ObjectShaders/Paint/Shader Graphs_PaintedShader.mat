@@ -53,7 +53,7 @@ Material:
     - _ColorCPosition: 0.4
     - _ColorDPosition: 0.87
     - _ColorRampThreshold: 0.6
-    - _NoiseOffset: 0.59
+    - _NoiseOffset: 0.7
     - _NoiseStrength: 3
     - _QueueControl: 0
     - _QueueOffset: 0

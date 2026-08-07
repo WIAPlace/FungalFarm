@@ -23,6 +23,6 @@ MonoBehaviour:
   StageLength: 2
   BaseHarvestTime: 0
   StagePrefabs:
-  - {fileID: 6191820008692130417, guid: b37ba699cf6441f4d816f569d4084411, type: 3}
-  - {fileID: 8033320189994296940, guid: 6d0dbd1310bbbbe478d84ffc6fca4f3e, type: 3}
+  - {fileID: 3445420239519203696, guid: aae9898b5a9bf3f41a84b742ae343436, type: 3}
+  - {fileID: 4357895315522518035, guid: 5316c60defbdb344786dafc170a8c908, type: 3}
   conditionEffect: 0
