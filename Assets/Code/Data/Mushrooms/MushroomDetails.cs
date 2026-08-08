@@ -1,6 +1,11 @@
 using System;
 using UnityEngine;
 
+public enum EdibleEffect
+{
+    Neutral,
+    Infected
+}
 
 [CreateAssetMenu(fileName = "NewMushroomDetails", menuName = "WorldItems/MushroomDetails")]
 [Serializable]
@@ -14,6 +19,9 @@ public class MushroomDetails : ScriptableObject
     public float BaseHarvestTime;
     public GameObject[] StagePrefabs; 
     public int conditionEffect = 0; // the ammount of condition that is applied to the host per time change. neg or pos.
+    public int prioirity;
+
+    public EdibleEffect edibleEffect;
     // public traits[] traits // not yet figured out how exactly i wanna go about this yet.
 
     

@@ -1,0 +1,370 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1115956479159003623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8148586335699576131}
+  - component: {fileID: 147233924295887758}
+  m_Layer: 0
+  m_Name: Host
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8148586335699576131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115956479159003623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.62886, y: -0.93306965, z: -3.883046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1998844281639107028}
+  - {fileID: 1689881536808901946}
+  - {fileID: 8593716518376201076}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &147233924295887758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115956479159003623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5103c407f1304438bda1dade5802c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HostView
+  ID:
+    Part1: 3201631437
+    Part2: 1121642121
+    Part3: 2807679390
+    Part4: 2628450960
+  managerIndex: 2
+  isCreature: 0
+  creatureType: 0
+  creatureDetails: {fileID: 0}
+  startingCondition: 299
+  sporeSpots:
+  - {fileID: 4056985796099690664}
+  - {fileID: 1095558153720773951}
+  sporeableMushrooms: {fileID: 11400000, guid: bed58a36b12fcd442a3de0fb4951b5ee, type: 2}
+  UnusableState:
+  - {fileID: 1222308265495044974}
+  DeadState:
+  - {fileID: 1222308265495044974}
+  - {fileID: 1715340204645701231}
+  - {fileID: 2491471275179171305}
+  RottingState:
+  - {fileID: 1222308265495044974}
+  - {fileID: 1715340204645701231}
+  - {fileID: 2491471275179171305}
+  HealthyState:
+  - {fileID: 1222308265495044974}
+  - {fileID: 1715340204645701231}
+  - {fileID: 2491471275179171305}
+  currentCon: 299
+  details:
+    rid: 6237929881868697716
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6237929881868697716
+      type: {class: HostDetails, ns: , asm: Assembly-CSharp}
+      data:
+        ID:
+          Part1: 3463358945
+          Part2: 1152597589
+          Part3: 2910390677
+          Part4: 4197096184
+        viewID:
+          Part1: 3201631437
+          Part2: 1121642121
+          Part3: 2807679390
+          Part4: 2628450960
+        index: 2
+        isCreature: 0
+        creature:
+          rid: -2
+        isInfested: 0
+        condition: 299
+        sporeSpotAmt: 2
+        mushrooms:
+        - Id:
+            Part1: 1865705366
+            Part2: 1092407563
+            Part3: 1248723617
+            Part4: 351623158
+          details: {fileID: 11400000, guid: 938c628317f3ae54a9e349009d449fa5, type: 2}
+          host:
+            rid: 6237929881868697716
+          sporeIndex: 0
+          currentStage: 0
+          progressToNextStage: 1
+          currentPriority: 0
+          nurtured: 0
+          enviromentBonus: 0
+          harvestable: 0
+        - Id:
+            Part1: 916363001
+            Part2: 1176837301
+            Part3: 1095688339
+            Part4: 1915794217
+          details: {fileID: 11400000, guid: 938c628317f3ae54a9e349009d449fa5, type: 2}
+          host:
+            rid: 6237929881868697716
+          sporeIndex: 1
+          currentStage: 0
+          progressToNextStage: 1
+          currentPriority: 0
+          nurtured: 0
+          enviromentBonus: 0
+          harvestable: 0
+        mushroomsIDs:
+        - Part1: 1865705366
+          Part2: 1092407563
+          Part3: 1248723617
+          Part4: 351623158
+        - Part1: 916363001
+          Part2: 1176837301
+          Part3: 1095688339
+          Part4: 1915794217
+--- !u!1 &1715340204645701231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1689881536808901946}
+  - component: {fileID: 1059450177295137477}
+  - component: {fileID: 4056985796099690664}
+  m_Layer: 0
+  m_Name: SporeSpot1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1689881536808901946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715340204645701231}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.033, y: 2.979, z: 1.012}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8148586335699576131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1059450177295137477
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715340204645701231}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4056985796099690664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715340204645701231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722aa93fcb004984ab6966749dbb09be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SporeableSpotInteractable
+  Id:
+    Part1: 1865705366
+    Part2: 1092407563
+    Part3: 1248723617
+    Part4: 351623158
+  baseInteractTime: 3
+  interactTime: 0
+  staminaDrainAmt: 10
+  host: {fileID: 147233924295887758}
+  indexLocation: 0
+  currentState: 1
+--- !u!1 &2491471275179171305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8593716518376201076}
+  - component: {fileID: 7191412719994881473}
+  - component: {fileID: 1095558153720773951}
+  m_Layer: 0
+  m_Name: SporeSpot1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8593716518376201076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491471275179171305}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.5529198, z: -0, w: 0.8332345}
+  m_LocalPosition: {x: -2.057, y: 2.979, z: 0.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8148586335699576131}
+  m_LocalEulerAnglesHint: {x: 0, y: -67.135, z: 0}
+--- !u!135 &7191412719994881473
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491471275179171305}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1095558153720773951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491471275179171305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722aa93fcb004984ab6966749dbb09be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SporeableSpotInteractable
+  Id:
+    Part1: 916363001
+    Part2: 1176837301
+    Part3: 1095688339
+    Part4: 1915794217
+  baseInteractTime: 7
+  interactTime: 0
+  staminaDrainAmt: 80
+  host: {fileID: 147233924295887758}
+  indexLocation: 1
+  currentState: 1
+--- !u!1001 &2033352373251219007
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8148586335699576131}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.12437772
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.12437772
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.69608206
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.69608206
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 159.738
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: df38351ef8ad7ae4984f8626c6ded16f, type: 2}
+    - target: {fileID: 919132149155446097, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+      propertyPath: m_Name
+      value: ProxyW_tree
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+--- !u!1 &1222308265495044974 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+  m_PrefabInstance: {fileID: 2033352373251219007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1998844281639107028 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fcc88c866fcaf374682e0a06cfd5b739, type: 3}
+  m_PrefabInstance: {fileID: 2033352373251219007}
+  m_PrefabAsset: {fileID: 0}

@@ -45,4 +45,9 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
         }
         else gameObject.layer = 7;
     }
+
+    public void SetPrioirtyBonus(int priorityBonus)
+    {
+        host.SetMushroomPriority(indexLocation,priorityBonus);
+    }
 }

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SporeableMushrooms_SO
   SporeableMushrooms:
   - {fileID: 11400000, guid: 938c628317f3ae54a9e349009d449fa5, type: 2}
+  - {fileID: 11400000, guid: 09e472f2643319442b9955db26fd2f11, type: 2}
+  - {fileID: 11400000, guid: ad97cd3fe7c621f4e924a30561328b7f, type: 2}

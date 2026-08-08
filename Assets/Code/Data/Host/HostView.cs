@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,6 +31,7 @@ public class HostView : MonoBehaviour
     [Header("Starting Info")]
     public bool isCreature; 
     public CreatureType creatureType = CreatureType.None;
+    [SerializeField] public CreatureDetails creatureDetails;
 
     public Condition startingCondition;
     
@@ -190,5 +192,12 @@ public class HostView : MonoBehaviour
             _ => 0,
         };
         return returnInt;
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////// Priority
+    public void SetMushroomPriority(int mushIndex, int prioirityBonus)
+    {
+        HostManager.Instance.SetMushroomPriority(managerIndex,mushIndex,prioirityBonus);
     }
 }

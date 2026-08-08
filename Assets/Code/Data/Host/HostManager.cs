@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 // where all of the logic is held.
@@ -31,12 +30,15 @@ public class HostManager : MonoBehaviour, IOnTime
         public HostView[] views; // set up in inspector
 
     public float chanceToSpore;
-    [Tooltip("how many time states need to pass for a creature host to get hungry")]
-    public int creatureHungerCycle; // might be changed to a regrence to an outside script having to do with creatures
+    public int deadHostsIndexDivider;
+    public int creatureHostsIndexDivider;
+
+    public GameObject[] deadHostSlotPositions;
+    
 
     //public LayerMask interactMask; // used for refrence in other stuff. set here so it doesnt need to be individualy set
 
-    public List<MushroomInstance> edibleList; // will be used to sift through what is edible
+    public List<MushroomInstance> edibleList = new(); // will be used to sift through what is edible
 
     private void Start()
     {
@@ -63,16 +65,22 @@ public class HostManager : MonoBehaviour, IOnTime
     // initialize data from a view at a certain point in the host array
     public void SetHostAtIndexI(int i) ///////////////////////////////////////////////////////////////////////////// Initialize
     {
+        if(views[i]==null) return;
+
         views[i].managerIndex = i; // set index refrence
         views[i].Initialize(); // initialize in a more controlled fassion than their own start.
         HostDetails newDetails = new(); // create new details
         newDetails.viewID = views[i].ID; // add viewID refrence
         newDetails.index = i; // set index refrence
         newDetails.isCreature = views[i].isCreature; // set its status as if its creature
-        newDetails.creatureType = views[i].creatureType;
+        
+
+        if(newDetails.isCreature && views[i].creatureDetails != null) 
+            newDetails.creature =  views[i].creatureDetails.Create(newDetails);
+        else newDetails.creature = null;
 
         // spawn with a random hunger amt, only applies to creature hosts.
-        newDetails.currentHungerStage = UnityEngine.Random.Range(0,creatureHungerCycle); 
+        //newDetails.currentHungerStage = UnityEngine.Random.Range(0,creatureHungerCycle); 
 
         // will need to set up what their starting condition is.
         newDetails.condition = (int)views[i].startingCondition; // set condition as starting condition, will want to load stuff after this.
@@ -144,35 +152,32 @@ public class HostManager : MonoBehaviour, IOnTime
                     // update spore spot in some way to reflect any changes here.
                 }
 
-                int maxAmt = 299; // at certain stages the host cant get better.
-                if(host.condition < 100) // if host is already dead
-                { 
-                    maxAmt = 99;
-                }
-
-                int newCondition = Mathf.Clamp( host.condition + conditionEffect ,-1, maxAmt );
-                
-                if(newCondition < 0)
-                {
-                    // set as unusable, for the view set it in some visual way
-                }
-
-                if (host.isCreature)
-                {
-                    host.currentHungerStage += 1;
-                    if(host.currentHungerStage <= creatureHungerCycle && newCondition < host.condition)
-                    {
-                        host.currentHungerStage = 0;// reset cycle stage.
-                    }
-                    // if condition goes down try to eat a food and add that to condition
-                }
-
-                host.condition = newCondition;
-                views[host.index].OnConditionChange(newCondition);
+                UpdateHostCondition(host,conditionEffect);
             }
         }
+
+        //RefreshEdibleList(); // refreshes it after each update
     }
 
+    
+    public void UpdateHostCondition(HostDetails host, int conditionEffect)
+    {
+        int maxAmt = 299; // at certain stages the host cant get better.
+        if(host.condition < 100) // if host is already dead
+        { 
+            maxAmt = 99;
+        }
+
+        int newCondition = Mathf.Clamp( host.condition + conditionEffect ,-1, maxAmt );
+                
+        if(newCondition < 0)
+        {
+            // set as unusable, for the view set it in some visual way
+        }
+
+        host.condition = newCondition;
+        views[host.index].OnConditionChange(newCondition);
+    }
 
     public int UpdateMushroomStage(MushroomInstance mush) /////////////////////////////////////////////////////// Update Mushroom State
     {
@@ -225,6 +230,18 @@ public class HostManager : MonoBehaviour, IOnTime
         NewMushroomAtSporeSpot(hostIndex,sporeSpotIndex,tempDetails); 
     }
 
+    public void NewMushroomAtSporeSpot(int hostIndex)
+    {
+        foreach(MushroomInstance mush in hosts[hostIndex].mushrooms)
+        {
+            if (mush != null && mush.dataId != SerializableGuid.Empty)    
+            {
+                NewMushroomAtSporeSpot(hostIndex,mush.sporeIndex);
+                return;
+            }
+        }
+    }
+
     public void MushroomRemoved(int hostIndex, int sporeIndex) ///////////////////////////////////////////////// Mushroom Removed
     {
         if(hostIndex>=hosts.Length || hosts[hostIndex]==null) return;
@@ -271,8 +288,78 @@ public class HostManager : MonoBehaviour, IOnTime
         else return false;
     }
 
+    public void RefreshEdibleList() ///////////////////////////////////////////////////////////////////////////////// Refresh Edible List
+    {
+        edibleList.Clear();
+        foreach(HostDetails host in hosts)
+        {
+            if(host == null || host.sporeSpotAmt<=0) continue; // skip if nothing is here
+            foreach(MushroomInstance mush in host.mushrooms)
+            {
+                if(mush != null && mush.dataId != SerializableGuid.Empty)
+                {
+                    edibleList.Add(mush);
+                }
+            }
+        }
+        // sort by greatest priority
+        edibleList.Sort((mush1,mush2)=>mush2.currentPriority.CompareTo(mush1.currentPriority));
+    }
 
-
+    public void SetMushroomPriority(int hostIndex, int mushIndex, int bonus)
+    {
+        if(hosts.Length<hostIndex && hosts[hostIndex].mushrooms.Length < mushIndex){
+            hosts[hostIndex].mushrooms[mushIndex].AddPriorityBonus(bonus);
+        }
+    }
+    
     // Add A function that will add a new host view to the array, and then call setHostAtIndexI at that array position in hosts.
     // Eithier wilol be called from here or more likeley outside of here. if in here we'll need to instantiate a prefab in the world at a postion. 
+    public bool AddViewToArray(int i, HostView newView)
+    {
+        if(i>= views.Length || views[i]!=null) return false;
+
+        GameObject View;
+
+        if(i>=deadHostsIndexDivider && i < creatureHostsIndexDivider)
+        {
+            View = Instantiate(newView.gameObject,deadHostSlotPositions[i-deadHostsIndexDivider].transform);
+        }
+        else
+        {
+            View = newView.gameObject;
+        }
+        
+        HostView tempView = View.GetComponent<HostView>();
+
+        tempView.ID = SerializableGuid.NewGuid(); // make guid new incase of prefab use
+        views[i] = tempView;
+        SetHostAtIndexI(i);
+
+        return true;
+    }
+    public bool AddDeadViewToArray(HostView newView)
+    {
+        bool returnable = false;
+        for(int i = deadHostsIndexDivider; i < creatureHostsIndexDivider; i++)
+        {
+            if (!returnable)
+            {
+                returnable = AddViewToArray(i,newView);
+            }
+        }
+        return returnable;
+    }
+    public bool AddCreatureViewToArray(HostView newView)
+    {
+        bool returnable = false;
+        for(int i = creatureHostsIndexDivider; i < views.Length; i++)
+        {
+            if (!returnable)
+            {
+                returnable = AddViewToArray(i,newView);
+            }
+        }
+        return returnable;
+    }
 }

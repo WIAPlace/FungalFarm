@@ -12,8 +12,7 @@ public class HostDetails
     
     [Header("Creature Hosts")]
     public bool isCreature;
-    public CreatureType creatureType = CreatureType.None;
-    public int currentHungerStage=0;
+    [field : SerializeReference] public CreatureInstance creature;
 
     [Header("Condition And Effects")]
     public bool isInfested;

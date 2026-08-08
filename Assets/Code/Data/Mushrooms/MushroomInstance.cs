@@ -15,6 +15,8 @@ public class MushroomInstance
     public int currentStage = 0;
     public int progressToNextStage = 0;
 
+    public int currentPriority = 0;
+
     // has this fella been cared for recently, like moist n shit
     public bool nurtured = false; 
 
@@ -27,7 +29,15 @@ public class MushroomInstance
     {
         this.details = details;
         this.host = host;
+        this.currentPriority = details.prioirity;
     }
+
+    public void AddPriorityBonus(int bonus)
+    {
+        currentPriority = details.prioirity + bonus;
+    }
+
+    
 
     
 }   
