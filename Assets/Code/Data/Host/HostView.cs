@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public enum Condition
 {
@@ -33,8 +32,13 @@ public class HostView : MonoBehaviour
     public CreatureType creatureType = CreatureType.None;
     [SerializeField] public CreatureDetails creatureDetails;
 
+
     public Condition startingCondition;
-    
+    public Condition destroyCondition;
+   
+    public HostView onDeathSpawn;
+    [HideInInspector] public bool destroyOnInvis=false;
+
     [Header("Spore Information")]
     public SporeableSpotInteractable[] sporeSpots;
 
@@ -48,13 +52,30 @@ public class HostView : MonoBehaviour
     public GameObject[][] VisualStateHolders;
 
 
+
     [Header("Host Details Ref")]
+    
     public Condition currentCon;
     [SerializeReference] public HostDetails details;
+
+    void OnDestroy()
+    {
+        creatureDetails = null;
+        sporeSpots=null;
+        onDeathSpawn = null;
+        sporeableMushrooms =null;
+        UnusableState = null;
+        DeadState = null;
+        RottingState = null;
+        HealthyState = null;
+        VisualStateHolders = null;
+        details = null;
+    }
 
     public void Initialize()
     {
         // place all visual states into the visual state holder
+        destroyOnInvis=false;
         VisualStateHolders = new GameObject[][]
         {
             UnusableState,DeadState,RottingState,HealthyState
@@ -137,6 +158,20 @@ public class HostView : MonoBehaviour
         currentCon = newCon;
         ClearAllVisuals();
         MakeVisible(ConditionToInt(newCon));
+
+        if(currentCon == destroyCondition)
+        {
+            Debug.Log("Dead");
+            foreach(SporeableSpotInteractable spore in sporeSpots)
+            {
+                spore.SetState(SporeSpotState.Growing);
+            }
+            if(onDeathSpawn != null)
+            {
+                HostManager.Instance.AddDeadViewToArray(onDeathSpawn);
+            }
+            HostManager.Instance.RemoveHost(managerIndex);
+        }
     }
 
     public void ClearAllVisuals()
@@ -199,5 +234,14 @@ public class HostView : MonoBehaviour
     public void SetMushroomPriority(int mushIndex, int prioirityBonus)
     {
         HostManager.Instance.SetMushroomPriority(managerIndex,mushIndex,prioirityBonus);
+    }
+
+    public void OnChildBecameInvisible()
+    {
+        Debug.Log("Invis");
+        if (destroyOnInvis)
+        {
+            Destroy(gameObject);
+        }
     }
 }

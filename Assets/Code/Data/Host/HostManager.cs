@@ -65,7 +65,10 @@ public class HostManager : MonoBehaviour, IOnTime
     // initialize data from a view at a certain point in the host array
     public void SetHostAtIndexI(int i) ///////////////////////////////////////////////////////////////////////////// Initialize
     {
-        if(views[i]==null) return;
+        if(views[i]==null) {
+            hosts[i] = null;
+            return;
+        }
 
         views[i].managerIndex = i; // set index refrence
         views[i].Initialize(); // initialize in a more controlled fassion than their own start.
@@ -118,38 +121,39 @@ public class HostManager : MonoBehaviour, IOnTime
                 // EFFECTS On CONDITION
                 int conditionEffect = 0; // will be added to host's condition
                 int mushIndex = -1;
-
-                foreach(MushroomInstance mush in host.mushrooms)       ///////// Mushrooms 
-                {
-                    mushIndex++;
-                    if(mush == null || mush.details == null) {
-                        //Debug.Log("ChanceSpreadSpores"); 
-                        ChanceSpreadSpores(host,mushIndex);
-                        continue; // skip if this slot is empty
-                    }
-                    // add mushroom's condition effect to the tree's condition
-                    conditionEffect += mush.details.conditionEffect; 
-
-                    if(mush.currentStage < mush.details.MaxStageAmt) // update stage of Mushroom
+                if(host.mushrooms!=null){
+                    foreach(MushroomInstance mush in host.mushrooms)       ///////// Mushrooms 
                     {
-                        int newStage = UpdateMushroomStage(mush);
-                        if (newStage > mush.currentStage)
-                        {
-                            mush.currentStage = newStage;
-                            if(mush.currentStage >= mush.details.HarvestableStage) mush.harvestable = true;
+                        mushIndex++;
+                        if(mush == null || mush.details == null) {
+                            //Debug.Log("ChanceSpreadSpores"); 
+                            ChanceSpreadSpores(host,mushIndex);
+                            continue; // skip if this slot is empty
+                        }
+                        // add mushroom's condition effect to the tree's condition
+                        conditionEffect += mush.details.conditionEffect; 
 
-                            // effect the view in some way. // like updating the prefab
-                            if(mush.details.StagePrefabs.Length > newStage && mush.details.StagePrefabs[newStage] != null)
-                                views[host.index].ChangeSporeSpotModel(mush.sporeIndex, mush.details.StagePrefabs[newStage]);
-                            
-                        }
-                        if (newStage >= mush.details.HarvestableStage)
+                        if(mush.currentStage < mush.details.MaxStageAmt) // update stage of Mushroom
                         {
-                            views[host.index].SetSporeSpotInteractivity(mush.sporeIndex,SporeSpotState.Harvestable);
+                            int newStage = UpdateMushroomStage(mush);
+                            if (newStage > mush.currentStage)
+                            {
+                                mush.currentStage = newStage;
+                                if(mush.currentStage >= mush.details.HarvestableStage) mush.harvestable = true;
+
+                                // effect the view in some way. // like updating the prefab
+                                if(mush.details.StagePrefabs.Length > newStage && mush.details.StagePrefabs[newStage] != null)
+                                    views[host.index].ChangeSporeSpotModel(mush.sporeIndex, mush.details.StagePrefabs[newStage]);
+                                
+                            }
+                            if (newStage >= mush.details.HarvestableStage)
+                            {
+                                views[host.index].SetSporeSpotInteractivity(mush.sporeIndex,SporeSpotState.Harvestable);
+                            }
                         }
+
+                        // update spore spot in some way to reflect any changes here.
                     }
-
-                    // update spore spot in some way to reflect any changes here.
                 }
 
                 UpdateHostCondition(host,conditionEffect);
@@ -361,5 +365,12 @@ public class HostManager : MonoBehaviour, IOnTime
             }
         }
         return returnable;
+    }
+
+    public void RemoveHost(int i)
+    {
+        views[i].destroyOnInvis = true;
+        views[i] = null;
+        SetHostAtIndexI(i);
     }
 }

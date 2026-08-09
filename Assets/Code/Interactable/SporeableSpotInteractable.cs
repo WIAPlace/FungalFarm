@@ -14,6 +14,11 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
 
     public SporeSpotState currentState;
 
+
+    void OnDestroy()
+    {
+        host = null;
+    }
     // add bool that is for if it can be interacted with while empty
 
     public void BeginInteract(out float waitTime,out float staminaDrain)
