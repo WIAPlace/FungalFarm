@@ -1,0 +1,314 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4433366012754569842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5522449300224948049}
+  - component: {fileID: 1214897942422475374}
+  - component: {fileID: 4175040984675952759}
+  m_Layer: 7
+  m_Name: SporeSpot (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5522449300224948049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4433366012754569842}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.29608512, y: -0.10406856, z: -0.31484187, w: 0.8957556}
+  m_LocalPosition: {x: -0.026, y: 0.864, z: 1.308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7885699697952384865}
+  m_LocalEulerAnglesHint: {x: 27.704, y: -24.908, z: -44.966}
+--- !u!135 &1214897942422475374
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4433366012754569842}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.76
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4175040984675952759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4433366012754569842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722aa93fcb004984ab6966749dbb09be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SporeableSpotInteractable
+  Id:
+    Part1: 260268568
+    Part2: 1330645985
+    Part3: 1760343479
+    Part4: 3007720767
+  baseInteractTime: 2
+  interactTime: 0
+  staminaDrainAmt: 10
+  host: {fileID: 1540862081733682753}
+  indexLocation: 1
+  currentState: 0
+--- !u!1 &5729376863064774340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1363657749955804556}
+  - component: {fileID: 8945874155661209363}
+  - component: {fileID: 4821237036598186694}
+  m_Layer: 7
+  m_Name: SporeSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1363657749955804556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5729376863064774340}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.15283869, w: 0.98825115}
+  m_LocalPosition: {x: -0.491, y: 0.769, z: -0.972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7885699697952384865}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.583}
+--- !u!135 &8945874155661209363
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5729376863064774340}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.76
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4821237036598186694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5729376863064774340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722aa93fcb004984ab6966749dbb09be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SporeableSpotInteractable
+  Id:
+    Part1: 260268568
+    Part2: 1330645985
+    Part3: 1760343479
+    Part4: 3007720767
+  baseInteractTime: 2
+  interactTime: 0
+  staminaDrainAmt: 10
+  host: {fileID: 1540862081733682753}
+  indexLocation: 0
+  currentState: 0
+--- !u!1 &7562952890002940282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7885699697952384865}
+  - component: {fileID: 1540862081733682753}
+  m_Layer: 0
+  m_Name: DeadBugHost2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7885699697952384865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562952890002940282}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.353086, y: -0.93307, z: -10.107834}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5141815753667871437}
+  - {fileID: 1363657749955804556}
+  - {fileID: 5522449300224948049}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1540862081733682753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562952890002940282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5103c407f1304438bda1dade5802c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HostView
+  ID:
+    Part1: 1406748455
+    Part2: 1153338348
+    Part3: 4023027846
+    Part4: 1480838973
+  managerIndex: 0
+  isCreature: 0
+  creatureType: 0
+  creatureDetails: {fileID: 0}
+  startingCondition: 99
+  destroyCondition: -1
+  onDeathSpawn: {fileID: 0}
+  destroyOnInvis: 0
+  sporeSpots:
+  - {fileID: 4821237036598186694}
+  - {fileID: 4175040984675952759}
+  sporeableMushrooms: {fileID: 11400000, guid: bed58a36b12fcd442a3de0fb4951b5ee, type: 2}
+  UnusableState: []
+  DeadState:
+  - {fileID: 4645246396471535338}
+  - {fileID: 5729376863064774340}
+  - {fileID: 4433366012754569842}
+  RottingState: []
+  HealthyState: []
+  currentCon: 0
+  details:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!1001 &5736140362374612091
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7885699697952384865}
+    m_Modifications:
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9799326
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.19932932
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -22.995
+      objectReference: {fileID: 0}
+    - target: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147828260777222801, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_Name
+      value: DeadBug2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6134402445531735671, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: drawBones
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6134402445531735671, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376017841009076139, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fef9d34dba598f4ba918ba12175fdec, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+--- !u!1 &4645246396471535338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1147828260777222801, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+  m_PrefabInstance: {fileID: 5736140362374612091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5141815753667871437 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+  m_PrefabInstance: {fileID: 5736140362374612091}
+  m_PrefabAsset: {fileID: 0}

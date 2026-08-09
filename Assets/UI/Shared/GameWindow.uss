@@ -21,14 +21,15 @@
 
 #game-window {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 700px;
+    height: 700px;
     padding-top: 20px;
     background-color: rgba(0, 0, 0, 0);
     border-width: 0;
     border-radius: 0;
     overflow: visible;
     align-content: flex-start;
+    background-image: url("project://database/Assets/ArtStuff/Sprites%20&%20Icons/Test_And_Misc/CosmicBilliardsTableDraft2.png?fileID=2800000&guid=c5ae602c3f2b64b46bcae738e622fa95&type=3#CosmicBilliardsTableDraft2");
 }
 
 #title-bar {
@@ -74,5 +75,3 @@
     padding-bottom: 30px;
     padding-left: 30px;
 }
-
-

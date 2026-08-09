@@ -14,14 +14,14 @@
                         <ui:DataBinding property="text" update-trigger="WhenDirty" data-source-path="ItemName" binding-mode="ToTargetOnce"/>
                     </Bindings>
                 </ui:Label>
-                <ui:Label name="item-category" class="tooltip-category">
+                <ui:Label name="item-category" enabled="true" class="tooltip-category">
                     <Bindings>
                         <ui:DataBinding property="text" update-trigger="WhenDirty" data-source-path="Category" binding-mode="ToTargetOnce"/>
                     </Bindings>
                 </ui:Label>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Label name="item-rarity" class="tooltip-rarity">
+        <ui:Label name="item-rarity" enabled="true" class="tooltip-rarity">
             <Bindings>
                 <ui:DataBinding property="text" update-trigger="WhenDirty" data-source-path="Rarity" binding-mode="ToTargetOnce"/>
             </Bindings>

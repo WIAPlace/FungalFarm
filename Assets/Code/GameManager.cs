@@ -1,9 +1,29 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        // Enforce the singleton pattern: destroy duplicates
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        // Optional: Keep this object alive across scene transitions
+        //DontDestroyOnLoad(gameObject);
+    }
+
     [SerializeField] InputReader input;
     [SerializeField] UIController uiController;
+    public Money money;
+    //public List<int> OpenContainers = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,6 +62,16 @@ public class GameManager : MonoBehaviour
         input.SetUI();
         // will need to look into how to iterate through all containers to see all that are open then close them.
         uiController.ToggleWindow(UIController.Containers[0]);
-        uiController.ToggleWindow(UIController.Containers[1]);
+        //uiController.ToggleWindow(UIController.Containers[1]);
+    }
+    public void OpenSpecificInventory(int index)
+    {
+        uiController.ToggleWindow(UIController.Containers[index]);
+        HandleInventory();
+    }
+
+    public void ChangeMoneyBy(int amtChanged)
+    {
+        money.Amt+=amtChanged;
     }
 }

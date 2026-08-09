@@ -114,7 +114,7 @@ public class HostManager : MonoBehaviour, IOnTime
         foreach(HostDetails host in hosts)       /// Update Hosts
         {// chose foreach because its easier to type and we have a ref to index in host anyways
             
-            if(host==null || host.condition < 0) return; // skip if non existant or unusable
+            if(host==null || host.condition < 0) continue; // skip if non existant or unusable
             // might want to add a effect that will clear if this is < 0; or do that in the body. 
 
             for(int i = 0; i < stages; i++){
@@ -327,6 +327,7 @@ public class HostManager : MonoBehaviour, IOnTime
 
         if(i>=deadHostsIndexDivider && i < creatureHostsIndexDivider)
         {
+            Debug.Log(i);
             View = Instantiate(newView.gameObject,deadHostSlotPositions[i-deadHostsIndexDivider].transform);
         }
         else
