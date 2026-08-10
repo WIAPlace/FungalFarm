@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 966561775}
   - component: {fileID: 966561774}
   - component: {fileID: 966561773}
+  - component: {fileID: 966561776}
   m_Layer: 7
   m_Name: Basket
   m_TagString: Untagged
@@ -733,6 +734,20 @@ Transform:
   - {fileID: 1764037638}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &966561776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966561772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881df8e10af598a43b7e6104de0a386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SellInventory
+  db: {fileID: 11400000, guid: 838808bdba519cc4393bf7ccfd824215, type: 2}
+  money: {fileID: 11400000, guid: 2207f6f21e73e304ca3c90439f60413e, type: 2}
 --- !u!1 &1003790171
 GameObject:
   m_ObjectHideFlags: 0

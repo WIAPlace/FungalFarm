@@ -8,6 +8,7 @@ public class ItemDetails : ScriptableObject
     public string Description;
     public Sprite Icon;
     public SerializableGuid Id = SerializableGuid.NewGuid();
+    public int price;
 
     private void AssignNewGuid() {
         Id = SerializableGuid.NewGuid();
