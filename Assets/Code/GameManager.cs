@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] InputReader input;
     [SerializeField] UIController uiController;
     public Money money;
+    
     //public List<int> OpenContainers = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

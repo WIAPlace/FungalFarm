@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using JetBrains.Annotations;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace HSM {
         public float groundRadius = 0.2f;
         public LayerMask groundMask;
         public LayerMask interactMask;
+        
         public bool drawGizmos = true;
 
         public string lastPath;
@@ -23,6 +25,8 @@ namespace HSM {
         CharacterController controller;
         StateMachine machine;
         State root;
+
+        [SerializeReference] private GameObject[] heldItems; 
 
 
         // Awake //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,6 +53,7 @@ namespace HSM {
             input.SprintCancelledEvent += HandleSprintCancelledEvent;
             input.InteractEvent += HandleInteract;
             input.InteractCancelledEvent += HandleInteractCancelled;
+            input.HotBarEvent += HandleHotBar;
 
             // fallback: create a groundCheck just below the collider's bounds
             if (groundCheck == null) {
@@ -65,6 +70,8 @@ namespace HSM {
             // Lock currsor, will probably be moved somewhere else later
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            HandleHotBar(1);
         }
 
         // Destroy //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +82,7 @@ namespace HSM {
             input.SprintCancelledEvent -= HandleSprintCancelledEvent;
             input.InteractEvent -= HandleInteract;
             input.InteractCancelledEvent -= HandleInteractCancelled;
+            input.HotBarEvent -= HandleHotBar;
         }
 
         // Update //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,6 +162,49 @@ namespace HSM {
         {
             ctx.currentInteract=null;
         }
+
+        private void HandleHotBar(int num)
+        {
+            switch (num)
+            {
+                case 1:
+                    ctx.intendedInteraction = InteractionType.Basic;
+                    SetItemActive(0);
+                    break;
+
+                case 2:
+                    ctx.intendedInteraction = InteractionType.Trowel;
+                    if(ctx.trowelUpgrade)SetItemActive(1);
+                    else SetItemActive(0);
+                    break;
+
+                case 3:
+                    ctx.intendedInteraction = InteractionType.Water;
+                    if(ctx.brushUpgrade)SetItemActive(2);
+                    else SetItemActive(0);
+                    break;
+
+                case 4:
+                    ctx.intendedInteraction = InteractionType.Milk;
+                    if(ctx.brushUpgrade)SetItemActive(2);
+                    else SetItemActive(0);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        private void SetItemActive(int index)
+        {
+            foreach(GameObject obj in heldItems)
+            {
+                if(obj !=null && obj.activeSelf)
+                {
+                    obj.SetActive(false);
+                }
+            }
+            if(heldItems[index]!=null)heldItems[index].SetActive(true);
+        }
     }
 
     [Serializable]
@@ -164,6 +215,10 @@ namespace HSM {
         public bool grounded;
         public bool sprint;
         public bool paused;
+
+        public bool brushUpgrade;
+        public bool trowelUpgrade;
+        public InteractionType intendedInteraction;
 
         // should probably be changed to a SO at some point
         [Header("Movement Vars")]
@@ -202,6 +257,9 @@ namespace HSM {
         //public InputActionReference IAR;
         public IInteractable currentInteract; // if not null interact will begin
         public StaminaSystem staminaSystem;
+
+        public ItemsDataBase invData;
+        public ItemDetails Milk;
     }
 }
 

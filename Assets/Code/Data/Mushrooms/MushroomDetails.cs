@@ -20,6 +20,7 @@ public class MushroomDetails : ScriptableObject
     public GameObject[] StagePrefabs; 
     public int conditionEffect = 0; // the ammount of condition that is applied to the host per time change. neg or pos.
     public int prioirity;
+    public ItemDetails item;
 
     public EdibleEffect edibleEffect;
     // public traits[] traits // not yet figured out how exactly i wanna go about this yet.

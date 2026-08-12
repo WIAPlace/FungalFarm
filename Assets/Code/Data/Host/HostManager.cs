@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // where all of the logic is held.
@@ -32,6 +33,7 @@ public class HostManager : MonoBehaviour, IOnTime
     public float chanceToSpore;
     public int deadHostsIndexDivider;
     public int creatureHostsIndexDivider;
+    public ItemsDataBase invData;
 
     public GameObject[] deadHostSlotPositions;
     
@@ -131,7 +133,18 @@ public class HostManager : MonoBehaviour, IOnTime
                             continue; // skip if this slot is empty
                         }
                         // add mushroom's condition effect to the tree's condition
-                        conditionEffect += mush.details.conditionEffect; 
+                        int shroomEffect = mush.details.conditionEffect;
+
+                        if (mush.nurtured)
+                        {
+                            shroomEffect /= 2;
+
+                            // 1 in 5 chance to become un nurtured
+                            int rand = UnityEngine.Random.Range(1,6);
+                            if(rand == 5) mush.nurtured = false;
+                        }
+
+                        conditionEffect += shroomEffect;
 
                         if(mush.currentStage < mush.details.MaxStageAmt) // update stage of Mushroom
                         {
@@ -374,4 +387,23 @@ public class HostManager : MonoBehaviour, IOnTime
         views[i] = null;
         SetHostAtIndexI(i);
     }
+
+    public void WaterShroom(int hostIndex, int sporeIndex)
+    {
+        if(hostIndex>hosts.Length || hosts[hostIndex]==null 
+        || sporeIndex > hosts[hostIndex].sporeSpotAmt 
+        || hosts[hostIndex].mushrooms[sporeIndex]==null) return;
+
+        hosts[hostIndex].mushrooms[sporeIndex].nurtured = true;
+    }
+
+    public bool ShoomHarvested(int hostIndex, int sporeIndex)
+    {
+        if(hostIndex>hosts.Length || hosts[hostIndex]==null 
+        || sporeIndex > hosts[hostIndex].sporeSpotAmt 
+        || hosts[hostIndex].mushrooms[sporeIndex]==null) return false;
+
+        Item newItem = hosts[hostIndex].mushrooms[sporeIndex].details.item.Create(1);
+        return invData.items.TryAdd(newItem);
+    }   
 }

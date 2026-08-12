@@ -88,6 +88,7 @@ public class HostView : MonoBehaviour
 
         for(int i = 0; i<sporeSpots.Length; i++)
         {
+            sporeSpots[i].gameObject.layer = 7;
             sporeSpots[i].SetState(SporeSpotState.Sporeable);
             sporeSpots[i].indexLocation = i;
             ChangeInteractTime(i,-1); // set interact time to base amt;
@@ -243,5 +244,15 @@ public class HostView : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetShroomAsWatered(int shroomIndex)
+    {
+        HostManager.Instance.WaterShroom(managerIndex,shroomIndex);
+    }
+
+    public bool GetShroom(int shroomIndex)
+    {
+        return HostManager.Instance.ShoomHarvested(managerIndex,shroomIndex);
     }
 }

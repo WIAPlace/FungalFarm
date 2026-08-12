@@ -6,14 +6,15 @@ public class TestInteractable : MonoBehaviour, IInteractable
     public ItemsDataBase idb;
     public Item item;
 
-    public void BeginInteract(out float waitTime, out float staminaDrain)
+    public void BeginInteract(out float waitTime, out float staminaDrain, ref InteractionType type)
     {
         //throw new System.NotImplementedException();
         waitTime = timeToWait;
         staminaDrain = 0;
+        type = InteractionType.Basic;
     }
 
-    public void EndInteract(float currentWait)
+    public void EndInteract(float currentWait, ref InteractionType type)
     {
         if(currentWait < timeToWait) return; 
         Debug.Log("Interact Completed");

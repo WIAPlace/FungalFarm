@@ -14,29 +14,65 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
 
     public SporeSpotState currentState;
 
-
+    
     void OnDestroy()
     {
         host = null;
     }
     // add bool that is for if it can be interacted with while empty
 
-    public void BeginInteract(out float waitTime,out float staminaDrain)
+    public void BeginInteract(out float waitTime,out float staminaDrain,ref InteractionType type)
     {
         waitTime = interactTime;
         staminaDrain = staminaDrainAmt;
+
+        if(currentState == SporeSpotState.Sporeable)
+        {
+            type = InteractionType.Spore;
+        }
+        else if(type == InteractionType.Milk)
+        {
+            type = InteractionType.Milk;
+        }
+        else if(type == InteractionType.Water || type == InteractionType.Basic)
+        {
+            type = InteractionType.Water;
+        }
+        else if(currentState == SporeSpotState.Harvestable)
+        {
+            // harvest shroom
+            type = InteractionType.Trowel;
+        }
+        else if(currentState == SporeSpotState.Growing && type == InteractionType.Trowel)
+        {   // remove shroom;
+            type = InteractionType.Trowel;
+        }
+        else type = InteractionType.Basic;
     }
 
-    public void EndInteract(float currentWait)
+    public void EndInteract(float currentWait, ref InteractionType type)
     {
         if(currentWait<interactTime) return;
         // take away stamina from player.
         if(currentState == SporeSpotState.Sporeable) {
             host.AddMushroomToHost(indexLocation);
         }
+        else if(type == InteractionType.Milk)
+        {
+            SetPrioirtyBonus(10);
+        }
+        else if(type == InteractionType.Water || type == InteractionType.Basic)
+        {
+            SetWatered();
+        }
         else if(currentState == SporeSpotState.Harvestable)
         {
-            host.RemoveMushroom(indexLocation); // this will be changed to harvest mushroom, for now though while we don't know what state the player is in it will be this
+            if(GetShroom()) host.HarvestMushroom(indexLocation); // this will be changed to harvest mushroom, for now though while we don't know what state the player is in it will be this
+            else Debug.Log("Cant Harvest");
+        }
+        else if(currentState == SporeSpotState.Growing && type == InteractionType.Trowel)
+        {
+            host.RemoveMushroom(indexLocation);
         }
     }
 
@@ -44,15 +80,25 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
     {
         //Debug.Log(state);
         currentState = state;
+        /*
         if(currentState == SporeSpotState.Growing)
         {
             gameObject.layer = 0;
         }
         else gameObject.layer = 7;
+        */
     }
 
     public void SetPrioirtyBonus(int priorityBonus)
     {
         host.SetMushroomPriority(indexLocation,priorityBonus);
+    }
+    public void SetWatered()
+    {
+        host.SetShroomAsWatered(indexLocation);
+    }
+    public bool GetShroom()
+    {
+        return host.GetShroom(indexLocation);
     }
 }

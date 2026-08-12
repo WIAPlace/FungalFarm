@@ -71,6 +71,7 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     public event Action PauseEvent;
     public event Action ResumeEvent;
     public event Action InventoryEvent;
+    public event Action<int> HotBarEvent;
     ////// Player Events ///////////////
     /// 
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -110,6 +111,17 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
         if (context.phase == InputActionPhase.Performed)
         {
             InventoryEvent?.Invoke();   
+        }
+    }
+
+    public void OnHotBarSlot(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            var control = context.control;
+            int number = GetNumberFromControl(control);
+
+            HotBarEvent?.Invoke(number);
         }
     }
 
@@ -228,6 +240,25 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     public void OnTrackedDeviceOrientation(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         //throw new System.NotImplementedException();
+    }
+
+    int GetNumberFromControl(InputControl control)
+    {
+        // Match the control name to an integer
+        return control.name switch
+        {
+            "1" or "numpad1" => 1,
+            "2" or "numpad2" => 2,
+            "3" or "numpad3" => 3,
+            "4" or "numpad4" => 4,
+            "5" or "numpad5" => 5,
+            "6" or "numpad6" => 6,
+            "7" or "numpad7" => 7,
+            "8" or "numpad8" => 8,
+            "9" or "numpad9" => 9,
+            "0" or "numpad0" => 0,
+            _ => -1
+        };
     }
 }
 

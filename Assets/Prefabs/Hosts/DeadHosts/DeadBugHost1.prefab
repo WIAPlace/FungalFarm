@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 3804459628208017829, guid: 807ae2b2eed6faa4c95c5b730529fb2c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 6fef9d34dba598f4ba918ba12175fdec, type: 2}
+      objectReference: {fileID: 2100000, guid: 681556b6ce9880f438ebe7e7588f361e, type: 2}
     - target: {fileID: 3885292986483507718, guid: 807ae2b2eed6faa4c95c5b730529fb2c, type: 3}
       propertyPath: m_Name
       value: DeadBug1
