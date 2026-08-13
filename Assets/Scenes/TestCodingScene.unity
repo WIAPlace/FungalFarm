@@ -2479,6 +2479,61 @@ MonoBehaviour:
     currentIndex: {x: 0, y: 0}
   _inventoryStyleSheet: {fileID: 7433441132597879392, guid: ec5c93d406b06b644b1eaf89d34ad6e8, type: 3}
   invData: {fileID: 11400000, guid: fe0d8afabd4ca0349b3d78ac6d65df71, type: 2}
+--- !u!1 &2026792523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026792525}
+  - component: {fileID: 2026792524}
+  m_Layer: 5
+  m_Name: BookOfSpores
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2026792524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026792523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 6315a18dc53d58c4f8408518657ca188, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 8c1dc4fc9cf0a534dba218d9f12c87db, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &2026792525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026792523}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2054601356 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6263734044505123915, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
@@ -2877,6 +2932,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3262303387988080209, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3731996969570128982, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.91
@@ -2925,12 +2984,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6fef9d34dba598f4ba918ba12175fdec, type: 2}
+    - target: {fileID: 5138775390573180700, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6710420351270054091, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8250843993490742085, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3262303387988080209, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
@@ -3347,3 +3415,4 @@ SceneRoots:
   - {fileID: 401400286}
   - {fileID: 955180087}
   - {fileID: 267289501}
+  - {fileID: 2026792525}
