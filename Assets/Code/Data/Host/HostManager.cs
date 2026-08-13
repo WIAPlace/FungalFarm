@@ -340,7 +340,7 @@ public class HostManager : MonoBehaviour, IOnTime
 
         if(i>=deadHostsIndexDivider && i < creatureHostsIndexDivider)
         {
-            Debug.Log(i);
+            //Debug.Log(i);
             View = Instantiate(newView.gameObject,deadHostSlotPositions[i-deadHostsIndexDivider].transform);
         }
         else

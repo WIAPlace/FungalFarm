@@ -2,8 +2,11 @@
     <Style src="project://database/Assets/UI/FungalCompendium/BookOfFungi.uss?fileID=7433441132597879392&amp;guid=1f6a96d19a7f0d246bf54ad351e7cb41&amp;type=3#BookOfFungi"/>
     <ui:Image source="project://database/Assets/ArtStuff/Sprites%20&amp;%20Icons/BackingPages.png?fileID=2800000&amp;guid=af8e38cc42cb28140babe1b9fb51e517&amp;type=3#BackingPages" name="BackingPages" style="margin-top: 87px; margin-bottom: 42px; position: absolute; width: 100%; height: 83%; -unity-background-scale-mode: stretch-to-fill;"/>
     <ui:GroupBox style="position: absolute; top: 2%; right: 1%; bottom: 2%; justify-content: center; width: 168px; align-items: center;">
-        <ui:Button name="TestButton" class="fungalOptions">
-            <ui:Image name="Icon" class="Icon" style="background-image: url(&quot;project://database/Assets/ArtStuff/Sprites%20&amp;%20Icons/Mystery.png?fileID=2800000&amp;guid=36a408a2c91cf82488792cb9a4a73f73&amp;type=3#Mystery&quot;);"/>
+        <ui:Button name="Random" class="fungalOptions">
+            <ui:Image name="Icon" class="Icon"/>
+        </ui:Button>
+        <ui:Button name="JackOLantern" class="fungalOptions">
+            <ui:Image name="Icon" class="Icon"/>
         </ui:Button>
     </ui:GroupBox>
     <ui:Image source="project://database/Assets/ArtStuff/Sprites%20&amp;%20Icons/MidPages.png?fileID=2800000&amp;guid=3865292846a978d4fa6dcbba20d4adb9&amp;type=3#MidPages" name="MidPages" enabled="true" picking-mode="Ignore" style="margin-top: 100px; margin-bottom: 63px; position: absolute; width: 100%; height: 81%; -unity-background-scale-mode: stretch-to-fill; background-size: 100% 100%; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);"/>

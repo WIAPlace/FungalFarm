@@ -113,6 +113,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ShroomMenu",
+                    "type": "Button",
+                    "id": "3c01f532-7974-44cb-8770-c5d44894634d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -564,6 +573,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "HotBarSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31fffee2-3992-4351-b843-f854f2211702",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShroomMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1107,6 +1127,17 @@
                     "name": "",
                     "id": "f61b3789-3c59-4f5c-b7f8-5bb1f0be3e42",
                     "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Resume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81172437-a8ed-472a-9dd9-03193a36342c",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

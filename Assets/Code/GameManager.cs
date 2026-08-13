@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HSM;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] InputReader input;
     [SerializeField] UIController uiController;
+    [SerializeField] FungiToSpore FungiMenu;
+    [field: SerializeField] public PlayerStateDriver ctx;
     public Money money;
     
     //public List<int> OpenContainers = new();
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
         input.ResumeEvent += HandleResume;
         input.PauseEvent += HandlePause;
         input.InventoryEvent += HandleInventory;
+        input.ShroomMenuEvent += HandleFungiMenu;
     }
 
     void OnDestroy()
@@ -38,6 +42,7 @@ public class GameManager : MonoBehaviour
         input.ResumeEvent -= HandleResume;
         input.PauseEvent -= HandlePause;
         input.InventoryEvent -= HandleInventory;
+        input.ShroomMenuEvent -= HandleFungiMenu;
     }
 
 
@@ -54,6 +59,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1f;
         uiController.CloseAll();
+        FungiMenu.CloseWindow();
     }
     private void HandleInventory()
     {
@@ -74,5 +80,18 @@ public class GameManager : MonoBehaviour
     public void ChangeMoneyBy(int amtChanged)
     {
         money.Amt+=amtChanged;
+    }
+    public void HandleFungiMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+
+        FungiMenu.OpenWindow();
+    }
+
+    public MushroomDetails GetIntendedShroom()
+    {
+        return ctx.ctx.intendedSpore;
     }
 }

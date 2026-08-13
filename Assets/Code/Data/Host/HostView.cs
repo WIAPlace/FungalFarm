@@ -147,7 +147,21 @@ public class HostView : MonoBehaviour
 
     public void AddMushroomToHost(int sporeSpotIndex) // called from the spore spot interactable
     {
+        MushroomDetails dets = GameManager.Instance.GetIntendedShroom();
+        if(dets != null && CheckIfSporable(dets))
+        {
+            HostManager.Instance.NewMushroomAtSporeSpot(managerIndex,sporeSpotIndex,dets);
+        }
         HostManager.Instance.NewMushroomAtSporeSpot(managerIndex,sporeSpotIndex);
+    }
+
+    public bool CheckIfSporable(MushroomDetails shroom)
+    {
+        foreach(MushroomDetails mush in sporeableMushrooms.SporeableMushrooms)
+        {
+            if(shroom.Id == mush.Id) return true;
+        }
+        return false;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////// Visual Condition States

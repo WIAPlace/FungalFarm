@@ -199,6 +199,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShroomMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c01f532-7974-44cb-8770-c5d44894634d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -650,6 +659,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""HotBarSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31fffee2-3992-4351-b843-f854f2211702"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShroomMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1199,6 +1219,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Resume"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81172437-a8ed-472a-9dd9-03193a36342c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1280,6 +1311,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
         m_Player_HotBarSlot = m_Player.FindAction("HotBarSlot", throwIfNotFound: true);
+        m_Player_ShroomMenu = m_Player.FindAction("ShroomMenu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1386,6 +1418,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Inventory;
     private readonly InputAction m_Player_HotBarSlot;
+    private readonly InputAction m_Player_ShroomMenu;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1445,6 +1478,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/HotBarSlot".
         /// </summary>
         public InputAction @HotBarSlot => m_Wrapper.m_Player_HotBarSlot;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ShroomMenu".
+        /// </summary>
+        public InputAction @ShroomMenu => m_Wrapper.m_Player_ShroomMenu;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1507,6 +1544,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @HotBarSlot.started += instance.OnHotBarSlot;
             @HotBarSlot.performed += instance.OnHotBarSlot;
             @HotBarSlot.canceled += instance.OnHotBarSlot;
+            @ShroomMenu.started += instance.OnShroomMenu;
+            @ShroomMenu.performed += instance.OnShroomMenu;
+            @ShroomMenu.canceled += instance.OnShroomMenu;
         }
 
         /// <summary>
@@ -1554,6 +1594,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @HotBarSlot.started -= instance.OnHotBarSlot;
             @HotBarSlot.performed -= instance.OnHotBarSlot;
             @HotBarSlot.canceled -= instance.OnHotBarSlot;
+            @ShroomMenu.started -= instance.OnShroomMenu;
+            @ShroomMenu.performed -= instance.OnShroomMenu;
+            @ShroomMenu.canceled -= instance.OnShroomMenu;
         }
 
         /// <summary>
@@ -1949,6 +1992,13 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHotBarSlot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ShroomMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShroomMenu(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -260,6 +260,8 @@ namespace HSM {
 
         public ItemsDataBase invData;
         public ItemDetails Milk;
+
+        public MushroomDetails intendedSpore = null;
     }
 }
 

@@ -72,6 +72,7 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     public event Action ResumeEvent;
     public event Action InventoryEvent;
     public event Action<int> HotBarEvent;
+    public event Action ShroomMenuEvent;
     ////// Player Events ///////////////
     /// 
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -122,6 +123,15 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
             int number = GetNumberFromControl(control);
 
             HotBarEvent?.Invoke(number);
+        }
+    }
+
+    public void OnShroomMenu(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            ShroomMenuEvent?.Invoke();
+            SetUI();
         }
     }
 
@@ -260,6 +270,8 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
             _ => -1
         };
     }
+
+    
 }
 
     ////// Examples ////////////////////

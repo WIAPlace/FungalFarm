@@ -270,7 +270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &267289500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,12 +302,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267289499}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.86251, y: 0.93307, z: -2.62983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1329053527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &267289502
 MonoBehaviour:
@@ -1269,7 +1269,9 @@ Transform:
   m_LocalPosition: {x: -1.86251, y: -0.93307, z: 2.62983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2026792525}
+  - {fileID: 267289501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1329053528
@@ -1286,6 +1288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   input: {fileID: 11400000, guid: 8c16d4ab252dabb4ba00b37020adb9c7, type: 2}
   uiController: {fileID: 2024403565}
+  FungiMenu: {fileID: 2026792526}
+  ctx: {fileID: 2054601356}
   money: {fileID: 11400000, guid: 2207f6f21e73e304ca3c90439f60413e, type: 2}
 --- !u!114 &1329053529
 MonoBehaviour:
@@ -1329,7 +1333,7 @@ MonoBehaviour:
   chanceToSpore: 10
   deadHostsIndexDivider: 1
   creatureHostsIndexDivider: 5
-  invData: {fileID: 0}
+  invData: {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
   deadHostSlotPositions:
   - {fileID: 71214312}
   - {fileID: 848406295}
@@ -2489,6 +2493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026792525}
   - component: {fileID: 2026792524}
+  - component: {fileID: 2026792526}
   m_Layer: 5
   m_Name: BookOfSpores
   m_TagString: Untagged
@@ -2511,7 +2516,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 6315a18dc53d58c4f8408518657ca188, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 8c1dc4fc9cf0a534dba218d9f12c87db, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -2527,13 +2532,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026792523}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.86251, y: 0.93307, z: -2.62983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1329053527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2026792526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026792523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8eda3104beb9f41b5e1bfea5d96ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FungiToSpore
+  ctx: {fileID: 2054601356}
+  unlocks: {fileID: 11400000, guid: 35186980a70d63d4c95d478f4a263375, type: 2}
+  shroomInfo:
+  - {fileID: 11400000, guid: 6f7b1418d43e3d541a5696cbbd9433ef, type: 2}
+  - {fileID: 11400000, guid: 15225fe2f45d3484ba7d6123bda5a0db, type: 2}
+  LockImage: {fileID: 21300000, guid: 9e7bf0e45d1212e4080028a2700e4b97, type: 3}
+  testUnlocks:
+  - {fileID: 11400000, guid: 09e472f2643319442b9955db26fd2f11, type: 2}
+  - {fileID: 11400000, guid: 938c628317f3ae54a9e349009d449fa5, type: 2}
 --- !u!114 &2054601356 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6263734044505123915, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
@@ -3414,5 +3440,3 @@ SceneRoots:
   - {fileID: 4844997468510762686}
   - {fileID: 401400286}
   - {fileID: 955180087}
-  - {fileID: 267289501}
-  - {fileID: 2026792525}

@@ -298,9 +298,9 @@ MonoBehaviour:
     Part2: 1176837301
     Part3: 1095688339
     Part4: 1915794217
-  baseInteractTime: 7
+  baseInteractTime: 2
   interactTime: 0
-  staminaDrainAmt: 80
+  staminaDrainAmt: 10
   host: {fileID: 147233924295887758}
   indexLocation: 1
   currentState: 1

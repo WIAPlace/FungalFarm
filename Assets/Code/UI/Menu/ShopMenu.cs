@@ -44,6 +44,8 @@ public class ShopMenu : MonoBehaviour
     private void OnDisable()
     {
         milkButton.UnregisterCallback<ClickEvent>(OnMilkButtonClick);
+        brushButton.UnregisterCallback<ClickEvent>(OnBrushButtonClick);
+        trowelButton.UnregisterCallback<ClickEvent>(OnTrowelButtonClick);
     }
 
     private bool TryBuyItem(int cost)
@@ -90,7 +92,7 @@ public class ShopMenu : MonoBehaviour
 
     public void ShowShopUI()
     {
-        document.rootVisualElement.style.display = DisplayStyle.None;
+        document.rootVisualElement.style.display = DisplayStyle.Flex;
     }
     public void CloseShopUI()
     {
