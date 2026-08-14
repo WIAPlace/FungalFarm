@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae36efe2f695ac44baefbf3e788ada4, type: 3}
   m_Name: UnlockedFungi
   m_EditorClassIdentifier: Assembly-CSharp::UnlockedFungi
-  unlocks: []
+  unlocks:
+  - Part1: 3759940427
+    Part2: 1217690626
+    Part3: 672885379
+    Part4: 3965174070
+  - Part1: 1881265227
+    Part2: 1294158702
+    Part3: 2384717975
+    Part4: 2433617418
