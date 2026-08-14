@@ -152,11 +152,13 @@ public class HostView : MonoBehaviour
     public void AddMushroomToHost(int sporeSpotIndex) // called from the spore spot interactable
     {
         MushroomDetails dets = GameManager.Instance.GetIntendedShroom();
+            //Debug.Log(dets.Name);
         if(dets != null && CheckIfSporable(dets))
         {
+            //Debug.Log("Planted");
             HostManager.Instance.NewMushroomAtSporeSpot(managerIndex,sporeSpotIndex,dets);
         }
-        HostManager.Instance.NewMushroomAtSporeSpot(managerIndex,sporeSpotIndex);
+        else HostManager.Instance.NewMushroomAtSporeSpot(managerIndex,sporeSpotIndex);
     }
 
     public bool CheckIfSporable(MushroomDetails shroom)
@@ -165,6 +167,7 @@ public class HostView : MonoBehaviour
         {
             if(shroom.Id == mush.Id) return true;
         }
+        //Debug.Log("Unable To Plant This Shroom");
         return false;
     }
 
