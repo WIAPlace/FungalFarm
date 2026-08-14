@@ -11,7 +11,7 @@ public class CreatureInstance
     [field : SerializeReference] public CreatureDetails data;
     public SerializableGuid dataID => data.ID;
     public int currentHungerStage=0;
-    public HostDetails host;
+    [field : SerializeReference] public HostDetails host;
 
 
     public CreatureInstance(HostDetails host, CreatureDetails details)

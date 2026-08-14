@@ -6,13 +6,17 @@ using UnityEngine;
 [Serializable]
 public class HostDetails 
 {
+    [Header("Host ID")]
     [field:SerializeField] public SerializableGuid ID = SerializableGuid.NewGuid();
+    [Header("View ID")]
     public SerializableGuid viewID; // ID for the Game object this is related to
+    [Header("Veiw Type")]
+    public SerializableGuid veiwType; // used for deserning if its a prefab
     public int index;
     
     [Header("Creature Hosts")]
     public bool isCreature;
-    [field : SerializeReference] public CreatureInstance creature;
+    [field : SerializeField] public CreatureInstance creature;
 
     [Header("Condition And Effects")]
     public bool isInfested;

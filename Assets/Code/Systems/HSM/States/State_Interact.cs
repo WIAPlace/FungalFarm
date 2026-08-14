@@ -29,9 +29,9 @@ namespace HSM{
             {
                 tempInteract = InteractionType.Basic;
             }
-            Debug.Log("Pre: "+ tempInteract);
+            //Debug.Log("Pre: "+ tempInteract);
             ctx.currentInteract.BeginInteract(out timeToWait, out staminaDrain,ref tempInteract);
-            Debug.Log("Post: "+ tempInteract);
+            //Debug.Log("Post: "+ tempInteract);
             if(ctx.brushUpgrade && (tempInteract == InteractionType.Milk || tempInteract == InteractionType.Water))
             {
                 staminaDrain /= 2;

@@ -18,10 +18,13 @@ MonoBehaviour:
     Part3: 672885379
     Part4: 3965174070
   Name: Test
-  MaxStageAmt: 1
+  MaxStageAmt: 0
   HarvestableStage: 0
   StageLength: 2
   BaseHarvestTime: 4
   StagePrefabs:
   - {fileID: 8033320189994296940, guid: 6d0dbd1310bbbbe478d84ffc6fca4f3e, type: 3}
   conditionEffect: -10
+  prioirity: 0
+  item: {fileID: 0}
+  edibleEffect: 0

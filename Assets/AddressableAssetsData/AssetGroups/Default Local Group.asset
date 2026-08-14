@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 483b66e8cd592b84f980c7103efc7fa7
+    m_Address: Views
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 938c628317f3ae54a9e349009d449fa5
     m_Address: Fungi
     m_ReadOnly: 0

@@ -18,7 +18,7 @@ MonoBehaviour:
     Part3: 2384717975
     Part4: 2433617418
   Name: Test2
-  MaxStageAmt: 2
+  MaxStageAmt: 1
   HarvestableStage: 1
   StageLength: 2
   BaseHarvestTime: 0
@@ -26,3 +26,6 @@ MonoBehaviour:
   - {fileID: 3445420239519203696, guid: aae9898b5a9bf3f41a84b742ae343436, type: 3}
   - {fileID: 4357895315522518035, guid: 5316c60defbdb344786dafc170a8c908, type: 3}
   conditionEffect: 0
+  prioirity: 0
+  item: {fileID: 0}
+  edibleEffect: 0

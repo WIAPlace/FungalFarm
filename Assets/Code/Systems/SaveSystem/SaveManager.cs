@@ -1,12 +1,17 @@
 using UnityEngine;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 [Serializable] public class SaveData
 {
     ///////// Information about saves will go here
     public ItemsDataBase[] containers;
     [HideInInspector] public ContainerDataBase[] SavedContainerData;
+    public HostDetails[] hosts;
+
+    public List<HostDetails> TempHosts = new List<HostDetails>();
+
 }
 
 [Serializable] public class ContainerData // represents one slot of an inventory
@@ -56,6 +61,7 @@ using System.Linq;
 public class SaveManager : PersistentSingleton<SaveManager>
 {
     [SerializeField] public SaveData saveData;
+    //[SerializeField] public HostManager hostManager;
 
     protected override void Awake()
     {
@@ -84,6 +90,16 @@ public class SaveManager : PersistentSingleton<SaveManager>
             saveData.SavedContainerData[i] = new(saveData.containers[i]);
         }
 
+        // save host shit if it is avalible
+        if(HostManager.Instance != null)
+        {
+            saveData.hosts = new HostDetails[HostManager.Instance.hosts.Length];
+            for(int i = 0; i < saveData.hosts.Length; i++)
+            {
+                saveData.hosts[i] = HostManager.Instance.hosts[i];
+            }
+        }
+
         string dataString = JsonUtility.ToJson(saveData);
         // save settings data
         SaveSystem.QuickSave(dataString);
@@ -102,10 +118,21 @@ public class SaveManager : PersistentSingleton<SaveManager>
 
         for(int i = 0; i<saveData.containers.Length; i++)
         {
-            if(saveData.SavedContainerData[i]!=null) {
+                if(saveData.SavedContainerData[i]!=null) {
                 saveData.containers[i].InitializeData
                     (saveData.SavedContainerData[i]);
             }
+        }
+        if (HostManager.Instance != null)
+        {
+            saveData.TempHosts.Clear();
+            foreach(HostDetails host in saveData.hosts)
+            {
+                saveData.TempHosts.Add(host);
+            }
+
+            
+            HostManager.Instance.InitializeDetailsToViews();
         }
 
     }

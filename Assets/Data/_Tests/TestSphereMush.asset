@@ -18,8 +18,8 @@ MonoBehaviour:
     Part3: 1683388851
     Part4: 671994935
   Name: TestSphere
-  MaxStageAmt: 4
-  HarvestableStage: 4
+  MaxStageAmt: 3
+  HarvestableStage: 3
   StageLength: 2
   BaseHarvestTime: 1
   StagePrefabs:
@@ -28,3 +28,6 @@ MonoBehaviour:
   - {fileID: 2181500058655870289, guid: 46bb90d3eee9fa34f9e0fd3e464503d2, type: 3}
   - {fileID: 4457577255589131584, guid: c95d6bb8b953ae14493130e17fc430f0, type: 3}
   conditionEffect: -10
+  prioirity: 0
+  item: {fileID: 0}
+  edibleEffect: 0

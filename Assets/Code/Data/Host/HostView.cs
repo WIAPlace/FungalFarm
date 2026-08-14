@@ -23,9 +23,13 @@ public enum SporeSpotState
 // also where starting amounts will be declared
 public class HostView : MonoBehaviour
 {
+    // will be used for deserning prefabs
+    [Header("View Type")]
+    [field:SerializeField] public SerializableGuid veiwType = SerializableGuid.NewGuid();
+    
+    [Header("View ID")]
     [field:SerializeField] public SerializableGuid ID = SerializableGuid.NewGuid();
     public int managerIndex;
-
 
     [Header("Starting Info")]
     public bool isCreature; 

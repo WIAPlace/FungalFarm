@@ -37,6 +37,7 @@ public class HostManager : MonoBehaviour, IOnTime
 
     public GameObject[] deadHostSlotPositions;
     
+    bool startUp = true;
 
     //public LayerMask interactMask; // used for refrence in other stuff. set here so it doesnt need to be individualy set
 
@@ -44,14 +45,20 @@ public class HostManager : MonoBehaviour, IOnTime
 
     private void Start()
     {
+        //startUp=true;
         TimeManager.Instance.ManageTimer(this); // adds this to managed timers.
 
-        InitializeDetailsToViews();
+        NewGame();
     }
 
     private void OnDestroy()
     {
         
+    }
+    public void NewGame()
+    {
+        startUp = true;
+        InitializeDetailsToViews();
     }
 
     public void InitializeDetailsToViews() // occurs at game start.
@@ -60,9 +67,15 @@ public class HostManager : MonoBehaviour, IOnTime
 
         for(int i = 0; i < views.Length; i++)
         {
-            SetHostAtIndexI(i); // seperated so that we can set host during play as well.
+            //SetHostAtIndexI(i); // seperated so that we can set host during play as well.
+            if(startUp) SetHostAtIndexI(i);
+            else if(SaveManager.Instance != null && SaveManager.Instance.saveData!=null && SaveManager.Instance.saveData.hosts!=null) LoadHostData(i);
+            else SetHostAtIndexI(i);
         }
+        if(startUp) startUp = false;
     }
+    // 
+    
     
     // initialize data from a view at a certain point in the host array
     public void SetHostAtIndexI(int i) ///////////////////////////////////////////////////////////////////////////// Initialize
@@ -78,6 +91,7 @@ public class HostManager : MonoBehaviour, IOnTime
         newDetails.viewID = views[i].ID; // add viewID refrence
         newDetails.index = i; // set index refrence
         newDetails.isCreature = views[i].isCreature; // set its status as if its creature
+        newDetails.veiwType = views[i].veiwType;
         
 
         if(newDetails.isCreature && views[i].creatureDetails != null) 
@@ -104,9 +118,70 @@ public class HostManager : MonoBehaviour, IOnTime
         }
 
         // Might want to add the details to the game object as a ref just so we can see it while in editor
-
+        
         hosts[i] = newDetails; // add to host array.
         views[i].details = hosts[i];
+    }
+
+    // Used in conjunction with the save system
+    public void LoadHostData(int i)
+    {
+        if (i<SaveManager.Instance.saveData.hosts.Length && SaveManager.Instance.saveData.hosts[i] != null && SaveManager.Instance.saveData.hosts[i].viewID != SerializableGuid.Empty)
+        {   // Load In
+            hosts[i] = SaveManager.Instance.saveData.hosts[i];
+            SaveManager.Instance.saveData.hosts[i] = null;
+
+            if (views[i] == null)
+            {
+                HostView target = HostViewsDictionary.GetDetailsById(hosts[i].veiwType);
+                if (target != null)
+                {
+                    GameObject View;
+
+                    View = Instantiate(target.gameObject,deadHostSlotPositions[i-deadHostsIndexDivider].transform);
+                    
+                    HostView tempView = View.GetComponent<HostView>();
+
+                    tempView.ID = SerializableGuid.NewGuid(); // make guid new incase of prefab use
+
+                    views[i] = tempView;
+                    
+                }
+                else
+                {
+                    Debug.Log("Unrecognized Host at " + i);
+                    return;
+                }
+                
+            }
+
+            views[i].managerIndex = i; // set index refrence
+            views[i].Initialize(); // initialize in a more controlled fassion than their own start.
+            views[i].details = hosts[i];
+            views[i].OnConditionChange(hosts[i].condition);
+            //Debug.Log(i);
+            foreach(MushroomInstance mush in hosts[i].mushrooms)
+            {
+                if(mush.sporeIndex < views[i].sporeSpots.Length && mush != null && mush.Id != SerializableGuid.Empty && mush.details != null) // && mush.details.StagePrefabs[mush.currentStage] != null
+                {
+                    if(mush.currentStage>mush.details.MaxStageAmt) mush.currentStage = mush.details.MaxStageAmt;
+                    //mush.currentStage--;
+                    if(mush.currentStage<0) mush.currentStage = 0;
+                    //Debug.Log("Sp: "+ mush.sporeIndex+ "  " + i);
+                    MushroomDetails dets = MushroomDictionary.GetDetailsById(mush.dataId);
+                    views[i].ChangeSporeSpotModel(mush.sporeIndex, dets.StagePrefabs[mush.currentStage]);
+                    //mush.currentStage++;
+                    //views[i].ChangeSporeSpotModel(mush.sporeIndex, mush.details.StagePrefabs[mush.currentStage]);
+                    if(mush.currentStage == mush.details.HarvestableStage)
+                        views[i].SetSporeSpotInteractivity(mush.sporeIndex,SporeSpotState.Harvestable);
+                    else views[i].SetSporeSpotInteractivity(mush.sporeIndex,SporeSpotState.Growing);
+                }
+            }
+        }
+        else
+        {   // New Begining
+            RemoveHost(i);
+        }
     }
 
     public void ProgressTimeState(int stages) /////////////////////////////////////////////////////////// Progress Time
@@ -279,9 +354,9 @@ public class HostManager : MonoBehaviour, IOnTime
         if(hostIndex>=hosts.Length || hosts[hostIndex]==null) return;
 
         hosts[hostIndex].mushrooms[sporeIndex].harvestable = false;
-        hosts[hostIndex].mushrooms[sporeIndex].currentStage = 1;
+        hosts[hostIndex].mushrooms[sporeIndex].currentStage = 0;
 
-        views[hostIndex].ChangeSporeSpotModel(sporeIndex, hosts[hostIndex].mushrooms[sporeIndex].details.StagePrefabs[1]);
+        views[hostIndex].ChangeSporeSpotModel(sporeIndex, hosts[hostIndex].mushrooms[sporeIndex].details.StagePrefabs[0]);
         views[hostIndex].SetSporeSpotInteractivity(sporeIndex,SporeSpotState.Growing);
     }
 
@@ -337,7 +412,7 @@ public class HostManager : MonoBehaviour, IOnTime
         if(i>= views.Length || views[i]!=null) return false;
 
         GameObject View;
-
+        
         if(i>=deadHostsIndexDivider && i < creatureHostsIndexDivider)
         {
             //Debug.Log(i);
@@ -383,7 +458,10 @@ public class HostManager : MonoBehaviour, IOnTime
 
     public void RemoveHost(int i)
     {
-        views[i].destroyOnInvis = true;
+        //views[i].destroyOnInvis = true;
+        if(views[i] == null) return;
+
+        Destroy(views[i].gameObject);
         views[i] = null;
         SetHostAtIndexI(i);
     }
@@ -403,7 +481,10 @@ public class HostManager : MonoBehaviour, IOnTime
         || sporeIndex > hosts[hostIndex].sporeSpotAmt 
         || hosts[hostIndex].mushrooms[sporeIndex]==null) return false;
 
-        Item newItem = hosts[hostIndex].mushrooms[sporeIndex].details.item.Create(1);
-        return invData.items.TryAdd(newItem);
+        if(hosts[hostIndex].mushrooms[sporeIndex].details.item!=null) {
+            Item newItem = hosts[hostIndex].mushrooms[sporeIndex].details.item.Create(1);
+            return invData.items.TryAdd(newItem);
+        }
+        else return true;
     }   
 }
