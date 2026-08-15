@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2267749256984634246}
+  - component: {fileID: 6512756052176486880}
   m_Layer: 0
   m_Name: BasicTree3
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   - {fileID: 4598583440289408714}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6512756052176486880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048501891261832363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182c399e9b58c6644aadc44dd339b5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OnStartRotate
 --- !u!1 &9170918722356178117
 GameObject:
   m_ObjectHideFlags: 0
