@@ -33,6 +33,9 @@ public class TimeManager : MonoBehaviour
 
         // 3. Set the active global instance
         Instance = this;
+
+        Owl.SetActive(false);
+        Basket.SetActive(false);
     }
 
     public static float TotalGameTime;
@@ -86,6 +89,7 @@ public class TimeManager : MonoBehaviour
         int index = (currentIndex+1) % skyboxes.Length;
         currentIndex = index;
         if(skyboxes[currentIndex]!=null) RenderSettings.skybox = skyboxes[currentIndex];
+
         if(currentIndex == TimeForOwl)
         {
             Owl.SetActive(true);
@@ -93,8 +97,8 @@ public class TimeManager : MonoBehaviour
         }
         else if (Owl.activeSelf)
         {
-           Owl.SetActive(true);
-           Basket.SetActive(true);
+           Owl.SetActive(false);
+           Basket.SetActive(false);
         }
     }
 

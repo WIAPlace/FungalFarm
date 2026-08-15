@@ -21,6 +21,9 @@ public class ShopMenu : MonoBehaviour
     public int handUpgradeCost;
     public int milkUpgradeCost;
 
+
+    
+
     [field:SerializeField] public Purchaseable[] purchaseables;
 
     private List<Button> storeSlots = new List<Button>(); // use if we want all of the buttons to do one thing, like make a sound on click
@@ -71,7 +74,8 @@ public class ShopMenu : MonoBehaviour
     }
     private void OnBrushButtonClick(ClickEvent evt)
     {
-        if (TryBuyItem(handUpgradeCost))
+        
+        if (TryBuyItem(handUpgradeCost)&& !ctx.ctx.brushUpgrade)
         {
             Debug.Log("Brush Transacted");
             ctx.ctx.brushUpgrade = true;
@@ -81,7 +85,7 @@ public class ShopMenu : MonoBehaviour
     }
     private void OnTrowelButtonClick(ClickEvent evt)
     {
-        if (TryBuyItem(handUpgradeCost))
+        if (TryBuyItem(handUpgradeCost)&& !ctx.ctx.trowelUpgrade)
         {
             Debug.Log("Trowel Transacted");
             ctx.ctx.trowelUpgrade = true;

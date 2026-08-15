@@ -15,6 +15,6 @@ public class TestTimeInteractable : MonoBehaviour,IInteractable
     public void EndInteract(float currentWait, ref InteractionType type)
     {
         TimeManager.Instance.PassTime(stagesPassed);
-        Debug.Log("Update");
+        ///Debug.Log("Update");
     }
 }

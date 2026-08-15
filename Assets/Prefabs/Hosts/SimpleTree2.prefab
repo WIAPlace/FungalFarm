@@ -485,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434873162781616241, guid: f81ed180b4f87c64a875875c3260735d, type: 3}
       propertyPath: m_FadeFactor
-      value: 1
+      value: 0.083
       objectReference: {fileID: 0}
     - target: {fileID: 3875654639651578861, guid: f81ed180b4f87c64a875875c3260735d, type: 3}
       propertyPath: m_Name
@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434873162781616241, guid: f81ed180b4f87c64a875875c3260735d, type: 3}
       propertyPath: m_FadeFactor
-      value: 1
+      value: 0.083
       objectReference: {fileID: 0}
     - target: {fileID: 3875654639651578861, guid: f81ed180b4f87c64a875875c3260735d, type: 3}
       propertyPath: m_Name
