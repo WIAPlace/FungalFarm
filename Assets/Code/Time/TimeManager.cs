@@ -37,6 +37,9 @@ public class TimeManager : MonoBehaviour
 
     public static float TotalGameTime;
     public float secondsToPassForeTick;
+    public GameObject Owl;
+    public GameObject Basket;
+    public int TimeForOwl;
     //public event Action<int> TimeEvent;
     [SerializeField] private Material[] skyboxes;
 
@@ -46,6 +49,8 @@ public class TimeManager : MonoBehaviour
     {
         StartCoroutine(PassTimeOverTime());
     }
+
+
 
     public void ManageTimer(IOnTime managedTimer)
     {
@@ -74,6 +79,16 @@ public class TimeManager : MonoBehaviour
             int index = currentIndex+1%skyboxes.Length;
             currentIndex = index;
             RenderSettings.skybox = skyboxes[currentIndex];
+            if(currentIndex == TimeForOwl)
+            {
+                Owl.SetActive(true);
+                Basket.SetActive(true);
+            }
+            else if (Owl.activeSelf)
+            {
+                Owl.SetActive(true);
+                Basket.SetActive(true);
+            }
         }
     }
 
