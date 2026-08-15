@@ -225,7 +225,9 @@ MonoBehaviour:
   sporeSpots:
   - {fileID: 1471552451379393893}
   - {fileID: 6031879718727154464}
-  sporeableMushrooms: {fileID: 11400000, guid: bed58a36b12fcd442a3de0fb4951b5ee, type: 2}
+  sporeableMushrooms:
+  - {fileID: 11400000, guid: 2e80bdffe27891c438ab2baee4af098d, type: 2}
+  - {fileID: 11400000, guid: 2e80bdffe27891c438ab2baee4af098d, type: 2}
   UnusableState: []
   DeadState:
   - {fileID: 489762625210299577}

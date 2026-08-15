@@ -91,12 +91,15 @@ MonoBehaviour:
   hostName: Large Bug
   startingCondition: 299
   destroyCondition: 99
-  onDeathSpawn: {fileID: 0}
+  onDeathSpawn: {fileID: 1540862081733682753, guid: 7258dbe7baa8d5148bd4207cf596e877, type: 3}
   destroyOnInvis: 0
   sporeSpots:
   - {fileID: 7202510248163504134}
   - {fileID: 7801799633919061849}
-  sporeableMushrooms: {fileID: 11400000, guid: bed58a36b12fcd442a3de0fb4951b5ee, type: 2}
+  sporeableMushrooms:
+  - {fileID: 11400000, guid: 2e80bdffe27891c438ab2baee4af098d, type: 2}
+  - {fileID: 11400000, guid: 2e80bdffe27891c438ab2baee4af098d, type: 2}
+  - {fileID: 11400000, guid: 2e80bdffe27891c438ab2baee4af098d, type: 2}
   UnusableState: []
   DeadState: []
   RottingState: []

@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
             UnityEngine.Cursor.visible = true;
             Time.timeScale = 0f;
             input.SetUI();
+            ToggleWallet(true);
         }
 
         else shopMenu.CloseShopUI();

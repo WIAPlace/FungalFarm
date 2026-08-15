@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -288,7 +289,7 @@ public class HostManager : MonoBehaviour, IOnTime
         }
 
         host.condition = newCondition;
-        views[host.index].OnConditionChange(newCondition);
+        if(views[host.index]!=null)views[host.index].OnConditionChange(newCondition);
     }
 
     public int UpdateMushroomStage(MushroomInstance mush) /////////////////////////////////////////////////////// Update Mushroom State
@@ -344,9 +345,15 @@ public class HostManager : MonoBehaviour, IOnTime
 
     public void NewMushroomAtSporeSpot(int hostIndex)
     {
+        if (hosts[hostIndex] == null)
+        {
+            Debug.Log("New Mush Failed because no host is here");
+            return;
+        }
+
         foreach(MushroomInstance mush in hosts[hostIndex].mushrooms)
         {
-            if (mush != null && mush.dataId != SerializableGuid.Empty)    
+            if (mush != null && mush.details!=null && mush.dataId != SerializableGuid.Empty)    
             {
                 NewMushroomAtSporeSpot(hostIndex,mush.sporeIndex);
                 return;
@@ -356,7 +363,11 @@ public class HostManager : MonoBehaviour, IOnTime
 
     public void MushroomRemoved(int hostIndex, int sporeIndex) ///////////////////////////////////////////////// Mushroom Removed
     {
-        if(hostIndex>=hosts.Length || hosts[hostIndex]==null) return;
+        if(hostIndex>=hosts.Length || hosts[hostIndex]==null ||  hosts[hostIndex].mushrooms.Length <= sporeIndex) {
+            Debug.Log("Did not remove Mushroom");
+            return;}
+
+        Debug.Log("Mushroom Removed at " + hostIndex+" "+sporeIndex);
 
         hosts[hostIndex].mushrooms[sporeIndex] = null;
         // Make sure that when this is set to null the dataID is set to 0000000000 / empty
@@ -408,7 +419,7 @@ public class HostManager : MonoBehaviour, IOnTime
             if(host == null || host.sporeSpotAmt<=0) continue; // skip if nothing is here
             foreach(MushroomInstance mush in host.mushrooms)
             {
-                if(mush != null && mush.dataId != SerializableGuid.Empty)
+                if(mush != null && mush.details!=null&&mush.dataId != SerializableGuid.Empty)
                 {
                     edibleList.Add(mush);
                 }
@@ -429,14 +440,26 @@ public class HostManager : MonoBehaviour, IOnTime
     // Eithier wilol be called from here or more likeley outside of here. if in here we'll need to instantiate a prefab in the world at a postion. 
     public bool AddViewToArray(int i, HostView newView)
     {
-        if(i>= views.Length || views[i]!=null) return false;
-
+        if(i>= views.Length || views[i]!=null){
+            Debug.Log("View " +i+ " is longer than the array");
+            return false;
+        }
         GameObject View;
         
         if(i>=deadHostsIndexDivider && i < creatureHostsIndexDivider)
         {
             //Debug.Log(i);
-            View = Instantiate(newView.gameObject,deadHostSlotPositions[i-deadHostsIndexDivider].transform);
+            float rad = CreatureManager.Instance.spawnRadius;
+            if(CreatureManager.Instance.TryGetRandomNavMeshPoint(transform.position,rad,out Vector3 position)){
+                float randomY = UnityEngine.Random.Range(0f, 360f);
+                View = Instantiate(newView.gameObject,position,Quaternion.Euler(0f, randomY, 0f));
+            }
+            else
+            {
+                Debug.Log("Was Not able to find place on navmesh");
+                return false;
+            }
+            //deadHostSlotPositions[i-deadHostsIndexDivider].transform
         }
         else
         {
@@ -480,7 +503,10 @@ public class HostManager : MonoBehaviour, IOnTime
     {
         //views[i].destroyOnInvis = true;
         if(views[i] == null) return;
-
+        if (views[i].isCreature)
+        {
+            CreatureManager.Instance.RemoveCreatureFromForest(i-creatureHostsIndexDivider);
+        }
         Destroy(views[i].gameObject);
         views[i] = null;
         SetHostAtIndexI(i);

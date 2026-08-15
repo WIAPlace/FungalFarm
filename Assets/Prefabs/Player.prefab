@@ -1165,7 +1165,7 @@ MonoBehaviour:
   - {fileID: 0}
   chanceToSpore: 10
   deadHostsIndexDivider: 1
-  creatureHostsIndexDivider: 5
+  creatureHostsIndexDivider: 10
   invData: {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
   InitialHostViews: []
   deadHostSlotPositions:
@@ -1249,6 +1249,12 @@ MonoBehaviour:
     host:
       rid: -2
   creatureHungerCycle: 6
+  possibleCreatures: []
+  ShroomsNeededToSpawn: 10
+  spawnRadius: 20
+  maxSpawnAttempts: 10
+  chanceForCreature: 0
+  maxHungerDamage: 5
   references:
     version: 2
     RefIds:

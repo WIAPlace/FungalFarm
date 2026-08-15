@@ -13,6 +13,7 @@ public class OnBecomeInvisibleLetHostKnow : MonoBehaviour
     }
     void OnBecameInvisible()
     {
+        if(host==null)return;
         if(host.destroyOnInvis) host.OnChildBecameInvisible();
     }
 
