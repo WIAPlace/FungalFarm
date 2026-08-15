@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemDetails
   ItemName: Devils Tooth
   Description: 'Strawberries and Screams '
-  Icon: {fileID: 21300000, guid: 0b05e3a9e96e18747beb388e50140ec4, type: 3}
+  Icon: {fileID: 21300000, guid: 25f3e0f2aaf9cb64599030b385295385, type: 3}
   Id:
     Part1: 3299100950
     Part2: 1247398406

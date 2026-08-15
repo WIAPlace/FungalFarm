@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 // Public enum for what time it is.
 public enum TimeShifts
@@ -35,10 +36,16 @@ public class TimeManager : MonoBehaviour
     }
 
     public static float TotalGameTime;
-
+    public float secondsToPassForeTick;
     //public event Action<int> TimeEvent;
+    [SerializeField] private Material[] skyboxes;
 
     [field:SerializeField] public List<IOnTime> timers = new();
+
+    void Start()
+    {
+        StartCoroutine(PassTimeOverTime());
+    }
 
     public void ManageTimer(IOnTime managedTimer)
     {
@@ -56,6 +63,17 @@ public class TimeManager : MonoBehaviour
                 if(managed == null) continue;
                 managed.ProgressTimeState(1);
             }
+        }
+    }
+    int currentIndex;
+    IEnumerator PassTimeOverTime()
+    {
+        while(true){
+            yield return new WaitForSeconds(secondsToPassForeTick);
+            PassTime(1);
+            int index = currentIndex+1%skyboxes.Length;
+            currentIndex = index;
+            RenderSettings.skybox = skyboxes[currentIndex];
         }
     }
 
