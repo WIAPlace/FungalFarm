@@ -36,6 +36,8 @@ public class HostView : MonoBehaviour
     public CreatureType creatureType = CreatureType.None;
     [SerializeField] public CreatureDetails creatureDetails;
 
+    public string hostName;
+
 
     public Condition startingCondition;
     public Condition destroyCondition;
@@ -46,7 +48,7 @@ public class HostView : MonoBehaviour
     [Header("Spore Information")]
     public SporeableSpotInteractable[] sporeSpots;
 
-    public SporeableMushrooms_SO sporeableMushrooms; // used for what mushrooms are able to be planted here 
+    public SporeableMushrooms_SO[] sporeableMushrooms; // used for what mushrooms are able to be planted here 
 
     [Header("Objects Active At Each State"),Tooltip("Anything That is placed in one of these will be made inactive if place in another.")]
     public GameObject[] UnusableState;
@@ -92,7 +94,7 @@ public class HostView : MonoBehaviour
 
         for(int i = 0; i<sporeSpots.Length; i++)
         {
-            sporeSpots[i].gameObject.layer = 7;
+            if(!isCreature)sporeSpots[i].gameObject.layer = 7;
             sporeSpots[i].SetState(SporeSpotState.Sporeable);
             sporeSpots[i].indexLocation = i;
             ChangeInteractTime(i,-1); // set interact time to base amt;
@@ -153,7 +155,7 @@ public class HostView : MonoBehaviour
     {
         MushroomDetails dets = GameManager.Instance.GetIntendedShroom();
             //Debug.Log(dets.Name);
-        if(dets != null && CheckIfSporable(dets))
+        if(dets != null && CheckIfSporable(dets,sporeSpotIndex))
         {
             //Debug.Log("Planted");
             HostManager.Instance.NewMushroomAtSporeSpot(managerIndex,sporeSpotIndex,dets);
@@ -161,9 +163,9 @@ public class HostView : MonoBehaviour
         else HostManager.Instance.NewMushroomAtSporeSpot(managerIndex,sporeSpotIndex);
     }
 
-    public bool CheckIfSporable(MushroomDetails shroom)
+    public bool CheckIfSporable(MushroomDetails shroom,int i)
     {
-        foreach(MushroomDetails mush in sporeableMushrooms.SporeableMushrooms)
+        foreach(MushroomDetails mush in sporeableMushrooms[i].SporeableMushrooms)
         {
             if(shroom.Id == mush.Id) return true;
         }
@@ -180,10 +182,16 @@ public class HostView : MonoBehaviour
         currentCon = newCon;
         ClearAllVisuals();
         MakeVisible(ConditionToInt(newCon));
-
+        if(currentCon == Condition.unusable)
+        {
+            foreach(SporeableSpotInteractable spore in sporeSpots)
+            {
+                Destroy(spore.gameObject);
+            }
+        }
         if(currentCon == destroyCondition)
         {
-            Debug.Log("Dead");
+            //Debug.Log("Dead");
             foreach(SporeableSpotInteractable spore in sporeSpots)
             {
                 spore.SetState(SporeSpotState.Growing);

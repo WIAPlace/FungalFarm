@@ -15,22 +15,62 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 4583237c94c95fe4cbe58c7f8a6a677c
   m_SerializeEntries:
-  - m_GUID: 09e472f2643319442b9955db26fd2f11
-    m_Address: Fungi
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 483b66e8cd592b84f980c7103efc7fa7
     m_Address: Views
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 938c628317f3ae54a9e349009d449fa5
+  - m_GUID: 4d389ba4b93e28b48addaea99bb08b34
     m_Address: Fungi
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ad97cd3fe7c621f4e924a30561328b7f
+  - m_GUID: 624c272fc53ed31468b042d87bc4b946
+    m_Address: Fungi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7258dbe7baa8d5148bd4207cf596e877
+    m_Address: Views
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a772d3c005b43e4581d29f6dc408409
+    m_Address: Creature
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b810729aba9644d4ba11418ba1072518
+    m_Address: Creature
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0b5a17e0b945a343b352d8dc7d48de5
+    m_Address: Fungi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0f84df460ce77e44acd25964ee145a7
+    m_Address: Fungi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d32a6187b7bda334c8f55bf4a5812ce8
+    m_Address: Fungi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e19616b61115ed44883cdaacd251f3e6
+    m_Address: Fungi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edaf3dea947103f4194a594d45078906
+    m_Address: Views
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fdf2a307ec0c9774b8312fe4258fe93e
     m_Address: Fungi
     m_ReadOnly: 0
     m_SerializedLabels: []

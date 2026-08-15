@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a753c92da9dad40936cf18b5c6713f, type: 3}
+  m_Name: FlyAgaric
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomDetails
+  Id:
+    Part1: 1374821689
+    Part2: 1315027707
+    Part3: 3795655812
+    Part4: 3866362057
+  Name: Fly Agaric
+  MaxStageAmt: 2
+  HarvestableStage: 2
+  StageLength: 5
+  BaseHarvestTime: 2
+  StagePrefabs:
+  - {fileID: 6783588533600055350, guid: fee276206a7c72b44be5a48a039b624e, type: 3}
+  - {fileID: 4788010149557126270, guid: cc1a3705487081341a03e06780c24d26, type: 3}
+  - {fileID: 3941904795476568737, guid: 038f5f81119a27f40b53c957f2000ece, type: 3}
+  conditionEffect: 1
+  prioirity: 0
+  item: {fileID: 11400000, guid: c980ab1128945d34084e35a80beaf9bd, type: 2}
+  edibleEffect: 1

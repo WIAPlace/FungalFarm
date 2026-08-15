@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a753c92da9dad40936cf18b5c6713f, type: 3}
+  m_Name: DevilsTooth
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomDetails
+  Id:
+    Part1: 2123449738
+    Part2: 1231024686
+    Part3: 40908972
+    Part4: 1368107332
+  Name: Devils Tooth
+  MaxStageAmt: 2
+  HarvestableStage: 2
+  StageLength: 4
+  BaseHarvestTime: 2
+  StagePrefabs:
+  - {fileID: 6783588533600055350, guid: fee276206a7c72b44be5a48a039b624e, type: 3}
+  - {fileID: 1999387157977323819, guid: bdb11405308c1ec4b8f9155df324692e, type: 3}
+  - {fileID: 6047261143723521123, guid: d26fa50ceda98db48a29413422e1cd6b, type: 3}
+  conditionEffect: 2
+  prioirity: 0
+  item: {fileID: 11400000, guid: b34b0c131436fad429945973593a985c, type: 2}
+  edibleEffect: 0

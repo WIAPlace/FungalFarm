@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892899af7a91ee34c85fb65e9f9eeec5, type: 3}
+  m_Name: CreatureDetails
+  m_EditorClassIdentifier: Assembly-CSharp::CreatureDetails
+  ID:
+    Part1: 3688894471
+    Part2: 1310306264
+    Part3: 237038219
+    Part4: 783671344
+  creatureType: 3

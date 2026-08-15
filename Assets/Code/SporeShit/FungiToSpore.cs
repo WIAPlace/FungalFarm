@@ -21,6 +21,8 @@ public class FungiToSpore : MonoBehaviour
 
     [SerializeField] private MushroomDetails[] testUnlocks;
 
+    private VisualElement root;
+
     private void Awake()
     {
         TestUnlock();
@@ -28,6 +30,8 @@ public class FungiToSpore : MonoBehaviour
 
 
         document = GetComponent<UIDocument>();
+
+        root = document.rootVisualElement;
 
         ShroomButtons = new Button[shroomInfo.Length];
         ShroomImages = new Image[shroomInfo.Length];
@@ -54,6 +58,7 @@ public class FungiToSpore : MonoBehaviour
 
         ShroomImages[0].sprite = shroomInfo[0].icon;
         RefreshImages();
+        SetData(0);
 
         CloseWindow();
     }
@@ -84,11 +89,13 @@ public class FungiToSpore : MonoBehaviour
     private void OnRandomClick(ClickEvent evt)
     {
         ctx.ctx.intendedSpore = null;
+        SetData(0);
     }
 
     private void OnJackClick(ClickEvent evt)
     {
         ctx.ctx.intendedSpore = shroomInfo[1].shroom;
+        SetData(1);
     }
 
 
@@ -110,4 +117,8 @@ public class FungiToSpore : MonoBehaviour
         RefreshImages();
     }
     
+    private void SetData(int i)
+    {
+        root.dataSource = shroomInfo[i];
+    }
 }

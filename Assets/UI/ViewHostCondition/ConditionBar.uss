@@ -1,0 +1,58 @@
+:root {
+}
+
+#BackgroundBox {
+    height: 18%;
+    width: 25%;
+    background-color: rgba(24, 22, 30, 0.878);
+    position: absolute;
+    left: 2%;
+    top: 3%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#HostConditionBar {
+    position: relative;
+    background-color: rgb(200, 200, 200);
+    align-self: center;
+    width: 87%;
+    height: 18%;
+    top: 39%;
+    color: rgb(214, 214, 214);
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+
+#FillBar {
+    background-color: rgb(86, 173, 0);
+    width: 100%;
+    transform-origin: left top;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+
+#Status {
+    position: absolute;
+    align-self: center;
+    top: auto;
+    bottom: -62px;
+    font-size: 25px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+}
+
+#Host {
+    position: absolute;
+    align-self: center;
+    font-size: 25px;
+    -unity-font-style: bold;
+    top: -57px;
+    color: rgb(255, 255, 255);
+}

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using HSM;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,13 +20,19 @@ public class GameManager : MonoBehaviour
 
         // Optional: Keep this object alive across scene transitions
         //DontDestroyOnLoad(gameObject);
+        var root = MoneyUI.rootVisualElement;
+        moneyUIElement = root.Q<VisualElement>("Wallet");
     }
 
     [SerializeField] InputReader input;
     [SerializeField] UIController uiController;
     [SerializeField] FungiToSpore FungiMenu;
     [field: SerializeField] public PlayerStateDriver ctx;
+    [SerializeField] ConditionCheck conCheck;
+    [SerializeField] UIDocument MoneyUI;
     public Money money;
+
+    private VisualElement moneyUIElement;
     
     //public List<int> OpenContainers = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +42,8 @@ public class GameManager : MonoBehaviour
         input.PauseEvent += HandlePause;
         input.InventoryEvent += HandleInventory;
         input.ShroomMenuEvent += HandleFungiMenu;
+
+        ToggleWallet(false);
     }
 
     void OnDestroy()
@@ -48,27 +57,29 @@ public class GameManager : MonoBehaviour
 
     private void HandlePause()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
         Time.timeScale = 0f;
     }
 
     private void HandleResume()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
         Time.timeScale = 1f;
         uiController.CloseAll();
         FungiMenu.CloseWindow();
+        ToggleWallet(false);
     }
     private void HandleInventory()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
         Time.timeScale = 0f;
         input.SetUI();
         // will need to look into how to iterate through all containers to see all that are open then close them.
         uiController.ToggleWindow(UIController.Containers[0]);
+        ToggleWallet(true);
         //uiController.ToggleWindow(UIController.Containers[1]);
     }
     public void OpenSpecificInventory(int index)
@@ -83,8 +94,8 @@ public class GameManager : MonoBehaviour
     }
     public void HandleFungiMenu()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
         Time.timeScale = 0f;
 
         FungiMenu.OpenWindow();
@@ -93,5 +104,21 @@ public class GameManager : MonoBehaviour
     public MushroomDetails GetIntendedShroom()
     {
         return ctx.ctx.intendedSpore;
+    }
+
+    public void CheckConditionBar(int con,int max, string name)
+    {
+        //Debug.Log(con);
+        conCheck.NewConditionInteracted(con,max,name);
+    }
+    public void CheckConditionBar(int con,int max,string name,float conEffect)
+    {
+        //Debug.Log(con);
+        conCheck.NewConditionInteracted(con,max,name,conEffect);
+    }
+    public void ToggleWallet(bool condition)
+    {
+        if(!condition) moneyUIElement.style.display = DisplayStyle.None;
+        else moneyUIElement.style.display = DisplayStyle.Flex;
     }
 }

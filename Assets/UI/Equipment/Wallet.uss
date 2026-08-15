@@ -1,0 +1,39 @@
+:root {
+}
+
+#Wallet {
+    width: 10%;
+    height: 12%;
+    background-color: rgba(24, 22, 30, 0.945);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    left: 1%;
+    bottom: 2%;
+    position: absolute;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+#Amt {
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    text-overflow: clip;
+    white-space: normal;
+    max-width: 85%;
+    max-height: 100%;
+    -unity-text-auto-size: best-fit 19px 19px;
+    -unity-text-generator: advanced;
+}
+
+#Postfix {
+    color: rgb(255, 255, 255);
+    font-size: 348%;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    position: relative;
+    margin-left: 2px;
+}

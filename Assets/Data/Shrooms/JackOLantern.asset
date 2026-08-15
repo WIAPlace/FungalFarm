@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a753c92da9dad40936cf18b5c6713f, type: 3}
+  m_Name: JackOLantern
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomDetails
+  Id:
+    Part1: 3006046056
+    Part2: 1087773514
+    Part3: 2976412032
+    Part4: 3753851794
+  Name: Jack-O'Lantern
+  MaxStageAmt: 1
+  HarvestableStage: 1
+  StageLength: 7
+  BaseHarvestTime: 2
+  StagePrefabs:
+  - {fileID: 3445420239519203696, guid: aae9898b5a9bf3f41a84b742ae343436, type: 3}
+  - {fileID: 4357895315522518035, guid: 5316c60defbdb344786dafc170a8c908, type: 3}
+  conditionEffect: -2
+  prioirity: 0
+  item: {fileID: 11400000, guid: b06c8bfb69e163444a7aaa846ace74dc, type: 2}
+  edibleEffect: 0

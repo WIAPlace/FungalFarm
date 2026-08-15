@@ -41,7 +41,7 @@ namespace HSM {
             Vector3 targetRotation = new Vector3(0, ctx.cinCamTransform.eulerAngles.y, 0);
             ctx.controller.transform.rotation = Quaternion.Euler(targetRotation);
 
-            ChangePerlin(deltaTime);
+            //ChangePerlin(deltaTime);
         }
 
         protected override void OnEnter()
@@ -54,8 +54,8 @@ namespace HSM {
         }
         protected override void OnExit()
         {
-            ctx.cinCamPerlin.AmplitudeGain = ctx.idlePerlin.x;
-            ctx.cinCamPerlin.FrequencyGain = ctx.idlePerlin.y;
+            //ctx.cinCamPerlin.AmplitudeGain = ctx.idlePerlin.x;
+            //ctx.cinCamPerlin.FrequencyGain = ctx.idlePerlin.y;
 
             // Disable camera controlls by making inputs = 0;
             foreach (var controllerAxis in ctx.cinCamController.Controllers)

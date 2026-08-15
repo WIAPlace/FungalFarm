@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/StoreCatolouge/StoreStyle.uss?fileID=7433441132597879392&amp;guid=cb9e33e79b519444cbaa85bf3a4a2a38&amp;type=3#StoreStyle"/>
-    <ui:VisualElement name="Container" style="flex-grow: 1;">
-        <ui:Image name="BackGround" source="project://database/Assets/ArtStuff/Textures/CatolougeTemp.png?fileID=2800000&amp;guid=448e72eced558264691f74e0ed84ad70&amp;type=3#CatolougeTemp" class="Background">
+    <ui:VisualElement name="Container" picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:Image name="BackGround" source="project://database/Assets/ArtStuff/Textures/CatolougeTemp.png?fileID=2800000&amp;guid=448e72eced558264691f74e0ed84ad70&amp;type=3#CatolougeTemp" picking-mode="Ignore" class="Background">
             <ui:Button name="MilkButton" text="" class="ShopSlot" style="top: 34px; left: 67px; height: 930px; width: 782px;">
                 <ui:Label text="- Can be spread on mushrooms to attract creatures&#10;&#10;- Drink to replenish energy" name="MilkDescription" style="position: absolute; top: 567px; left: 28px; font-size: 46px; height: 124px; width: 703px; white-space: normal;"/>
                 <ui:Label text="MILK" name="MilkLabel" style="position: absolute; top: 15px; left: 279px; font-size: 72px;"/>

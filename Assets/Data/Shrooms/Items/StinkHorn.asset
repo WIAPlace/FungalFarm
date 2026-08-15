@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292d5b36a20074341b9cbb6eba7df999, type: 3}
+  m_Name: StinkHorn
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDetails
+  ItemName: Basket Stinkhorn
+  Description: Only edible in its white ball stage, after that it is poisonous
+  Icon: {fileID: 21300000, guid: ddebef1d8576f354a8cf9d62c37c98b4, type: 3}
+  Id:
+    Part1: 2616687317
+    Part2: 1166595065
+    Part3: 2550545552
+    Part4: 2331833694
+  price: 12
+  Category: 0
+  Rarity: 0
+  StackAmt: 5

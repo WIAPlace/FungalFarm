@@ -1,6 +1,7 @@
 using System;
 using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SporeableSpotInteractable : MonoBehaviour, IInteractable
 {
@@ -25,8 +26,14 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
     {
         waitTime = interactTime;
         staminaDrain = staminaDrainAmt;
-
-        if(currentState == SporeSpotState.Sporeable)
+        if(type == InteractionType.Basic)
+        {
+            waitTime = 0.01f;
+            staminaDrain = 0;
+            type = InteractionType.Basic;
+            return;
+        }
+        else if(currentState == SporeSpotState.Sporeable)
         {
             type = InteractionType.Spore;
         }
@@ -34,7 +41,7 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
         {
             type = InteractionType.Milk;
         }
-        else if(type == InteractionType.Water || type == InteractionType.Basic)
+        else if(type == InteractionType.Water)
         {
             type = InteractionType.Water;
         }
@@ -52,8 +59,26 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
 
     public void EndInteract(float currentWait, ref InteractionType type)
     {
-        if(currentWait<interactTime) return;
+        //if(currentWait<interactTime) return;
         // take away stamina from player.
+        if(type == InteractionType.Basic && currentWait<interactTime)
+        {
+            if(host.details.mushrooms[indexLocation]==null) return;
+            MushroomInstance shroom = host.details.mushrooms[indexLocation];
+            if(shroom.details==null) return;
+
+            int currentStage = shroom.currentStage;
+            int maxStage = shroom.details.MaxStageAmt;
+            float conEffect = shroom.details.conditionEffect;
+
+            GameManager.Instance.CheckConditionBar(currentStage,maxStage,shroom.details.Name,conEffect);
+
+            return;
+        }
+        
+        
+        if(currentWait<interactTime) return;
+        
         if(currentState == SporeSpotState.Sporeable) {
             host.AddMushroomToHost(indexLocation);
         }
@@ -61,7 +86,7 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
         {
             SetPrioirtyBonus(10);
         }
-        else if(type == InteractionType.Water || type == InteractionType.Basic)
+        else if(type == InteractionType.Water)
         {
             SetWatered();
         }
@@ -80,13 +105,13 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
     {
         //Debug.Log(state);
         currentState = state;
-        /*
-        if(currentState == SporeSpotState.Growing)
+        
+        if(host.isCreature&& currentState != SporeSpotState.Harvestable)
         {
             gameObject.layer = 0;
         }
-        else gameObject.layer = 7;
-        */
+        else if(host.isCreature)gameObject.layer = 7;
+        
     }
 
     public void SetPrioirtyBonus(int priorityBonus)

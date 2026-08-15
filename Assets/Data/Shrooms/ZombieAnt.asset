@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a753c92da9dad40936cf18b5c6713f, type: 3}
+  m_Name: ZombieAnt
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomDetails
+  Id:
+    Part1: 77573396
+    Part2: 1108238272
+    Part3: 4213115307
+    Part4: 1607376261
+  Name: Zombie-Ant Fungus
+  MaxStageAmt: 1
+  HarvestableStage: 1
+  StageLength: 6
+  BaseHarvestTime: 2
+  StagePrefabs:
+  - {fileID: 5281984764978358517, guid: 9df15eeab54eeb844899cea410fe5a0d, type: 3}
+  - {fileID: 8520189461262184215, guid: b7b08eb33b9af4d41b9a1cbc0623e308, type: 3}
+  conditionEffect: -8
+  prioirity: 0
+  item: {fileID: 11400000, guid: 2bdfa95e8100227409d096587199f2e7, type: 2}
+  edibleEffect: 1

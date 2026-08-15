@@ -18,7 +18,7 @@ namespace HSM {
             
             ctx.velocity.x = 0;
             ctx.velocity.z = 0;
-            ctx.currentPerlin = ctx.idlePerlin;
+            //ctx.currentPerlin = ctx.idlePerlin;
         }
         
     }

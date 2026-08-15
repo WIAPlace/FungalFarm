@@ -18,7 +18,7 @@ namespace HSM{
         }
 
         protected override void OnEnter() {
-            ctx.currentPerlin = ctx.walkPerlin;
+            //ctx.currentPerlin = ctx.walkPerlin;
         }
 
         protected override void OnUpdate(float deltaTime)

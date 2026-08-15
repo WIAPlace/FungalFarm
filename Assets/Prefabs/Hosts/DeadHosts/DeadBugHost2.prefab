@@ -180,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 7562952890002940282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.353086, y: -0.93307, z: -10.107834}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -201,6 +201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5103c407f1304438bda1dade5802c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HostView
+  veiwType:
+    Part1: 817845478
+    Part2: 1333290769
+    Part3: 691520394
+    Part4: 777928024
   ID:
     Part1: 1406748455
     Part2: 1153338348
@@ -210,6 +215,7 @@ MonoBehaviour:
   isCreature: 0
   creatureType: 0
   creatureDetails: {fileID: 0}
+  hostName: 
   startingCondition: 99
   destroyCondition: -1
   onDeathSpawn: {fileID: 0}
@@ -285,6 +291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadBug2
       objectReference: {fileID: 0}
+    - target: {fileID: 1147828260777222801, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6134402445531735671, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
       propertyPath: drawBones
       value: 0
@@ -300,13 +310,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1147828260777222801, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5625449046157574690}
+    - targetCorrespondingSourceObject: {fileID: 1147828260777222801, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1014616800536838672}
   m_SourcePrefab: {fileID: 100100000, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
 --- !u!1 &4645246396471535338 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1147828260777222801, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}
   m_PrefabInstance: {fileID: 5736140362374612091}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &5625449046157574690
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645246396471535338}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.16
+  m_Height: 4.86
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1014616800536838672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645246396471535338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e53e7df54c2b44ab1b9233b7cad5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ViewHostInteractable
+  view: {fileID: 1540862081733682753}
 --- !u!4 &5141815753667871437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 630991494550849206, guid: 42f0f8d89a5fb6741865b9dfba8efe22, type: 3}

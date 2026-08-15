@@ -40,6 +40,9 @@ public class WindowManager : MonoBehaviour
     /// <param name="defaultPosition">Fallback position if no saved position exists.</param>
     public GameWindow CreateWindow(ItemsDataBase id, string title, Vector2 defaultPosition)
     {
+        //PlayerPrefs.DeleteKey($"window_{id}_x");
+        //PlayerPrefs.DeleteKey($"window_{id}_y");
+
         float x = PlayerPrefs.GetFloat($"window_{id}_x", defaultPosition.x);
         float y = PlayerPrefs.GetFloat($"window_{id}_y", defaultPosition.y);
 

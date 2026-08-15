@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a753c92da9dad40936cf18b5c6713f, type: 3}
+  m_Name: StinkHorn
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomDetails
+  Id:
+    Part1: 2676391302
+    Part2: 1261634325
+    Part3: 3236667302
+    Part4: 80998416
+  Name: Stinkhorn
+  MaxStageAmt: 3
+  HarvestableStage: 3
+  StageLength: 5
+  BaseHarvestTime: 2
+  StagePrefabs:
+  - {fileID: 6783588533600055350, guid: fee276206a7c72b44be5a48a039b624e, type: 3}
+  - {fileID: 6284002585039192766, guid: 2529259ca16668848b1e483211b24133, type: 3}
+  - {fileID: 3802064449524517467, guid: 88a14f4aaca6cbb439d41a22f3a687ae, type: 3}
+  - {fileID: 7419748186630343677, guid: f62dee3aecb6b3f44810de9294ec85f1, type: 3}
+  conditionEffect: -4
+  prioirity: 0
+  item: {fileID: 11400000, guid: 109d63dfa867d5e49b032cf909118804, type: 2}
+  edibleEffect: 0

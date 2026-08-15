@@ -164,7 +164,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3996411594786052060}
   - component: {fileID: 4378388800653822286}
-  m_Layer: 0
+  - component: {fileID: 2593074555425329425}
+  - component: {fileID: 4193961221910455525}
+  m_Layer: 7
   m_Name: DeadBugHost1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 4385791453594792574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.01, y: -0.949, z: -9.02}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -201,6 +203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5103c407f1304438bda1dade5802c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HostView
+  veiwType:
+    Part1: 2215559301
+    Part2: 1211289743
+    Part3: 1532231083
+    Part4: 3835504203
   ID:
     Part1: 2332064681
     Part2: 1294143729
@@ -210,6 +217,7 @@ MonoBehaviour:
   isCreature: 0
   creatureType: 0
   creatureDetails: {fileID: 0}
+  hostName: 
   startingCondition: 99
   destroyCondition: -1
   onDeathSpawn: {fileID: 0}
@@ -233,6 +241,42 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!136 &2593074555425329425
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385791453594792574}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.25
+  m_Height: 5.25
+  m_Direction: 2
+  m_Center: {x: 0.75, y: 0.27, z: 0}
+--- !u!114 &4193961221910455525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385791453594792574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e53e7df54c2b44ab1b9233b7cad5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ViewHostInteractable
+  view: {fileID: 4378388800653822286}
 --- !u!1001 &3684131281442354879
 PrefabInstance:
   m_ObjectHideFlags: 0

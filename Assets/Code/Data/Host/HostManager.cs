@@ -318,7 +318,7 @@ public class HostManager : MonoBehaviour, IOnTime
     // Overload to add a random mushroom to the spot, of avalible ones.
     public void NewMushroomAtSporeSpot(int hostIndex, int sporeSpotIndex)
     {
-        MushroomDetails tempDetails = SpawnRandomSporeableMushroom(views[hostIndex].sporeableMushrooms);
+        MushroomDetails tempDetails = SpawnRandomSporeableMushroom(views[hostIndex].sporeableMushrooms[sporeSpotIndex]);
         NewMushroomAtSporeSpot(hostIndex,sporeSpotIndex,tempDetails); 
     }
 

@@ -20,7 +20,7 @@ namespace HSM{
 
         protected override void OnEnter() {
             //ctx.cinCamPerlin.AmplitudeGain = ctx.sprintPerlin;
-            ctx.currentPerlin = ctx.sprintPerlin;
+            //ctx.currentPerlin = ctx.sprintPerlin;
         }
 
         protected override void OnUpdate(float deltaTime)

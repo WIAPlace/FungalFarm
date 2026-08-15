@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FungiButtonInfo
   shroom: {fileID: 0}
   icon: {fileID: 21300000, guid: 36a408a2c91cf82488792cb9a4a73f73, type: 3}
+  MajorImage: {fileID: 21300000, guid: 36a408a2c91cf82488792cb9a4a73f73, type: 3}
+  description: Spread a random spore.
+  conditionEffect: '?'
+  stages: '?'
+  growLocations: '?'
+  shroomName: Random Spore

@@ -27,12 +27,12 @@ public class UIController : MonoBehaviour
         // make an empty instance of containers
         Containers = new List<ItemsDataBase>();
 
-
-        var inventoryWindow = _windowManager.CreateWindow(startingContainers[0], "INVENTORY", new Vector2(50, 50));
+        
+        var inventoryWindow = _windowManager.CreateWindow(startingContainers[0], "INVENTORY", new Vector2(Screen.width/10, Screen.height/5));
         _inventoryWindow.BuildInventory(inventoryWindow.ContentArea, startingContainers[0]);
         Containers.Add(startingContainers[0]);
         
-        var equipmentWindow = _windowManager.CreateWindow(startingContainers[1], "EQUIPMENT", new Vector2(50, 50));
+        var equipmentWindow = _windowManager.CreateWindow(startingContainers[1], "BASKET", new Vector2((Screen.width/10)*5.4f, Screen.height/5));
         _EquipmentWindow.BuildInventory(equipmentWindow.ContentArea,startingContainers[1]);
         Containers.Add(startingContainers[1]);
 

@@ -1,6 +1,7 @@
 public enum ItemCategory
 {
-    Weapon,
-    Accessory,
-    Consumable
+    Shroom,
+    Useable,
+    Consumable,
+    Item
 }

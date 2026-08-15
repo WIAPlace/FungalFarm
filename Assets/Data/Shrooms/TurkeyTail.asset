@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a753c92da9dad40936cf18b5c6713f, type: 3}
+  m_Name: TurkeyTail
+  m_EditorClassIdentifier: Assembly-CSharp::MushroomDetails
+  Id:
+    Part1: 3456118542
+    Part2: 1226987096
+    Part3: 1036759741
+    Part4: 2557002591
+  Name: Turkey Tail
+  MaxStageAmt: 2
+  HarvestableStage: 2
+  StageLength: 4
+  BaseHarvestTime: 2
+  StagePrefabs:
+  - {fileID: 5537245607858509689, guid: 74420a8ba1148d3478a9fd26d63cfc28, type: 3}
+  - {fileID: 6071857711382733952, guid: 6ca75f4cba208bb41aab06031593467c, type: 3}
+  - {fileID: 2912343954641106630, guid: 6e6b5e08b5cbc0d4587bfc3932ecb746, type: 3}
+  conditionEffect: -2
+  prioirity: 0
+  item: {fileID: 11400000, guid: 189e3278719cf074b84869f1aa72bba1, type: 2}
+  edibleEffect: 0

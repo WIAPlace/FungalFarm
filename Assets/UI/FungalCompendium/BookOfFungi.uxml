@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/FungalCompendium/BookOfFungi.uss?fileID=7433441132597879392&amp;guid=1f6a96d19a7f0d246bf54ad351e7cb41&amp;type=3#BookOfFungi"/>
-    <ui:Image source="project://database/Assets/ArtStuff/Sprites%20&amp;%20Icons/BackingPages.png?fileID=2800000&amp;guid=af8e38cc42cb28140babe1b9fb51e517&amp;type=3#BackingPages" name="BackingPages" style="margin-top: 87px; margin-bottom: 42px; position: absolute; width: 100%; height: 83%; -unity-background-scale-mode: stretch-to-fill;"/>
+    <ui:Image source="project://database/Assets/ArtStuff/Sprites%20&amp;%20Icons/Paper/BackingPages.png?fileID=2800000&amp;guid=af8e38cc42cb28140babe1b9fb51e517&amp;type=3#BackingPages" name="BackingPages" style="margin-top: 87px; margin-bottom: 42px; position: absolute; width: 100%; height: 83%; -unity-background-scale-mode: stretch-to-fill;"/>
     <ui:GroupBox style="position: absolute; top: 2%; right: 1%; bottom: 2%; justify-content: center; width: 168px; align-items: center;">
         <ui:Button name="Random" class="fungalOptions">
             <ui:Image name="Icon" class="Icon"/>
@@ -9,5 +9,44 @@
             <ui:Image name="Icon" class="Icon"/>
         </ui:Button>
     </ui:GroupBox>
-    <ui:Image source="project://database/Assets/ArtStuff/Sprites%20&amp;%20Icons/MidPages.png?fileID=2800000&amp;guid=3865292846a978d4fa6dcbba20d4adb9&amp;type=3#MidPages" name="MidPages" enabled="true" picking-mode="Ignore" style="margin-top: 100px; margin-bottom: 63px; position: absolute; width: 100%; height: 81%; -unity-background-scale-mode: stretch-to-fill; background-size: 100% 100%; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);"/>
+    <ui:Image source="project://database/Assets/ArtStuff/Sprites%20&amp;%20Icons/Paper/MidPages.png?fileID=2800000&amp;guid=3865292846a978d4fa6dcbba20d4adb9&amp;type=3#MidPages" name="MidPages" enabled="true" picking-mode="Ignore" style="margin-top: 100px; margin-bottom: 63px; position: absolute; width: 100%; height: 81%; -unity-background-scale-mode: stretch-to-fill; background-size: 100% 100%; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center;">
+        <ui:VisualElement name="Page1" picking-mode="Ignore" class="Pages" style="justify-content: space-around;">
+            <ui:Image name="MajorImage" picking-mode="Ignore" style="height: 65%; width: 79%; align-self: center; top: 6%;">
+                <Bindings>
+                    <ui:DataBinding property="source" data-source-path="MajorImage" binding-mode="ToTarget"/>
+                </Bindings>
+            </ui:Image>
+            <ui:Label text="Label" name="ShroomName" picking-mode="Ignore" class="Words" style="top: 3%;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="shroomName" binding-mode="ToTargetOnce"/>
+                </Bindings>
+            </ui:Label>
+            <ui:Label name="ConditionLabel" text="Condition Effect On Host:" picking-mode="Ignore" class="Words"/>
+            <ui:Label name="ConditionEffect" text="3" picking-mode="Ignore" class="Words" style="top: -3%;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="conditionEffect" binding-mode="ToTargetOnce"/>
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
+        <ui:VisualElement name="Page2" picking-mode="Ignore" class="Pages" style="justify-content: flex-start;">
+            <ui:Label name="DescriptionTitle" picking-mode="Ignore" text="Description:" class="Words" style="top: 20px;"/>
+            <ui:Label text="Label" name="Description" picking-mode="Ignore" class="Words" style="top: 27px; height: 489px;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="description" binding-mode="ToTargetOnce"/>
+                </Bindings>
+            </ui:Label>
+            <ui:Label name="GrowLocationTitle" picking-mode="Ignore" text="Grow Locations:" class="Words" style="top: 3%;"/>
+            <ui:Label name="GrowLocation" picking-mode="Ignore" text="Grow Locations:" class="Words" style="top: 3%;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="growLocations" binding-mode="ToTargetOnce"/>
+                </Bindings>
+            </ui:Label>
+            <ui:Label name="StageNumberTitle" picking-mode="Ignore" text="Number of Stages: " class="Words" style="top: 6%;"/>
+            <ui:Label name="StageNumberTitle" picking-mode="Ignore" text="Number of Stages: " class="Words" style="top: 6%;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="stages" binding-mode="ToTargetOnce"/>
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
+    </ui:Image>
 </ui:UXML>
