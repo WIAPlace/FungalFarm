@@ -1116,6 +1116,7 @@ MonoBehaviour:
   ctx: {fileID: 6263734044505123915}
   conCheck: {fileID: 6583846788697588400}
   MoneyUI: {fileID: 5493881217703150559}
+  shopMenu: {fileID: 7243087596359814449}
   money: {fileID: 11400000, guid: 2207f6f21e73e304ca3c90439f60413e, type: 2}
 --- !u!114 &1770803132521054161
 MonoBehaviour:
@@ -1725,7 +1726,7 @@ MonoBehaviour:
   bank: {fileID: 11400000, guid: 2207f6f21e73e304ca3c90439f60413e, type: 2}
   Milk: {fileID: 11400000, guid: 552d6cff164fef74a985bebd1f1da70a, type: 2}
   ctx: {fileID: 6263734044505123915}
-  bm: {fileID: 0}
+  bm: {fileID: 848009463919669313}
   handUpgradeCost: 10
   milkUpgradeCost: 5
   purchaseables:
@@ -1935,6 +1936,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc3fd696b00f32e4989b92232244f425, type: 3}
+--- !u!114 &848009463919669313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7944738362057067607, guid: bc3fd696b00f32e4989b92232244f425, type: 3}
+  m_PrefabInstance: {fileID: 7315496639363120150}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827612806901690732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881df8e10af598a43b7e6104de0a386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SellInventory
 --- !u!1 &3827612806901690732 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5808435148744625530, guid: bc3fd696b00f32e4989b92232244f425, type: 3}

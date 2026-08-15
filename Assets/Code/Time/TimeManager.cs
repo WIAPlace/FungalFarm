@@ -59,6 +59,7 @@ public class TimeManager : MonoBehaviour
 
     public void PassTime(int stages)
     {
+        PassingTime();
         if(timers == null || timers.Count < 1) return;
 
         for(int i = 0; i < stages; i++)
@@ -76,19 +77,24 @@ public class TimeManager : MonoBehaviour
         while(true){
             yield return new WaitForSeconds(secondsToPassForeTick);
             PassTime(1);
-            int index = currentIndex+1%skyboxes.Length;
-            currentIndex = index;
-            RenderSettings.skybox = skyboxes[currentIndex];
-            if(currentIndex == TimeForOwl)
-            {
-                Owl.SetActive(true);
-                Basket.SetActive(true);
-            }
-            else if (Owl.activeSelf)
-            {
-                Owl.SetActive(true);
-                Basket.SetActive(true);
-            }
+            
+        }
+    }
+
+    private void PassingTime()
+    {
+        int index = (currentIndex+1) % skyboxes.Length;
+        currentIndex = index;
+        if(skyboxes[currentIndex]!=null) RenderSettings.skybox = skyboxes[currentIndex];
+        if(currentIndex == TimeForOwl)
+        {
+            Owl.SetActive(true);
+           Basket.SetActive(true);
+        }
+        else if (Owl.activeSelf)
+        {
+           Owl.SetActive(true);
+           Basket.SetActive(true);
         }
     }
 

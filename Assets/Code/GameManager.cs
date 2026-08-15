@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public PlayerStateDriver ctx;
     [SerializeField] ConditionCheck conCheck;
     [SerializeField] UIDocument MoneyUI;
+    [SerializeField] ShopMenu shopMenu;
     public Money money;
 
     private VisualElement moneyUIElement;
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
         uiController.CloseAll();
         FungiMenu.CloseWindow();
         ToggleWallet(false);
+        shopMenu.CloseShopUI();
     }
     private void HandleInventory()
     {
@@ -120,5 +122,17 @@ public class GameManager : MonoBehaviour
     {
         if(!condition) moneyUIElement.style.display = DisplayStyle.None;
         else moneyUIElement.style.display = DisplayStyle.Flex;
+    }
+    public void ToggleShop(bool condition)
+    {
+        if(condition){
+            shopMenu.ShowShopUI();
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
+            Time.timeScale = 0f;
+            input.SetUI();
+        }
+
+        else shopMenu.CloseShopUI();
     }
 }
