@@ -62,7 +62,15 @@ public class HostView : MonoBehaviour
     [Header("Host Details Ref")]
     
     public Condition currentCon;
-    [SerializeReference] public HostDetails details;
+    [SerializeReference] public HostDetails details;    
+
+
+
+    public void Awake()
+    {
+        ID = SerializableGuid.NewGuid();
+        HostManager.Instance.AddIfNotAlready(this);
+    }
 
     void OnDestroy()
     {

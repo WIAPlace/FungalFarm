@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemDetails
   ItemName: Zombie-Ant Fungus
   Description: Usually only infects ants
-  Icon: {fileID: 21300000, guid: 959026ed2eb431d44bcd6dccb937a468, type: 3}
+  Icon: {fileID: 21300000, guid: 3dc5b00bd9384674f968173572a729d0, type: 3}
   Id:
     Part1: 2527934070
     Part2: 1089268997

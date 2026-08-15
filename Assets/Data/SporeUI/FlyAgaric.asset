@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3003daef35e4c7e4b848577c1d2131d6, type: 3}
   m_Name: FlyAgaric
   m_EditorClassIdentifier: Assembly-CSharp::FungiButtonInfo
-  shroom: {fileID: 11400000, guid: 09e472f2643319442b9955db26fd2f11, type: 2}
+  shroom: {fileID: 11400000, guid: 624c272fc53ed31468b042d87bc4b946, type: 2}
   icon: {fileID: 21300000, guid: 10cd73827c35229449fb1f80505ccd45, type: 3}
   MajorImage: {fileID: 21300000, guid: 10cd73827c35229449fb1f80505ccd45, type: 3}
   description: 
   conditionEffect: 
   stages: 
   growLocations: 
-  shroomName: 
+  shroomName: Fly Agaric

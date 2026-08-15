@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 // where all of the logic is held.
+[DefaultExecutionOrder(-100)]
 public class HostManager : MonoBehaviour, IOnTime
 {
     public static HostManager Instance {get;private set;}
@@ -34,6 +35,7 @@ public class HostManager : MonoBehaviour, IOnTime
     public int deadHostsIndexDivider;
     public int creatureHostsIndexDivider;
     public ItemsDataBase invData;
+    [HideInInspector]public List<HostView> InitialHostViews = new List<HostView>(); 
 
     public GameObject[] deadHostSlotPositions;
     
@@ -55,6 +57,15 @@ public class HostManager : MonoBehaviour, IOnTime
     {
         
     }
+
+    public void AddIfNotAlready(HostView view)
+    {
+        if(InitialHostViews!=null && !InitialHostViews.Contains(view))
+        {
+            InitialHostViews.Add(view);
+        }
+    }
+
     public void NewGame()
     {
         startUp = true;
@@ -63,6 +74,15 @@ public class HostManager : MonoBehaviour, IOnTime
 
     public void InitializeDetailsToViews() // occurs at game start.
     {
+        deadHostsIndexDivider += InitialHostViews.Count;
+        creatureHostsIndexDivider += InitialHostViews.Count;
+        views = new HostView[creatureHostsIndexDivider + 8];
+
+        for(int i = 0; i < InitialHostViews.Count; i++)
+        {   // pass it from one to another
+            views[i] = InitialHostViews[i];
+        }
+
         hosts = new HostDetails[views.Length];
 
         for(int i = 0; i < views.Length; i++)
