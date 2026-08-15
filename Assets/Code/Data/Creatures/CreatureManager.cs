@@ -95,6 +95,7 @@ public class CreatureManager : MonoBehaviour, IOnTime
                     // eat the one of highest priority
                     if(edibleList==null && edibleList[0]==null) continue;
                     if(edibleList.Count<=0) continue;
+                    if(TimeManager.Instance.currentIndex<=4) continue; // only eat at night
 
                     EdibleEffect effect = EdibleEffect.Neutral;
 

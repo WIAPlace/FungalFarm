@@ -126,7 +126,7 @@ public class TimeManager : MonoBehaviour
             }
         }
     }
-    int currentIndex;
+    public int currentIndex;
     Quaternion targetRotation;
 
     IEnumerator PassTimeOverTime()

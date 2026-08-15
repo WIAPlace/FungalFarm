@@ -1,0 +1,59 @@
+:root {
+}
+
+.MenuHolder {
+    width: 80%;
+    height: 95%;
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    background-image: url("project://database/Assets/ArtStuff/Sprites%20&%20Icons/Paper/BackingPages.png?fileID=2800000&guid=af8e38cc42cb28140babe1b9fb51e517&type=3#BackingPages");
+    align-self: center;
+    flex-direction: row;
+    top: 2%;
+    justify-content: center;
+}
+
+.Pages {
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+.Text {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.Grouping {
+    width: 87%;
+    background-color: rgba(0, 0, 0, 0.09);
+    align-items: center;
+    background-image: none;
+    justify-content: center;
+}
+
+.Buttons {
+    background-color: rgb(255, 255, 255);
+    font-size: 40px;
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+    border-bottom-right-radius: 19px;
+    border-bottom-left-radius: 19px;
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    -unity-font-style: bold;
+    width: 40%;
+}
+
+.Slider {
+}

@@ -64,6 +64,10 @@ namespace HSM{
                 {
                     ctx.invData.items.TryRemoveAt(milkIndex);
                 }
+                if(tempInteract == InteractionType.Spore)
+                {
+                    ctx.effectDriver.CreateParticles(ctx,ctx.sporeParticleRef);
+                }
             }
             tempInteract = InteractionType.Basic;
             ctx.currentInteract = null;

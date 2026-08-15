@@ -263,6 +263,8 @@ namespace HSM {
         public ItemDetails Milk;
 
         public MushroomDetails intendedSpore = null;
+        public ParticleSystem sporeParticleRef;
+        public PlayerEffectDriver effectDriver;
     }
 }
 

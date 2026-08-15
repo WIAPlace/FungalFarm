@@ -26,16 +26,17 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
     {
         waitTime = interactTime;
         staminaDrain = staminaDrainAmt;
-        if(type == InteractionType.Basic)
+        
+        if(currentState == SporeSpotState.Sporeable)
+        {
+            type = InteractionType.Spore;
+        }
+        else if(type == InteractionType.Basic)
         {
             waitTime = 0.01f;
             staminaDrain = 0;
             type = InteractionType.Basic;
             return;
-        }
-        else if(currentState == SporeSpotState.Sporeable)
-        {
-            type = InteractionType.Spore;
         }
         else if(type == InteractionType.Milk)
         {

@@ -58,11 +58,11 @@ Material:
     - _SunSize: 0.2
     - _WindSpeed: 0.3
     m_Colors:
-    - _HorizonColor: {r: 0.78392273, g: 0.5820268, b: 0.35926205, a: 1}
+    - _HorizonColor: {r: 0.7411765, g: 0.6784314, b: 0.5803922, a: 1}
     - _MaskAddition: {r: 0.14, g: -0.1, b: 0.1, a: 0}
     - _MaskPosition: {r: 0, g: -0.1, b: 0.1, a: 0}
     - _MaskRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _SkyColor: {r: 0.57992524, g: 0.6155855, b: 0.63905585, a: 1}
+    - _SkyColor: {r: 0.9058824, g: 0.91372555, b: 0.86274517, a: 1}
     - _SunDirection: {r: 0.5, g: 0.5, b: 5, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
