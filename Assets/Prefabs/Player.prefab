@@ -6202,6 +6202,7 @@ Transform:
   - {fileID: 5495559621434467711}
   - {fileID: 142052744957405731}
   - {fileID: 4396771239919354830}
+  - {fileID: 4911517506758721952}
   m_Father: {fileID: 3731996969570128982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6298780634270321676
@@ -6226,6 +6227,7 @@ MonoBehaviour:
   money: {fileID: 11400000, guid: 2207f6f21e73e304ca3c90439f60413e, type: 2}
   passTimeStamina: 1
   staminaRegenTime: 3
+  menu: {fileID: 8914604710512377175}
 --- !u!114 &1770803132521054161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6275,7 +6277,7 @@ MonoBehaviour:
   deadHostsIndexDivider: 1
   creatureHostsIndexDivider: 10
   invData: {fileID: 11400000, guid: 584b730b86eef5b41a87cf19c38f05fa, type: 2}
-  milkParticle: {fileID: 0}
+  milkParticle: {fileID: 4206805116820294390, guid: 15848e710e2163c478ebc2bd7abac36f, type: 3}
   InitialHostViews: []
   deadHostSlotPositions:
   - {fileID: 0}
@@ -6969,6 +6971,75 @@ MonoBehaviour:
   milkUpgradeCost: 5
   purchaseables:
   - {fileID: 11400000, guid: 7b3e35fd8f18fe2468fdee4cb6a8f4d3, type: 2}
+--- !u!1 &9214917646746687704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4911517506758721952}
+  - component: {fileID: 1896259459377434660}
+  - component: {fileID: 8914604710512377175}
+  m_Layer: 0
+  m_Name: Menu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4911517506758721952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214917646746687704}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7050063090977574588}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1896259459377434660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214917646746687704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 6315a18dc53d58c4f8408518657ca188, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: ee296f263aa481b4180902b12d045c41, type: 3}
+  m_SortingOrder: -1
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &8914604710512377175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214917646746687704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffdf82cdc4b23b44b8714731f5ba977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuOptions
+  doc: {fileID: 1896259459377434660}
 --- !u!1001 &1699453695703525861
 PrefabInstance:
   m_ObjectHideFlags: 0

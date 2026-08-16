@@ -3,7 +3,7 @@
     <ui:VisualElement name="MenuHolder" class="MenuHolder" style="flex-grow: 1;">
         <ui:VisualElement name="LeftPage" class="Pages" style="flex-grow: 1;">
             <ui:VisualElement name="KeyBinds" class="Grouping" style="flex-grow: 1;">
-                <ui:Label text="Key Binds:&#10;1 : Interact / Plant Spores&#10;2 : Harves / Remove Mushroom&#10;3 : Water Mushroom&#10;4 : Apply Milk to Mushroom" name="InteractionNotes" class="Text"/>
+                <ui:Label text="Key Binds:&#10;1 : View Condition / Plant Spores&#10;2 : Harves / Remove Mushroom&#10;3 : Water Mushroom&#10;4 : Apply Milk to Mushroom&#10;E: Interact&#10;Tab: inventory&#10;Q: Spore Menu&#10;Escape: Pause" name="InteractionNotes" class="Text"/>
             </ui:VisualElement>
             <ui:VisualElement name="Instructions" class="Grouping" style="flex-grow: 1;">
                 <ui:Label text="Instructions:&#10;Grow mushrooms on living / once living things. &#10;&#10;Mushrooms have effects on that which they grow, so be aware that things can die and become unusable for growing mushrooms.&#10;&#10;Be warry of pests that try to prevent your progress and desecrate the Mycelium Presence.&#10;&#10;Upon noon every day a carrier owl will come for produce and to bring items you have purchased from the catolouge&#10;" name="InteractionNotes" class="Text"/>
@@ -11,13 +11,13 @@
         </ui:VisualElement>
         <ui:VisualElement name="RightPage" class="Pages" style="flex-grow: 1;">
             <ui:VisualElement name="Grouping" class="Grouping" style="flex-grow: 1;">
-                <ui:Button text="Main Menu" name="MainMenu" class="Buttons"/>
+                <ui:Button text="Main Menu" name="MainMenu" enabled="false" class="Buttons"/>
                 <ui:Button text="Exit " name="Exit" class="Buttons"/>
-                <ui:Button text="Save" name="Save" class="Buttons" style="margin-top: 31px;"/>
-                <ui:Button text="Load " name="Load" class="Buttons"/>
+                <ui:Button text="Save" name="Save" enabled="false" class="Buttons" style="margin-top: 31px;"/>
+                <ui:Button text="Load " name="Load" enabled="false" class="Buttons"/>
             </ui:VisualElement>
             <ui:VisualElement name="Grouping2" class="Grouping" style="flex-grow: 1;">
-                <ui:Slider label="Volume" value="42" high-value="100" name="Volume" class="Slider Text" style="width: 472px;"/>
+                <ui:Label text="Credits: &#10;-Programming: Weston T&#10;&#10;-Level Design: Marshall T&#10;&#10;-Art and 3D Modeling:&#10;&#x9;-Kennedy T&#10;&#x9;-Rachel R&#10;&#10;-Music: Garrett B " name="Credits" class="Text"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour, IOnTime
     public float staminaRegenTime;
     private Coroutine staminaFill;
     private VisualElement moneyUIElement;
+    public MenuOptions menu;
     
     
     //public List<int> OpenContainers = new();
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour, IOnTime
         ToggleWallet(false);
         TimeManager.Instance.ManageTimer(this); // adds this to managed timers.
         money.Amt = 0;
+        menu.ToggleClicks(false);
     }
 
     void OnDestroy()
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour, IOnTime
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
         Time.timeScale = 0f;
+        menu.ToggleClicks(true);
     }
 
     private void HandleResume()
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour, IOnTime
         FungiMenu.CloseWindow();
         ToggleWallet(false);
         shopMenu.CloseShopUI();
+        menu.ToggleClicks(false);
     }
     private void HandleInventory()
     {
