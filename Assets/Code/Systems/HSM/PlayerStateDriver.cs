@@ -169,8 +169,8 @@ namespace HSM {
             {
                 case 1:
                     ctx.intendedInteraction = InteractionType.Basic;
-                    if(!heldItems[3].activeSelf)SetItemActive(3);
-                    else SetItemActive(0);
+                    //if(!heldItems[3].activeSelf)SetItemActive(3);
+                    SetItemActive(0);
                     break;
 
                 case 2:

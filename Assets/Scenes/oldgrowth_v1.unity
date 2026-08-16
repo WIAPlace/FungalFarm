@@ -7531,6 +7531,10 @@ PrefabInstance:
       propertyPath: mainLight
       value: 
       objectReference: {fileID: 77715008}
+    - target: {fileID: 2350266998532169431, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
+      propertyPath: secondsToPassForeTick
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3731996969570128982, guid: c0fd591b5dde5534a88a7ef95d207e80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 296.18045
@@ -26989,7 +26993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1224549696
 MeshCollider:
   m_ObjectHideFlags: 0

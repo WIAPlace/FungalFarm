@@ -152,7 +152,9 @@ public class HostView : MonoBehaviour
 
     public void RemoveSporeSpotModel(int index)
     {
-        Transform sporeSpotTransform = sporeSpots[index].gameObject.transform;
+        Transform sporeSpotTransform;
+        if(sporeSpots[index]!=null)sporeSpotTransform = sporeSpots[index].gameObject.transform;
+        else return;
         for (int i = sporeSpotTransform.childCount - 1; i >= 0; i--)
         {
             Destroy(sporeSpotTransform.GetChild(i).gameObject);
