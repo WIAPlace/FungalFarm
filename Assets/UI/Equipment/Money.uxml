@@ -1,9 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Equipment/Wallet.uss?fileID=7433441132597879392&amp;guid=62fd78e4d7160d94f83014bdb96c4050&amp;type=3"/>
+    <Style src="project://database/Assets/UI/Equipment/Wallet.uss?fileID=7433441132597879392&amp;guid=62fd78e4d7160d94f83014bdb96c4050&amp;type=3#Wallet"/>
     <ui:VisualElement name="Wallet" picking-mode="Ignore" style="color: rgba(27, 27, 27, 0.906);">
         <ui:Label text="Label" name="Amt" data-source="project://database/Assets/Data/MoneyInventory.asset?fileID=11400000&amp;guid=2207f6f21e73e304ca3c90439f60413e&amp;type=2#MoneyInventory" picking-mode="Ignore" style="-unity-text-auto-size: best-fit 19px 58px;">
             <Bindings>
-                <ui:DataBinding property="text" update-trigger="WhenDirty" binding-mode="TwoWay" data-source="project://database/Assets/Data/MoneyInventory.asset?fileID=11400000&amp;guid=2207f6f21e73e304ca3c90439f60413e&amp;type=2#MoneyInventory" data-source-path="Amt"/>
+                <ui:DataBinding property="text" update-trigger="EveryUpdate" binding-mode="TwoWay" data-source="project://database/Assets/Data/MoneyInventory.asset?fileID=11400000&amp;guid=2207f6f21e73e304ca3c90439f60413e&amp;type=2#MoneyInventory" data-source-path="Amt"/>
             </Bindings>
         </ui:Label>
         <ui:Label text="G" name="Postfix" picking-mode="Ignore"/>

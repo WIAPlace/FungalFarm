@@ -49,8 +49,6 @@ namespace HSM {
             // Change this to Sensitivity Later on.
             ctx.cinCamController.Controllers[0].Input.Gain = 1;
             ctx.cinCamController.Controllers[1].Input.Gain = -1;
-
-            
         }
         protected override void OnExit()
         {

@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using HSM;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections; // Required for IEnumerator
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IOnTime
 {
     public static GameManager Instance { get; private set; }
 
@@ -32,8 +33,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] UIDocument MoneyUI;
     [SerializeField] ShopMenu shopMenu;
     public Money money;
-
+    [SerializeField] float passTimeStamina;
+    public float staminaRegenTime;
+    private Coroutine staminaFill;
     private VisualElement moneyUIElement;
+    
     
     //public List<int> OpenContainers = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,6 +49,8 @@ public class GameManager : MonoBehaviour
         input.ShroomMenuEvent += HandleFungiMenu;
 
         ToggleWallet(false);
+        TimeManager.Instance.ManageTimer(this); // adds this to managed timers.
+
     }
 
     void OnDestroy()
@@ -135,5 +141,22 @@ public class GameManager : MonoBehaviour
         }
 
         else shopMenu.CloseShopUI();
+    }
+
+    public void ProgressTimeState(int stages)
+    {
+        ctx.ctx.staminaRegen += passTimeStamina;
+
+        if (staminaFill != null)
+        {
+            StopCoroutine(staminaFill);
+        }
+        staminaFill = StartCoroutine(CutoffStaminaRegen());
+
+    }
+    private IEnumerator CutoffStaminaRegen()
+    {
+        yield return new WaitForSeconds(staminaRegenTime);
+        ctx.ctx.staminaRegen = ctx.ctx.baseStaminaRegen;
     }
 }

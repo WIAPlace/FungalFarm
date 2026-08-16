@@ -24,7 +24,6 @@ public class StaminaSystem : MonoBehaviour
     private float lastStamina=100;
     private float currentStamina=100;
     [HideInInspector]public float maxStamina;
-    
 
     private float targetOpacity = 1f;
 
@@ -115,4 +114,5 @@ public class StaminaSystem : MonoBehaviour
             staminaBarFill.style.backgroundColor = Color.Lerp(mediumStaminaColor, highStaminaColor, (staminaRatio - 0.5f) * 2f);
         }
     }
+
 }

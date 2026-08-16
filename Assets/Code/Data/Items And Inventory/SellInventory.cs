@@ -25,6 +25,7 @@ public class BasketMerchant : MonoBehaviour
             if(item==null||item.quantity<=0||item.itemData==null||item.dataId == SerializableGuid.Empty) continue;
             int bonus = item.itemData.price * item.quantity;
             money.Amt+=bonus;
+            Debug.Log(money.Amt);
         }
 
         db.items.Clear();

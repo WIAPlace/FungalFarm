@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78016b53d7d4a5a4b8de2e94ddc3e57b, type: 3}
   m_Name: MoneyInventory
   m_EditorClassIdentifier: Assembly-CSharp::Money
-  Amt: 0
+  Amt: 35

@@ -75,7 +75,7 @@ public class ShopMenu : MonoBehaviour
     private void OnBrushButtonClick(ClickEvent evt)
     {
         
-        if (TryBuyItem(handUpgradeCost)&& !ctx.ctx.brushUpgrade)
+        if (!ctx.ctx.brushUpgrade&&TryBuyItem(handUpgradeCost))
         {
             Debug.Log("Brush Transacted");
             ctx.ctx.brushUpgrade = true;
@@ -85,7 +85,7 @@ public class ShopMenu : MonoBehaviour
     }
     private void OnTrowelButtonClick(ClickEvent evt)
     {
-        if (TryBuyItem(handUpgradeCost)&& !ctx.ctx.trowelUpgrade)
+        if (!ctx.ctx.trowelUpgrade && TryBuyItem(handUpgradeCost))
         {
             Debug.Log("Trowel Transacted");
             ctx.ctx.trowelUpgrade = true;
