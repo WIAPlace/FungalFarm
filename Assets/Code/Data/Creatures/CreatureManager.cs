@@ -84,7 +84,7 @@ public class CreatureManager : MonoBehaviour, IOnTime
             foreach(CreatureInstance creat in creatures)
             {
                 if(creat == null || creat.data==null||creat.dataID == SerializableGuid.Empty) continue;
-                Debug.Log("HungerRising");
+                //Debug.Log("HungerRising");
                 creat.currentHungerStage += UnityEngine.Random.Range(-1,3);
                 if(creat.currentHungerStage<=0) creat.currentHungerStage = 0;
                 

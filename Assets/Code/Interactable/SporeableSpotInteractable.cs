@@ -86,6 +86,7 @@ public class SporeableSpotInteractable : MonoBehaviour, IInteractable
         else if(type == InteractionType.Milk)
         {
             SetPrioirtyBonus(10);
+            Instantiate(HostManager.Instance.milkParticle, this.transform.position,this.transform.rotation, this.transform);
         }
         else if(type == InteractionType.Water)
         {

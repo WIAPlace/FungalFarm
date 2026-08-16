@@ -36,6 +36,7 @@ public class HostManager : MonoBehaviour, IOnTime
     public int deadHostsIndexDivider;
     public int creatureHostsIndexDivider;
     public ItemsDataBase invData;
+    public ParticleSystem milkParticle;
     [HideInInspector]public List<HostView> InitialHostViews = new List<HostView>(); 
 
     public GameObject[] deadHostSlotPositions;
