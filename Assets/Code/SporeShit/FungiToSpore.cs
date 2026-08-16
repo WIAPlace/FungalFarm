@@ -45,9 +45,11 @@ public class FungiToSpore : MonoBehaviour
         {
             ShroomImages[0] = ShroomButtons[0].Q<Image>();
         }
+        for(int i = 1;i<ShroomButtons.Length;i++){
+            ShroomButtons[i] =  document.rootVisualElement.Q(i.ToString()) as Button;
+            ShroomButtons[i].RegisterCallback<ClickEvent,int>(OnShroomClick,i);
+        }
 
-        ShroomButtons[1] =  document.rootVisualElement.Q("JackOLantern") as Button;
-        ShroomButtons[1].RegisterCallback<ClickEvent>(OnJackClick);
 
         for(int i = 0; i<ShroomImages.Length;i++){
             if (ShroomButtons[i] != null)
@@ -65,7 +67,10 @@ public class FungiToSpore : MonoBehaviour
 
     void OnDisable()
     {
-        ShroomButtons[1].UnregisterCallback<ClickEvent>(OnJackClick);
+        ShroomButtons[0].UnregisterCallback<ClickEvent>(OnRandomClick);
+        for(int i = 1; i<ShroomButtons.Length;i++){
+            ShroomButtons[i].UnregisterCallback<ClickEvent,int>(OnShroomClick);
+        }
     }
 
     private void RefreshImages()
@@ -81,9 +86,11 @@ public class FungiToSpore : MonoBehaviour
 
     private bool CheckIfUnlocked(int i)
     {
+        return true;/*
         if(unlocks == null) return false;
 
         return unlocks.CheckIfUnlocked(shroomInfo[i].shroom);
+        */
     }
 
     private void OnRandomClick(ClickEvent evt)
@@ -92,10 +99,10 @@ public class FungiToSpore : MonoBehaviour
         SetData(0);
     }
 
-    private void OnJackClick(ClickEvent evt)
+    private void OnShroomClick(ClickEvent evt,int i)
     {
-        ctx.ctx.intendedSpore = shroomInfo[1].shroom;
-        SetData(1);
+        ctx.ctx.intendedSpore = shroomInfo[i].shroom;
+        SetData(i);
     }
 
 

@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour, IOnTime
 
         ToggleWallet(false);
         TimeManager.Instance.ManageTimer(this); // adds this to managed timers.
-
+        money.Amt = 0;
     }
 
     void OnDestroy()

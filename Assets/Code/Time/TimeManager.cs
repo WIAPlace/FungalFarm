@@ -22,6 +22,7 @@ public class SkyValueHolder
 {
     public Color SkyColor;
     public Color HorizonColor;
+    public float light;
 }
 
 
@@ -46,6 +47,8 @@ public class TimeManager : MonoBehaviour
 
         Owl.SetActive(false);
         Basket.SetActive(false);
+        //Day.mute=false;
+        //night.mute=true;
     }
 
     public static float TotalGameTime;
@@ -67,6 +70,11 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField] private float SunSize = 2.0f;
     [SerializeField] private float MoonSize = 2.0f;
+    public Light baseLight;
+    private float currentLight;
+    public float lightChangeSpeed;
+    private float targetlight;
+    
 
     float timer;
 
@@ -76,6 +84,9 @@ public class TimeManager : MonoBehaviour
     private string sunSizeRef = "_SunSize";
     private Coroutine skyColorTransitionCoroutine;
     private Coroutine horizonColorTransitionCoroutine;
+
+    //public AudioSource night;
+    //public AudioSource Day;
 
     Color targetSkyColor;
     Color targetHorizonColor;
@@ -161,6 +172,7 @@ public class TimeManager : MonoBehaviour
     {
         if(mainLight.transform.rotation!=targetRotation){
             mainLight.transform.rotation = Quaternion.Slerp(mainLight.transform.rotation, targetRotation, LightDirChangeSpeed * Time.deltaTime);
+            baseLight.intensity = Mathf.Lerp(baseLight.intensity,values[currentIndex].light,lightChangeSpeed *Time.deltaTime);
         }
     }
 
@@ -169,9 +181,15 @@ public class TimeManager : MonoBehaviour
         switch (currentIndex)
         {
             case 0: // morning
+                //Day.mute = false;
+                //night.mute=true;
                 targetMat.SetFloat(sunSizeRef, SunSize);
                 targetRotation =  Quaternion.Euler(164.5f,  80f , 0);
-                if(values[currentIndex]!=null)StartLightTransition(values[currentIndex]);
+                
+                if(values[currentIndex]!=null){
+                    StartLightTransition(values[currentIndex]);
+                }
+
             break;
 
             case 1:
@@ -190,6 +208,8 @@ public class TimeManager : MonoBehaviour
             break;
 
             case 4: // night
+                //Day.mute = true;
+                //night.mute=false;
                 targetMat.SetFloat(sunSizeRef, MoonSize);
                 targetRotation  =  Quaternion.Euler(20.7f,   80f , 0);
                 if(values[currentIndex]!=null)StartLightTransition(values[currentIndex]);

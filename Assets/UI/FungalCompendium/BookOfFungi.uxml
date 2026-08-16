@@ -5,7 +5,25 @@
         <ui:Button name="Random" class="fungalOptions">
             <ui:Image name="Icon" class="Icon"/>
         </ui:Button>
-        <ui:Button name="JackOLantern" class="fungalOptions">
+        <ui:Button name="1" class="fungalOptions">
+            <ui:Image name="Icon" class="Icon"/>
+        </ui:Button>
+        <ui:Button name="2" class="fungalOptions">
+            <ui:Image name="Icon" class="Icon"/>
+        </ui:Button>
+        <ui:Button name="3" class="fungalOptions">
+            <ui:Image name="Icon" class="Icon"/>
+        </ui:Button>
+        <ui:Button name="4" class="fungalOptions">
+            <ui:Image name="Icon" class="Icon"/>
+        </ui:Button>
+        <ui:Button name="5" class="fungalOptions">
+            <ui:Image name="Icon" class="Icon"/>
+        </ui:Button>
+        <ui:Button name="6" class="fungalOptions">
+            <ui:Image name="Icon" class="Icon"/>
+        </ui:Button>
+        <ui:Button name="7" class="fungalOptions">
             <ui:Image name="Icon" class="Icon"/>
         </ui:Button>
     </ui:GroupBox>
