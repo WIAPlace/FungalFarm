@@ -55,14 +55,14 @@ Material:
     - _QueueOffset: 0
     - _StarDensity: 20.44
     - _SunMaskSize: 100
-    - _SunSize: 0
+    - _SunSize: 0.2
     - _WindSpeed: 0.3
     m_Colors:
-    - _HorizonColor: {r: 0.31770542, g: 0.30153078, b: 0.5283019, a: 1}
+    - _HorizonColor: {r: 0.72125995, g: 0.5134237, b: 0.29305476, a: 1}
     - _MaskAddition: {r: 0.14, g: -0.1, b: 0.1, a: 0}
     - _MaskPosition: {r: 0, g: -0.1, b: 0.1, a: 0}
     - _MaskRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _SkyColor: {r: 0.09019608, g: 0.1137255, b: 0.20000002, a: 1}
+    - _SkyColor: {r: 0.61532474, g: 0.6152696, b: 0.56482995, a: 1}
     - _SunDirection: {r: 0.5, g: 0.5, b: 5, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
