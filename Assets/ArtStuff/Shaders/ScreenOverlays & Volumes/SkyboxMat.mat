@@ -46,24 +46,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CloudEdge: 1
+    - _CloudEdge: 1.4
     - _CloudEdge2: 12.45
-    - _CloudHeight: 0.17
+    - _CloudHeight: 0.13
     - _CloudHeight2: 96.09
-    - _FogHeight: 20
+    - _FogHeight: 14.48
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _StarDensity: 20.44
-    - _SunMaskSize: 100
-    - _SunSize: 0.2
+    - _StarDensity: 17.96
+    - _SunMaskSize: 1.17
+    - _SunSize: 0
     - _WindSpeed: 0.3
     m_Colors:
-    - _HorizonColor: {r: 0.18823531, g: 0.07450981, b: 0.043137256, a: 1}
+    - _HorizonColor: {r: 0.80392164, g: 0.6039216, b: 0.3803922, a: 1}
     - _MaskAddition: {r: 0.14, g: -0.1, b: 0.1, a: 0}
-    - _MaskPosition: {r: 0, g: -0.1, b: 0.1, a: 0}
+    - _MaskPosition: {r: -0.11, g: -0.1, b: 0.1, a: 0}
     - _MaskRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _SkyColor: {r: 0.57254905, g: 0.40000004, b: 0.36862746, a: 1}
-    - _SunDirection: {r: 0.5, g: 0.5, b: 5, a: 0}
+    - _SkyColor: {r: 0.5686275, g: 0.6156863, b: 0.6627451, a: 1}
+    - _SunDirection: {r: -8, g: 0.5, b: 5, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8346883299792562111
